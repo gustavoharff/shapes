@@ -1,10 +1,12 @@
+import { NavigationContainer } from '@react-navigation/native'
 import * as React from 'react'
-import { Text, View } from 'react-native'
+
+import { HomeStack } from './src/navigation/home.stack'
 
 export default function App() {
   return (
-    <View>
-      <Text>geometric-figures</Text>
-    </View>
+    <NavigationContainer>
+      <HomeStack />
+    </NavigationContainer>
   )
 }
