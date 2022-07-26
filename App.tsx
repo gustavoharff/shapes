@@ -1,12 +1,12 @@
 import { NavigationContainer } from '@react-navigation/native'
 import * as React from 'react'
 
-import { HomeStack } from './src/navigation/home.stack'
+import { RootStack } from './src/navigation/root.stack'
 
 export default function App() {
   return (
     <NavigationContainer>
-      <HomeStack />
+      <RootStack />
     </NavigationContainer>
   )
 }

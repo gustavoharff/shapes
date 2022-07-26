@@ -1,5 +1,6 @@
+import { useNavigation } from '@react-navigation/native'
 import * as React from 'react'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
 
 import { Cone } from './figures/cone'
 import { Cube } from './figures/cube'
@@ -8,21 +9,36 @@ import { Parallelepiped } from './figures/parallelepiped'
 import { Pyramid } from './figures/pyramid'
 
 const list = [
-  { title: 'Cone', component: Cone },
-  { title: 'Cubo', component: Cube },
-  { title: 'Cilindro', component: Cylinder },
-  { title: 'Paralelepipedo', component: Parallelepiped },
-  { title: 'Piramide', component: Pyramid }
+  { title: 'Cone', component: Cone, figure: 'cone' },
+  { title: 'Cubo', component: Cube, figure: 'cubo' },
+  { title: 'Cilindro', component: Cylinder, figure: 'cylinder' },
+  {
+    title: 'Paralelepipedo',
+    component: Parallelepiped,
+    figure: 'parallelepiped'
+  },
+  { title: 'Piramide', component: Pyramid, figure: 'pyramid' }
 ]
 
 export function FiguresList() {
+  const navigation = useNavigation()
+
   return (
     <ScrollView>
       <View style={styles.list}>
-        {list.map(({ title, component: Figure }) => (
-          <View key={title} style={styles.figure}>
+        {list.map(({ title, component: Figure, figure }) => (
+          <TouchableOpacity
+            key={title}
+            style={styles.figure}
+            activeOpacity={0.7}
+            onPress={() => {
+              if (figure === 'cubo') {
+                navigation.navigate('CubeForm')
+              }
+            }}
+          >
             <Figure size={120} />
-          </View>
+          </TouchableOpacity>
         ))}
       </View>
     </ScrollView>
