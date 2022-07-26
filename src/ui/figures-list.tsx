@@ -24,7 +24,7 @@ export function FiguresList() {
   const navigation = useNavigation()
 
   return (
-    <ScrollView>
+    <ScrollView contentInsetAdjustmentBehavior="automatic">
       <View style={styles.list}>
         {list.map(({ title, component: Figure, figure }) => (
           <TouchableOpacity

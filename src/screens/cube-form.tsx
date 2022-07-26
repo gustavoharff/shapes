@@ -8,7 +8,11 @@ type CubeFormProps = RootStackScreenProps<'CubeForm'>
 
 interface CubeFormState {
   readonly edge: string
-  readonly volume: number
+  readonly volumeCm3: number
+  readonly volumeMm3: number
+  readonly specificWeight: string
+  readonly weightCm3: number
+  readonly weightMm3: number
 }
 
 export class CubeForm extends React.Component<CubeFormProps, CubeFormState> {
@@ -19,7 +23,11 @@ export class CubeForm extends React.Component<CubeFormProps, CubeFormState> {
 
     this.state = {
       edge: '',
-      volume: 0
+      volumeCm3: 0,
+      volumeMm3: 0,
+      specificWeight: '',
+      weightCm3: 0,
+      weightMm3: 0
     }
   }
 
@@ -31,20 +39,41 @@ export class CubeForm extends React.Component<CubeFormProps, CubeFormState> {
     this.setState({ edge: text })
 
     if (!text) {
-      this.setState({ volume: 0 })
+      this.setState({
+        volumeCm3: 0,
+        volumeMm3: 0,
+        weightCm3: 0,
+        weightMm3: 0,
+        specificWeight: ''
+      })
       return
     }
 
     const number = Number(text.replace(',', '.'))
 
-    const volume = number * number * number
+    const volumeCm3 = number * number * number
+    const volumeMm3 = volumeCm3 * 1000
 
-    this.setState({ volume })
+    this.setState({ volumeCm3, volumeMm3 })
+  }
+
+  private onSpecificWeightChange = (text: string) => {
+    this.setState({ specificWeight: text })
+
+    const number = Number(text.replace(',', '.'))
+
+    const weightCm3 = number / this.state.volumeCm3
+    const weightMm3 = number / this.state.volumeMm3
+
+    this.setState({ weightCm3, weightMm3 })
   }
 
   public render() {
     return (
-      <ScrollView style={styles.form}>
+      <ScrollView
+        style={styles.form}
+        contentInsetAdjustmentBehavior="automatic"
+      >
         <View style={styles.cube}>
           <Cube size={120} />
         </View>
@@ -56,9 +85,35 @@ export class CubeForm extends React.Component<CubeFormProps, CubeFormState> {
           onChangeText={this.onEdgeChange}
           keyboardType="numeric"
         />
-        <View style={styles.volume}>
-          <Text style={styles.volumeText} numberOfLines={1}>
-            Volume: {this.state.volume.toLocaleString('pt-BR')} cm³
+        <View style={styles.tip}>
+          <Text style={styles.tipTitle}>Volume</Text>
+          <Text style={styles.tipValue}>
+            {this.state.volumeCm3.toLocaleString('pt-BR')} cm³
+          </Text>
+          <Text style={styles.tipValue}>
+            {this.state.volumeMm3.toLocaleString('pt-BR')} mm³
+          </Text>
+        </View>
+
+        <Input
+          placeholder="Peso especifico (kg/cm³)"
+          value={this.state.specificWeight}
+          onChangeText={this.onSpecificWeightChange}
+          keyboardType="numeric"
+          editable={!!this.state.edge}
+          style={{ marginTop: 16 }}
+        />
+
+        <View style={styles.tip}>
+          <Text style={styles.tipTitle}>Peço</Text>
+          <Text style={styles.tipValue}>
+            {this.state.weightCm3.toLocaleString('pt-BR')} kg/cm³
+          </Text>
+          <Text style={styles.tipValue}>
+            {this.state.weightMm3.toLocaleString('pt-BR', {
+              maximumSignificantDigits: 6
+            })}{' '}
+            kg/mm³
           </Text>
         </View>
       </ScrollView>
@@ -73,16 +128,24 @@ const styles = StyleSheet.create({
   cube: {
     alignItems: 'center'
   },
-  volume: {
+  tip: {
     marginTop: 24,
-    backgroundColor: '#5E66D7',
+    backgroundColor: 'rgba(94, 102, 215, 0.85)',
+    padding: 16,
     borderRadius: 8
   },
-  volumeText: {
+  tipTitle: {
     textAlign: 'center',
-    padding: 16,
     color: '#fff',
+    fontSize: 18,
+    fontWeight: '600',
+    paddingVertical: 4
+  },
+  tipValue: {
+    textAlign: 'center',
+    color: '#ebeaea',
     fontSize: 16,
-    fontWeight: '600'
+    fontWeight: '600',
+    paddingVertical: 4
   }
 })

@@ -4,24 +4,44 @@ import {
   StyleSheet,
   TextInput,
   TextInputFocusEventData,
-  TextInputProps
+  TextInputProps,
+  Appearance,
+  NativeEventSubscription
 } from 'react-native'
 
 interface InputProps extends TextInputProps {}
 
 interface InputState {
   readonly isFocus: boolean
+  readonly isDark: boolean
 }
 
 export class Input extends React.Component<InputProps, InputState> {
   private ref = React.createRef<TextInput>()
 
+  private colorSchemeSubscription: NativeEventSubscription | null = null
+
   constructor(props: InputProps) {
     super(props)
 
     this.state = {
-      isFocus: false
+      isFocus: false,
+      isDark: Appearance.getColorScheme() === 'dark'
     }
+  }
+
+  componentDidMount() {
+    this.colorSchemeSubscription = Appearance.addChangeListener(
+      this.onColorSchemeChange
+    )
+  }
+
+  componentWillUnmount() {
+    this.colorSchemeSubscription?.remove()
+  }
+
+  private onColorSchemeChange: Appearance.AppearanceListener = preference => {
+    this.setState({ isDark: preference.colorScheme === 'dark' })
   }
 
   public focus = () => {
@@ -50,10 +70,13 @@ export class Input extends React.Component<InputProps, InputState> {
         style={[
           style,
           styles.input,
+          { color: this.state.isDark ? '#fff' : '#434545' },
           { borderColor: this.state.isFocus ? '#424cd6' : '#41d5c4' }
         ]}
         onBlur={this.onBlur}
         onFocus={this.onFocus}
+        selectionColor="#424cd6"
+        placeholderTextColor={this.state.isDark ? '#a9a7a7' : '#918e8e'}
       />
     )
   }
@@ -66,7 +89,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     fontSize: 16,
     lineHeight: 20,
-    fontWeight: '500',
-    color: '#434545'
+    fontWeight: '500'
   }
 })
