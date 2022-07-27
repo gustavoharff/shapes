@@ -5,10 +5,17 @@ import {
   Theme
 } from '@react-navigation/native'
 import * as React from 'react'
-import { useColorScheme } from 'react-native'
+import { Platform, UIManager, useColorScheme } from 'react-native'
 
 import { RootStack } from './src/navigation/root.stack'
 import { theme } from './src/theme'
+
+if (
+  Platform.OS === 'android' &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true)
+}
 
 const darkTheme = {
   ...DarkTheme,

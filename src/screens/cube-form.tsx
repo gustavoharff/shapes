@@ -1,5 +1,6 @@
+import { HeaderHeightContext } from '@react-navigation/elements'
 import * as React from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 import { RootStackScreenProps } from '../navigation/types'
 import { Cube, Input } from '../ui'
@@ -71,53 +72,60 @@ export class CubeForm extends React.Component<CubeFormProps, CubeFormState> {
 
   public render() {
     return (
-      <ScrollView
-        style={styles.form}
-        contentInsetAdjustmentBehavior="automatic"
-      >
-        <View style={styles.cube}>
-          <Cube size={120} />
-        </View>
+      <HeaderHeightContext.Consumer>
+        {headerHeight => (
+          <ScrollView
+            style={[
+              styles.form,
+              { marginTop: Platform.OS === 'android' ? headerHeight : 0 }
+            ]}
+            contentInsetAdjustmentBehavior="automatic"
+          >
+            <View style={styles.cube}>
+              <Cube size={120} />
+            </View>
 
-        <Input
-          ref={this.edgeRef}
-          placeholder="Aresta (cm)"
-          value={this.state.edge}
-          onChangeText={this.onEdgeChange}
-          keyboardType="numeric"
-        />
+            <Input
+              ref={this.edgeRef}
+              placeholder="Aresta (cm)"
+              value={this.state.edge}
+              onChangeText={this.onEdgeChange}
+              keyboardType="numeric"
+            />
 
-        <Tip title="Volume" style={{ marginTop: 16 }}>
-          <Text style={styles.tipValue} numberOfLines={1}>
-            • {this.state.volumeCm3.toLocaleString('pt-BR')} cm³
-          </Text>
-          <Text style={styles.tipValue} numberOfLines={1}>
-            • {this.state.volumeMm3.toLocaleString('pt-BR')} mm³
-          </Text>
-        </Tip>
+            <Tip title="Volume" style={{ marginTop: 16 }}>
+              <Text style={styles.tipValue} numberOfLines={1}>
+                • {this.state.volumeCm3.toLocaleString('pt-BR')} cm³
+              </Text>
+              <Text style={styles.tipValue} numberOfLines={1}>
+                • {this.state.volumeMm3.toLocaleString('pt-BR')} mm³
+              </Text>
+            </Tip>
 
-        <Input
-          placeholder="Peso especifico (kg/cm³)"
-          value={this.state.specificWeight}
-          onChangeText={this.onSpecificWeightChange}
-          keyboardType="numeric"
-          editable={!!this.state.edge}
-          style={{ marginTop: 16 }}
-        />
+            <Input
+              placeholder="Peso especifico (kg/cm³)"
+              value={this.state.specificWeight}
+              onChangeText={this.onSpecificWeightChange}
+              keyboardType="numeric"
+              editable={!!this.state.edge}
+              style={{ marginTop: 16 }}
+            />
 
-        <Tip title="Peso" style={{ marginTop: 16 }}>
-          <Text style={styles.tipValue} numberOfLines={1}>
-            • {this.state.weightCm3.toLocaleString('pt-BR')} kg/cm³
-          </Text>
-          <Text style={styles.tipValue} numberOfLines={1}>
-            •{' '}
-            {this.state.weightMm3.toLocaleString('pt-BR', {
-              maximumSignificantDigits: 6
-            })}{' '}
-            kg/mm³
-          </Text>
-        </Tip>
-      </ScrollView>
+            <Tip title="Peso" style={{ marginTop: 16 }}>
+              <Text style={styles.tipValue} numberOfLines={1}>
+                • {this.state.weightCm3.toLocaleString('pt-BR')} kg/cm³
+              </Text>
+              <Text style={styles.tipValue} numberOfLines={1}>
+                •{' '}
+                {this.state.weightMm3.toLocaleString('pt-BR', {
+                  maximumSignificantDigits: 6
+                })}{' '}
+                kg/mm³
+              </Text>
+            </Tip>
+          </ScrollView>
+        )}
+      </HeaderHeightContext.Consumer>
     )
   }
 }

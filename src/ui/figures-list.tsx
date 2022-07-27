@@ -1,6 +1,16 @@
 import { useNavigation } from '@react-navigation/native'
 import * as React from 'react'
-import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
+import {
+  LayoutAnimation,
+  ScrollView,
+  StyleProp,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  useColorScheme,
+  View,
+  ViewStyle
+} from 'react-native'
 
 import { Cone } from './figures/cone'
 import { Cube } from './figures/cube'
@@ -13,20 +23,38 @@ const list = [
   { title: 'Cubo', component: Cube, figure: 'cubo' },
   { title: 'Cilindro', component: Cylinder, figure: 'cylinder' },
   {
-    title: 'Paralelepipedo',
+    title: 'Paralelepípedo',
     component: Parallelepiped,
     figure: 'parallelepiped'
   },
-  { title: 'Piramide', component: Pyramid, figure: 'pyramid' }
+  { title: 'Pirâmide', component: Pyramid, figure: 'pyramid' }
 ]
 
-export function FiguresList() {
+interface FiguresListProps {
+  readonly filter: string
+  readonly style?: StyleProp<ViewStyle>
+}
+
+export function FiguresList({ filter, style }: FiguresListProps) {
   const navigation = useNavigation()
+  const isDark = useColorScheme() === 'dark'
+
+  const data = React.useMemo(() => {
+    if (!filter) return list
+
+    return list.filter(item =>
+      item.title.toLowerCase().includes(filter.toLowerCase())
+    )
+  }, [filter])
+
+  React.useEffect(() => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
+  }, [data])
 
   return (
-    <ScrollView contentInsetAdjustmentBehavior="automatic">
+    <ScrollView contentInsetAdjustmentBehavior="automatic" style={style}>
       <View style={styles.list}>
-        {list.map(({ title, component: Figure, figure }) => (
+        {data.map(({ title, component: Figure, figure }) => (
           <TouchableOpacity
             key={title}
             style={styles.figure}
@@ -38,6 +66,10 @@ export function FiguresList() {
             }}
           >
             <Figure size={120} />
+
+            <Text style={[{ color: isDark ? '#fff' : '#000' }, styles.title]}>
+              {title}
+            </Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -57,5 +89,10 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderRadius: 24,
     borderColor: '#5E66D7'
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: '500'
   }
 })
