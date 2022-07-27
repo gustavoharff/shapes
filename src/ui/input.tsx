@@ -9,6 +9,8 @@ import {
   NativeEventSubscription
 } from 'react-native'
 
+import { theme } from '../theme'
+
 interface InputProps extends TextInputProps {}
 
 interface InputState {
@@ -62,21 +64,24 @@ export class Input extends React.Component<InputProps, InputState> {
 
   public render() {
     const { style, ...rest } = this.props
+    const { isDark, isFocus } = this.state
 
     return (
       <TextInput
         ref={this.ref}
         {...rest}
         style={[
-          style,
           styles.input,
-          { color: this.state.isDark ? '#fff' : '#434545' },
-          { borderColor: this.state.isFocus ? '#424cd6' : '#41d5c4' }
+          { color: isDark ? '#fff' : '#434545' },
+          {
+            borderColor: isFocus ? theme.dark.primary : theme.dark.secondary
+          },
+          style
         ]}
         onBlur={this.onBlur}
         onFocus={this.onFocus}
-        selectionColor="#424cd6"
-        placeholderTextColor={this.state.isDark ? '#a9a7a7' : '#918e8e'}
+        selectionColor={isDark ? theme.dark.primary : theme.light.primary}
+        placeholderTextColor={isDark ? '#a9a7a7' : '#918e8e'}
       />
     )
   }

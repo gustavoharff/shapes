@@ -8,12 +8,13 @@ import * as React from 'react'
 import { useColorScheme } from 'react-native'
 
 import { RootStack } from './src/navigation/root.stack'
+import { theme } from './src/theme'
 
 const darkTheme = {
   ...DarkTheme,
   colors: {
     ...DarkTheme.colors,
-    primary: '#424cd6'
+    primary: theme.dark.primary
   }
 } as Theme
 
@@ -21,7 +22,7 @@ const lightTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: '#424cd6'
+    primary: theme.light.primaryVariant
   }
 } as Theme
 

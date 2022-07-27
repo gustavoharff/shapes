@@ -88,10 +88,10 @@ export class CubeForm extends React.Component<CubeFormProps, CubeFormState> {
         />
 
         <Tip title="Volume" style={{ marginTop: 16 }}>
-          <Text style={styles.tipValue}>
+          <Text style={styles.tipValue} numberOfLines={1}>
             • {this.state.volumeCm3.toLocaleString('pt-BR')} cm³
           </Text>
-          <Text style={styles.tipValue}>
+          <Text style={styles.tipValue} numberOfLines={1}>
             • {this.state.volumeMm3.toLocaleString('pt-BR')} mm³
           </Text>
         </Tip>
@@ -106,10 +106,10 @@ export class CubeForm extends React.Component<CubeFormProps, CubeFormState> {
         />
 
         <Tip title="Peso" style={{ marginTop: 16 }}>
-          <Text style={styles.tipValue}>
+          <Text style={styles.tipValue} numberOfLines={1}>
             • {this.state.weightCm3.toLocaleString('pt-BR')} kg/cm³
           </Text>
-          <Text style={styles.tipValue}>
+          <Text style={styles.tipValue} numberOfLines={1}>
             •{' '}
             {this.state.weightMm3.toLocaleString('pt-BR', {
               maximumSignificantDigits: 6
