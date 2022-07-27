@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native'
 
 import { RootStackScreenProps } from '../navigation/types'
 import { Cube, Input } from '../ui'
+import { Tip } from '../ui/tip'
 
 type CubeFormProps = RootStackScreenProps<'CubeForm'>
 
@@ -85,15 +86,15 @@ export class CubeForm extends React.Component<CubeFormProps, CubeFormState> {
           onChangeText={this.onEdgeChange}
           keyboardType="numeric"
         />
-        <View style={styles.tip}>
-          <Text style={styles.tipTitle}>Volume</Text>
+
+        <Tip title="Volume" style={{ marginTop: 16 }}>
           <Text style={styles.tipValue}>
-            {this.state.volumeCm3.toLocaleString('pt-BR')} cm³
+            • {this.state.volumeCm3.toLocaleString('pt-BR')} cm³
           </Text>
           <Text style={styles.tipValue}>
-            {this.state.volumeMm3.toLocaleString('pt-BR')} mm³
+            • {this.state.volumeMm3.toLocaleString('pt-BR')} mm³
           </Text>
-        </View>
+        </Tip>
 
         <Input
           placeholder="Peso especifico (kg/cm³)"
@@ -104,18 +105,18 @@ export class CubeForm extends React.Component<CubeFormProps, CubeFormState> {
           style={{ marginTop: 16 }}
         />
 
-        <View style={styles.tip}>
-          <Text style={styles.tipTitle}>Peço</Text>
+        <Tip title="Peso" style={{ marginTop: 16 }}>
           <Text style={styles.tipValue}>
-            {this.state.weightCm3.toLocaleString('pt-BR')} kg/cm³
+            • {this.state.weightCm3.toLocaleString('pt-BR')} kg/cm³
           </Text>
           <Text style={styles.tipValue}>
+            •{' '}
             {this.state.weightMm3.toLocaleString('pt-BR', {
               maximumSignificantDigits: 6
             })}{' '}
             kg/mm³
           </Text>
-        </View>
+        </Tip>
       </ScrollView>
     )
   }
@@ -128,24 +129,9 @@ const styles = StyleSheet.create({
   cube: {
     alignItems: 'center'
   },
-  tip: {
-    marginTop: 24,
-    backgroundColor: 'rgba(94, 102, 215, 0.85)',
-    padding: 16,
-    borderRadius: 8
-  },
-  tipTitle: {
-    textAlign: 'center',
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: '600',
-    paddingVertical: 4
-  },
   tipValue: {
-    textAlign: 'center',
     color: '#ebeaea',
     fontSize: 16,
-    fontWeight: '600',
-    paddingVertical: 4
+    fontWeight: '600'
   }
 })
