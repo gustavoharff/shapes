@@ -4,6 +4,7 @@ import { Platform, useColorScheme } from 'react-native'
 
 import { useDebounce } from '../hooks/use-debounce-effect'
 import { RootStackScreenProps } from '../navigation/types'
+import { theme } from '../theme'
 import { FiguresList } from '../ui'
 
 export function Home({ navigation }: RootStackScreenProps<'Home'>) {
@@ -13,7 +14,7 @@ export function Home({ navigation }: RootStackScreenProps<'Home'>) {
 
   const debouncedFilter = useDebounce(filter, 200)
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     navigation.setOptions({
       headerSearchBarOptions: {
         onChangeText: event => setFilter(event.nativeEvent.text),
@@ -21,7 +22,7 @@ export function Home({ navigation }: RootStackScreenProps<'Home'>) {
         headerIconColor: isDark ? '#fff' : '#000',
         hintTextColor: isDark ? '#fff' : '#000',
         textColor: isDark ? '#fff' : '#000',
-        tintColor: isDark ? '#fff' : '#000',
+        tintColor: theme.dark.primary,
         placeholder: 'Buscar',
         obscureBackground: false,
         shouldShowHintSearchIcon: false,

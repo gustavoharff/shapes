@@ -63,6 +63,10 @@ export function FiguresList({ filter, style }: FiguresListProps) {
               if (figure === 'cubo') {
                 navigation.navigate('CubeForm')
               }
+
+              if (figure === 'cone') {
+                navigation.navigate('ConeForm')
+              }
             }}
           >
             <Figure size={120} />

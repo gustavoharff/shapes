@@ -5,10 +5,14 @@ import {
   Theme
 } from '@react-navigation/native'
 import * as React from 'react'
-import { Platform, UIManager, useColorScheme } from 'react-native'
+import { Platform, UIManager, useColorScheme, LogBox } from 'react-native'
 
 import { RootStack } from './src/navigation/root.stack'
 import { theme } from './src/theme'
+
+LogBox.ignoreLogs([
+  'Non-serializable values were found in the navigation state'
+])
 
 if (
   Platform.OS === 'android' &&

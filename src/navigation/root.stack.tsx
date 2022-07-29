@@ -2,7 +2,13 @@ import { useTheme } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import * as React from 'react'
 
-import { Home, CubeForm } from '../screens'
+import {
+  Home,
+  ConeFormScreen,
+  CubeFormScreen,
+  SelectUnit,
+  SelectDensityUnit
+} from '../screens'
 
 const Stack = createNativeStackNavigator()
 
@@ -31,12 +37,45 @@ export function RootStack() {
 
       <Stack.Screen
         name="CubeForm"
-        component={CubeForm}
+        component={CubeFormScreen}
         options={{
           title: 'Cubo',
           headerLargeTitle: false
         }}
       />
+
+      <Stack.Screen
+        name="ConeForm"
+        component={ConeFormScreen}
+        options={{
+          title: 'Cone',
+          headerLargeTitle: false
+        }}
+      />
+
+      <Stack.Group
+        screenOptions={{
+          headerLargeStyle: {},
+          headerLargeTitle: false,
+          presentation: 'modal',
+          title: 'Unidades',
+          headerShadowVisible: false,
+          headerStyle: {
+            backgroundColor: theme.dark
+              ? 'rgb(28, 28, 30)'
+              : 'rgb(242, 242, 247)'
+          },
+          contentStyle: {
+            backgroundColor: theme.dark
+              ? 'rgb(28, 28, 30)'
+              : 'rgb(242, 242, 247)'
+          },
+          headerTransparent: false
+        }}
+      >
+        <Stack.Screen name="SelectUnit" component={SelectUnit} />
+        <Stack.Screen name="SelectDensityUnit" component={SelectDensityUnit} />
+      </Stack.Group>
     </Stack.Navigator>
   )
 }

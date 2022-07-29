@@ -4,55 +4,74 @@ import { Button, StyleSheet, Text, View } from 'react-native'
 
 import { RootStackScreenProps } from '../navigation/types'
 import { DensityUnit, Unit } from '../types/unit'
-import { Cube, Input, Form, Tip } from '../ui'
-import { cm3ToM3, cm3ToMm3, cmToM, m3ToCm3, m3ToMm3, mmToM } from '../utils'
+import { Cone, Form, Input, Tip } from '../ui'
+import { cmToM, m3ToCm3, m3ToMm3, mmToM } from '../utils'
 
-type CubeFormProps = RootStackScreenProps<'CubeForm'>
+type CubeFormProps = RootStackScreenProps<'ConeForm'>
 
-export function CubeFormScreen({ navigation }: CubeFormProps) {
-  const [edge, setEdge] = React.useState('')
-  const [edgeUnit, setEdgeUnit] = React.useState<Unit>('m')
-
-  // m
-  const volume = React.useMemo(() => {
-    if (!edge) return 0
-
-    const value = Number(edge.replace(',', '.'))
-
-    if (Number.isNaN(value)) return 0
-
-    let valueM: number
-
-    switch (edgeUnit) {
-      case 'cm':
-        valueM = cmToM(value)
-        break
-      case 'm':
-        valueM = value
-        break
-      case 'mm':
-        valueM = mmToM(value)
-        break
-    }
-
-    return valueM ** 3
-  }, [edge, edgeUnit])
+export function ConeFormScreen({ navigation }: CubeFormProps) {
+  const [radius, setRadius] = React.useState('')
+  const [radiusUnit, setRadiusUnit] = React.useState<Unit>('m')
+  const [height, setHeight] = React.useState('')
+  const [heightUnit, setHeightUnit] = React.useState<Unit>('m')
 
   const [specificWeight, setSpecificWeight] = React.useState('')
   const [specificWeightUnit, setSpecificWeightUnit] =
     React.useState<DensityUnit>('kg/m³')
 
+  // m3
+  const volume = React.useMemo(() => {
+    if (!radius) return 0
+    if (!height) return 0
+
+    const radiusParsed = Number(radius.replace(',', '.'))
+    const heightParsed = Number(height.replace(',', '.'))
+
+    if (Number.isNaN(radiusParsed)) return 0
+    if (Number.isNaN(heightParsed)) return 0
+
+    let radiusM: number
+    let heightM: number
+
+    switch (radiusUnit) {
+      case 'cm': {
+        radiusM = cmToM(radiusParsed)
+        break
+      }
+      case 'm': {
+        radiusM = radiusParsed
+        break
+      }
+      case 'mm': {
+        radiusM = mmToM(radiusParsed)
+        break
+      }
+    }
+
+    switch (heightUnit) {
+      case 'cm': {
+        heightM = cmToM(heightParsed)
+        break
+      }
+      case 'm': {
+        heightM = heightParsed
+        break
+      }
+      case 'mm': {
+        heightM = mmToM(heightParsed)
+        break
+      }
+    }
+
+    return (Math.PI * radiusM ** 2 * heightM) / 3
+  }, [height, heightUnit, radius, radiusUnit])
+
   const theme = useTheme()
-
-  const edgeRef = React.useRef<Input>(null)
-
-  React.useEffect(() => {
-    edgeRef.current?.focus()
-  }, [])
 
   // kg/m3
   const weight = React.useMemo(() => {
-    if (!edge) return 0
+    if (!height) return 0
+    if (!radius) return 0
 
     if (!specificWeight) return 0
 
@@ -69,30 +88,51 @@ export function CubeFormScreen({ navigation }: CubeFormProps) {
     }
 
     return valueKgM3 * volume
-  }, [edge, specificWeight, specificWeightUnit, volume])
+  }, [height, radius, specificWeight, specificWeightUnit, volume])
 
   return (
     <Form>
-      <View style={styles.cube}>
-        <Cube size={120} />
+      <View style={styles.figure}>
+        <Cone size={120} />
       </View>
 
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Input
-          ref={edgeRef}
           placeholder="Aresta"
-          value={edge}
-          onChangeText={setEdge}
+          value={radius}
+          onChangeText={setRadius}
           keyboardType="numeric"
           style={{ flex: 1 }}
         />
         <Button
-          title={edgeUnit}
+          title={radiusUnit}
           color={theme.colors.primary}
           onPress={() => {
             navigation.navigate('SelectUnit', {
-              unit: edgeUnit,
-              onSelect: value => setEdgeUnit(value)
+              unit: radiusUnit,
+              onSelect: value => setRadiusUnit(value)
+            })
+          }}
+        />
+      </View>
+
+      <View
+        style={{ flexDirection: 'row', alignItems: 'center', marginTop: 16 }}
+      >
+        <Input
+          placeholder="Altura"
+          value={height}
+          onChangeText={setHeight}
+          keyboardType="numeric"
+          style={{ flex: 1 }}
+        />
+        <Button
+          title={heightUnit}
+          color={theme.colors.primary}
+          onPress={() => {
+            navigation.navigate('SelectUnit', {
+              unit: heightUnit,
+              onSelect: value => setHeightUnit(value)
             })
           }}
         />
@@ -123,7 +163,7 @@ export function CubeFormScreen({ navigation }: CubeFormProps) {
           value={specificWeight}
           onChangeText={setSpecificWeight}
           keyboardType="numeric"
-          editable={!!edge}
+          editable={!!radius && !!height}
           style={{ flex: 1 }}
         />
 
@@ -153,7 +193,7 @@ export function CubeFormScreen({ navigation }: CubeFormProps) {
 }
 
 const styles = StyleSheet.create({
-  cube: {
+  figure: {
     alignItems: 'center'
   },
   tipValue: {

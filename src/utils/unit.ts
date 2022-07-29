@@ -1,0 +1,52 @@
+/** Convert `m` to `cm`. */
+export function mToCm(m: number) {
+  return m * 100
+}
+
+/** Convert `cm` to `mm`. */
+export function cmToMm(cm: number) {
+  return cm * 10
+}
+
+/** Convert `m` to `mm`. */
+export function mToMm(m: number) {
+  const cm = mToCm(m)
+
+  return cmToMm(cm)
+}
+
+/** Convert `cm` to `m`. */
+export function cmToM(cm: number) {
+  return cm / 100
+}
+
+/** Convert `cm3` to `m3`. */
+export function cm3ToM3(cm3: number) {
+  return cm3 * 0.000001
+}
+
+/** Convert `cm3` to `mm3`. */
+export function cm3ToMm3(cm3: number) {
+  return cm3 * 1000
+}
+
+/** Convert `m3` to `cm3`. */
+export function m3ToCm3(m3: number) {
+  return m3 / 0.000001
+}
+
+/** Convert `m3` to `mm3`. */
+export function m3ToMm3(m3: number) {
+  const cm3 = m3ToCm3(m3)
+
+  return cm3ToMm3(cm3)
+}
+
+export function mmToCm(mm: number) {
+  return mm / 10
+}
+
+export function mmToM(mm: number) {
+  const cm = mmToCm(mm)
+  return cmToM(cm)
+}

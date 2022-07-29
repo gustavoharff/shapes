@@ -5,9 +5,11 @@ import {
   StyleProp,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
   ViewStyle
 } from 'react-native'
+import Collapsible from 'react-native-collapsible'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { theme } from '../theme'
@@ -20,6 +22,7 @@ interface TipProps {
 
 interface TipState {
   readonly isDark: boolean
+  readonly isCollapsed: boolean
 }
 
 export class Tip extends React.Component<TipProps, TipState> {
@@ -29,7 +32,8 @@ export class Tip extends React.Component<TipProps, TipState> {
     super(props)
 
     this.state = {
-      isDark: Appearance.getColorScheme() === 'dark'
+      isDark: Appearance.getColorScheme() === 'dark',
+      isCollapsed: false
     }
   }
 
@@ -65,9 +69,23 @@ export class Tip extends React.Component<TipProps, TipState> {
         <View style={styles.header}>
           <Icon name="information-outline" size={24} color="#fff" />
           <Text style={styles.title}>{this.props.title}</Text>
+
+          <TouchableOpacity activeOpacity={0.9} style={{ marginLeft: 'auto' }}>
+            <Icon
+              name={this.state.isCollapsed ? 'chevron-up' : 'chevron-down'}
+              size={24}
+              color="#fff"
+              onPress={() =>
+                this.setState({ isCollapsed: !this.state.isCollapsed })
+              }
+            />
+          </TouchableOpacity>
         </View>
 
-        <View style={styles.content}>{this.props.children}</View>
+        {/* @ts-expect-error types definition for collapsible doesnt include children prop */}
+        <Collapsible collapsed={this.state.isCollapsed}>
+          <View style={styles.content}>{this.props.children}</View>
+        </Collapsible>
       </View>
     )
   }
