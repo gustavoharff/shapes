@@ -7,7 +7,8 @@ import {
   ConeFormScreen,
   CubeFormScreen,
   SelectUnit,
-  SelectDensityUnit
+  SelectDensityUnit,
+  ParallelepipedFormScreen
 } from '../screens'
 
 const Stack = createNativeStackNavigator()
@@ -49,6 +50,15 @@ export function RootStack() {
         component={ConeFormScreen}
         options={{
           title: 'Cone',
+          headerLargeTitle: false
+        }}
+      />
+
+      <Stack.Screen
+        name="ParallelepipedForm"
+        component={ParallelepipedFormScreen}
+        options={{
+          title: 'Paralelepípedo',
           headerLargeTitle: false
         }}
       />

@@ -8,6 +8,7 @@ export type RootStackParamList = {
   Home: undefined
   CubeForm: undefined
   ConeForm: undefined
+  ParallelepipedForm: undefined
   SelectUnit: {
     unit: Unit
     onSelect: (unit: Unit) => void
@@ -21,8 +22,9 @@ export type RootStackParamList = {
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, T>
 
+/* eslint-disable */
 declare global {
   namespace ReactNavigation {
-    type RootParamList = RootStackParamList
+    interface RootParamList extends RootStackParamList {}
   }
 }

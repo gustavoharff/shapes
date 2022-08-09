@@ -1,11 +1,11 @@
-import { useTheme } from '@react-navigation/native'
 import * as React from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 
 import { RootStackScreenProps } from '../navigation/types'
 import { DensityUnit, Unit } from '../types/unit'
 import { Cube, Input, Form, Tip } from '../ui'
-import { cm3ToM3, cm3ToMm3, cmToM, m3ToCm3, m3ToMm3, mmToM } from '../utils'
+import { UnitInput } from '../ui/unit-input'
+import { cmToM, m3ToCm3, m3ToMm3, mmToM } from '../utils'
 
 type CubeFormProps = RootStackScreenProps<'CubeForm'>
 
@@ -42,8 +42,6 @@ export function CubeFormScreen({ navigation }: CubeFormProps) {
   const [specificWeightUnit, setSpecificWeightUnit] =
     React.useState<DensityUnit>('kg/m³')
 
-  const theme = useTheme()
-
   const edgeRef = React.useRef<Input>(null)
 
   React.useEffect(() => {
@@ -77,26 +75,18 @@ export function CubeFormScreen({ navigation }: CubeFormProps) {
         <Cube size={120} />
       </View>
 
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Input
-          ref={edgeRef}
-          placeholder="Aresta"
-          value={edge}
-          onChangeText={setEdge}
-          keyboardType="numeric"
-          style={{ flex: 1 }}
-        />
-        <Button
-          title={edgeUnit}
-          color={theme.colors.primary}
-          onPress={() => {
-            navigation.navigate('SelectUnit', {
-              unit: edgeUnit,
-              onSelect: value => setEdgeUnit(value)
-            })
-          }}
-        />
-      </View>
+      <UnitInput
+        placeholder="Aresta"
+        value={edge}
+        onChangeText={setEdge}
+        unitValue={edgeUnit}
+        onUnitPress={() => {
+          navigation.navigate('SelectUnit', {
+            unit: edgeUnit,
+            onSelect: value => setEdgeUnit(value)
+          })
+        }}
+      />
 
       <Tip title="Volume" style={{ marginTop: 16 }}>
         <Text style={styles.tipValue} numberOfLines={1}>
@@ -115,29 +105,20 @@ export function CubeFormScreen({ navigation }: CubeFormProps) {
         </Text>
       </Tip>
 
-      <View
-        style={{ flexDirection: 'row', alignItems: 'center', marginTop: 16 }}
-      >
-        <Input
-          placeholder="Peso especifico"
-          value={specificWeight}
-          onChangeText={setSpecificWeight}
-          keyboardType="numeric"
-          editable={!!edge}
-          style={{ flex: 1 }}
-        />
-
-        <Button
-          title={specificWeightUnit}
-          color={theme.colors.primary}
-          onPress={() => {
-            navigation.navigate('SelectDensityUnit', {
-              unit: specificWeightUnit,
-              onSelect: value => setSpecificWeightUnit(value)
-            })
-          }}
-        />
-      </View>
+      <UnitInput
+        placeholder="Peso especifico"
+        value={specificWeight}
+        onChangeText={setSpecificWeight}
+        editable={!!edge}
+        unitValue={specificWeightUnit}
+        onUnitPress={() => {
+          navigation.navigate('SelectDensityUnit', {
+            unit: specificWeightUnit,
+            onSelect: value => setSpecificWeightUnit(value)
+          })
+        }}
+        containerStyles={{ marginTop: 16 }}
+      />
 
       <Tip title="Peso" style={{ marginTop: 16 }}>
         <Text style={styles.tipValue} numberOfLines={1}>

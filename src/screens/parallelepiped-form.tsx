@@ -3,73 +3,88 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import { RootStackScreenProps } from '../navigation/types'
 import { DensityUnit, Unit } from '../types/unit'
-import { Cone, Form, Tip } from '../ui'
+import { Parallelepiped, Form, Tip } from '../ui'
 import { UnitInput } from '../ui/unit-input'
 import { cmToM, m3ToCm3, m3ToMm3, mmToM } from '../utils'
 
-type CubeFormProps = RootStackScreenProps<'ConeForm'>
+type ParallelepipedFormProps = RootStackScreenProps<'ParallelepipedForm'>
 
-export function ConeFormScreen({ navigation }: CubeFormProps) {
-  const [radius, setRadius] = React.useState('')
-  const [radiusUnit, setRadiusUnit] = React.useState<Unit>('m')
+export function ParallelepipedFormScreen({
+  navigation
+}: ParallelepipedFormProps) {
+  const [width, setWidth] = React.useState('')
+  const [widthUnit, setWidthUnit] = React.useState<Unit>('cm')
+
   const [height, setHeight] = React.useState('')
-  const [heightUnit, setHeightUnit] = React.useState<Unit>('m')
+  const [heightUnit, setHeightUnit] = React.useState<Unit>('cm')
+
+  const [greeting, setGreeting] = React.useState('')
+  const [greetingUnit, setGreetingUnit] = React.useState<Unit>('cm')
 
   const [specificWeight, setSpecificWeight] = React.useState('')
   const [specificWeightUnit, setSpecificWeightUnit] =
     React.useState<DensityUnit>('kg/m³')
 
-  // m3
+  // m
   const volume = React.useMemo(() => {
-    if (!radius) return 0
+    if (!width) return 0
     if (!height) return 0
+    if (!greeting) return 0
 
-    const radiusParsed = Number(radius.replace(',', '.'))
-    const heightParsed = Number(height.replace(',', '.'))
+    const widthValue = Number(width.replace(',', '.'))
+    const heightValue = Number(height.replace(',', '.'))
+    const greetingValue = Number(greeting.replace(',', '.'))
 
-    if (Number.isNaN(radiusParsed)) return 0
-    if (Number.isNaN(heightParsed)) return 0
+    if (Number.isNaN(widthValue)) return 0
 
-    let radiusM: number
+    let widthM: number
     let heightM: number
+    let greetingM: number
 
-    switch (radiusUnit) {
-      case 'cm': {
-        radiusM = cmToM(radiusParsed)
+    switch (widthUnit) {
+      case 'cm':
+        widthM = cmToM(widthValue)
         break
-      }
-      case 'm': {
-        radiusM = radiusParsed
+      case 'm':
+        widthM = widthValue
         break
-      }
-      case 'mm': {
-        radiusM = mmToM(radiusParsed)
+      case 'mm':
+        widthM = mmToM(widthValue)
         break
-      }
     }
 
     switch (heightUnit) {
-      case 'cm': {
-        heightM = cmToM(heightParsed)
+      case 'cm':
+        heightM = cmToM(heightValue)
         break
-      }
-      case 'm': {
-        heightM = heightParsed
+      case 'm':
+        heightM = heightValue
         break
-      }
-      case 'mm': {
-        heightM = mmToM(heightParsed)
+      case 'mm':
+        heightM = mmToM(heightValue)
         break
-      }
     }
 
-    return (Math.PI * radiusM ** 2 * heightM) / 3
-  }, [height, heightUnit, radius, radiusUnit])
+    switch (greetingUnit) {
+      case 'cm':
+        greetingM = cmToM(greetingValue)
+        break
+      case 'm':
+        greetingM = greetingValue
+        break
+      case 'mm':
+        greetingM = mmToM(greetingValue)
+        break
+    }
+
+    return widthM * heightM * greetingM
+  }, [greeting, greetingUnit, height, heightUnit, width, widthUnit])
 
   // kg/m3
   const weight = React.useMemo(() => {
+    if (!width) return 0
     if (!height) return 0
-    if (!radius) return 0
+    if (!greeting) return 0
 
     if (!specificWeight) return 0
 
@@ -86,23 +101,23 @@ export function ConeFormScreen({ navigation }: CubeFormProps) {
     }
 
     return valueKgM3 * volume
-  }, [height, radius, specificWeight, specificWeightUnit, volume])
+  }, [greeting, height, specificWeight, specificWeightUnit, volume, width])
 
   return (
     <Form>
-      <View style={styles.figure}>
-        <Cone size={120} />
+      <View style={styles.cube}>
+        <Parallelepiped size={120} />
       </View>
 
       <UnitInput
-        placeholder="Aresta"
-        value={radius}
-        onChangeText={setRadius}
-        unitValue={radiusUnit}
+        placeholder="Largura"
+        value={width}
+        onChangeText={setWidth}
+        unitValue={widthUnit}
         onUnitPress={() => {
           navigation.navigate('SelectUnit', {
-            unit: radiusUnit,
-            onSelect: value => setRadiusUnit(value)
+            unit: widthUnit,
+            onSelect: value => setWidthUnit(value)
           })
         }}
       />
@@ -116,6 +131,20 @@ export function ConeFormScreen({ navigation }: CubeFormProps) {
           navigation.navigate('SelectUnit', {
             unit: heightUnit,
             onSelect: value => setHeightUnit(value)
+          })
+        }}
+        containerStyles={{ marginTop: 16 }}
+      />
+
+      <UnitInput
+        placeholder="Cumprimento"
+        value={greeting}
+        onChangeText={setGreeting}
+        unitValue={greetingUnit}
+        onUnitPress={() => {
+          navigation.navigate('SelectUnit', {
+            unit: greetingUnit,
+            onSelect: value => setGreetingUnit(value)
           })
         }}
         containerStyles={{ marginTop: 16 }}
@@ -142,7 +171,6 @@ export function ConeFormScreen({ navigation }: CubeFormProps) {
         placeholder="Peso especifico"
         value={specificWeight}
         onChangeText={setSpecificWeight}
-        editable={!!radius && !!height}
         unitValue={specificWeightUnit}
         onUnitPress={() => {
           navigation.navigate('SelectDensityUnit', {
@@ -167,7 +195,7 @@ export function ConeFormScreen({ navigation }: CubeFormProps) {
 }
 
 const styles = StyleSheet.create({
-  figure: {
+  cube: {
     alignItems: 'center'
   },
   tipValue: {
