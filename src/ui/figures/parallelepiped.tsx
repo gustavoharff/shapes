@@ -7,7 +7,7 @@ interface ParallelepipedProps {
   secondaryColor?: string
 }
 
-export class Parallelepiped extends React.Component<ParallelepipedProps, {}> {
+export class Parallelepiped extends React.Component<ParallelepipedProps> {
   public render() {
     const {
       size = 250,

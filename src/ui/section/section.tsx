@@ -9,7 +9,9 @@ interface SectionProps {
   selectable?: boolean
 }
 
-export function Section({ title, selectable, items }: SectionProps) {
+export function Section(props: SectionProps) {
+  const { title, selectable, items } = props
+
   return (
     <View>
       {title && <Text style={styles.title}>{title}</Text>}

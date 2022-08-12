@@ -8,7 +8,8 @@ import {
   CubeFormScreen,
   SelectUnit,
   SelectDensityUnit,
-  ParallelepipedFormScreen
+  ParallelepipedFormScreen,
+  CylinderFormScreen
 } from '../screens'
 
 const Stack = createNativeStackNavigator()
@@ -59,6 +60,15 @@ export function RootStack() {
         component={ParallelepipedFormScreen}
         options={{
           title: 'Paralelepípedo',
+          headerLargeTitle: false
+        }}
+      />
+
+      <Stack.Screen
+        name="CylinderForm"
+        component={CylinderFormScreen}
+        options={{
+          title: 'Cilindro',
           headerLargeTitle: false
         }}
       />

@@ -11,19 +11,17 @@ import {
 
 import { theme } from '../theme'
 
-interface InputProps extends TextInputProps {}
-
 interface InputState {
   readonly isFocus: boolean
   readonly isDark: boolean
 }
 
-export class Input extends React.Component<InputProps, InputState> {
+export class Input extends React.Component<TextInputProps, InputState> {
   private ref = React.createRef<TextInput>()
 
   private colorSchemeSubscription: NativeEventSubscription | null = null
 
-  constructor(props: InputProps) {
+  constructor(props: TextInputProps) {
     super(props)
 
     this.state = {

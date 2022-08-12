@@ -7,7 +7,7 @@ interface ConeProps {
   secondaryColor?: string
 }
 
-export class Cone extends React.Component<ConeProps, {}> {
+export class Cone extends React.Component<ConeProps> {
   public render() {
     const {
       size = 250,

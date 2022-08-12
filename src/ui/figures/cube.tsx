@@ -7,7 +7,7 @@ interface CubeProps {
   secondaryColor?: string
 }
 
-export class Cube extends React.Component<CubeProps, {}> {
+export class Cube extends React.Component<CubeProps> {
   public render() {
     const {
       size = 250,

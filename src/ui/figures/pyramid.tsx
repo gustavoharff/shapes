@@ -7,7 +7,7 @@ interface PyramidProps {
   secondaryColor?: string
 }
 
-export class Pyramid extends React.Component<PyramidProps, {}> {
+export class Pyramid extends React.Component<PyramidProps> {
   public render() {
     const {
       size = 250,

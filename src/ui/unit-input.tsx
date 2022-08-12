@@ -14,15 +14,17 @@ interface UnitInputProps {
   readonly containerStyles?: StyleProp<ViewStyle>
 }
 
-export function UnitInput({
-  placeholder,
-  value,
-  onChangeText,
-  unitValue,
-  onUnitPress,
-  editable,
-  containerStyles
-}: UnitInputProps) {
+export function UnitInput(props: UnitInputProps) {
+  const {
+    placeholder,
+    value,
+    onChangeText,
+    unitValue,
+    onUnitPress,
+    editable,
+    containerStyles
+  } = props
+
   const theme = useTheme()
 
   return (

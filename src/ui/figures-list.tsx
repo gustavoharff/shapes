@@ -35,7 +35,9 @@ interface FiguresListProps {
   readonly style?: StyleProp<ViewStyle>
 }
 
-export function FiguresList({ filter, style }: FiguresListProps) {
+export function FiguresList(props: FiguresListProps) {
+  const { filter, style } = props
+
   const navigation = useNavigation()
   const isDark = useColorScheme() === 'dark'
 
@@ -70,6 +72,10 @@ export function FiguresList({ filter, style }: FiguresListProps) {
 
               if (figure === 'parallelepiped') {
                 navigation.navigate('ParallelepipedForm')
+              }
+
+              if (figure === 'cylinder') {
+                navigation.navigate('CylinderForm')
               }
             }}
           >

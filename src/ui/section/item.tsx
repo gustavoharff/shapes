@@ -10,12 +10,9 @@ export type SectionItemType = {
   selectable?: boolean
 }
 
-export function SectionItem({
-  label,
-  onPress,
-  selected,
-  selectable
-}: SectionItemType) {
+export function SectionItem(props: SectionItemType) {
+  const { label, onPress, selected, selectable } = props
+
   const theme = useTheme()
 
   const borderColor = theme.dark ? 'rgb(50, 50, 53)' : 'rgb(237, 237, 238)'

@@ -7,7 +7,7 @@ interface CylinderProps {
   secondaryColor?: string
 }
 
-export class Cylinder extends React.Component<CylinderProps, {}> {
+export class Cylinder extends React.Component<CylinderProps> {
   public render() {
     const {
       size = 250,

@@ -3,23 +3,25 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import { RootStackScreenProps } from '../navigation/types'
 import { DensityUnit, Unit } from '../types/unit'
-import { Cone, Form, Tip } from '../ui'
+import { Cylinder, Form, Tip } from '../ui'
 import { UnitInput } from '../ui/unit-input'
 import { cmToM, m3ToCm3, m3ToMm3, mmToM } from '../utils'
 
-type CubeFormProps = RootStackScreenProps<'ConeForm'>
+type CylinderFormProps = RootStackScreenProps<'CylinderForm'>
 
-export function ConeFormScreen({ navigation }: CubeFormProps) {
+export function CylinderFormScreen(props: CylinderFormProps) {
+  const { navigation } = props
+
   const [radius, setRadius] = React.useState('')
-  const [radiusUnit, setRadiusUnit] = React.useState<Unit>('m')
+  const [radiusUnit, setRadiusUnit] = React.useState<Unit>('cm')
+
   const [height, setHeight] = React.useState('')
-  const [heightUnit, setHeightUnit] = React.useState<Unit>('m')
+  const [heightUnit, setHeightUnit] = React.useState<Unit>('cm')
 
   const [specificWeight, setSpecificWeight] = React.useState('')
   const [specificWeightUnit, setSpecificWeightUnit] =
     React.useState<DensityUnit>('kg/m³')
 
-  // m3
   const volume = React.useMemo(() => {
     if (!radius) return 0
     if (!height) return 0
@@ -63,7 +65,7 @@ export function ConeFormScreen({ navigation }: CubeFormProps) {
       }
     }
 
-    return (Math.PI * radiusM ** 2 * heightM) / 3
+    return Math.PI * radiusM ** 2 * heightM
   }, [height, heightUnit, radius, radiusUnit])
 
   // kg/m3
@@ -89,7 +91,7 @@ export function ConeFormScreen({ navigation }: CubeFormProps) {
   return (
     <Form>
       <View style={styles.figure}>
-        <Cone size={120} />
+        <Cylinder size={120} />
       </View>
 
       <UnitInput
