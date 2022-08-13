@@ -7,6 +7,7 @@ import { DensityUnit, Unit } from '../types/unit'
 export type RootStackParamList = {
   Home: undefined
   CubeForm: undefined
+  CubeInformation: undefined
   ConeForm: undefined
   ParallelepipedForm: undefined
   CylinderForm: undefined

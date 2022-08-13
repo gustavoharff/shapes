@@ -9,7 +9,7 @@ type SelectUnitProps = RootStackScreenProps<'SelectUnit'>
 
 const unitMap: Record<Unit, string> = {
   m: 'Metro (m)',
-  cm: 'Centimetro (cm)',
+  cm: 'Centímetro (cm)',
   mm: 'Milímetro (mm)'
 }
 

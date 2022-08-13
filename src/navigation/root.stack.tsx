@@ -9,7 +9,8 @@ import {
   SelectUnit,
   SelectDensityUnit,
   ParallelepipedFormScreen,
-  CylinderFormScreen
+  CylinderFormScreen,
+  CubeInformation
 } from '../screens'
 
 const Stack = createNativeStackNavigator()
@@ -21,7 +22,6 @@ export function RootStack() {
     <Stack.Navigator
       screenOptions={{
         headerBackTitle: 'Voltar',
-        headerLargeTitle: true,
         headerBlurEffect: theme.dark ? 'dark' : 'light',
         headerTransparent: true,
         headerLargeStyle: {
@@ -33,7 +33,8 @@ export function RootStack() {
         name="Home"
         component={Home}
         options={{
-          title: 'Figuras'
+          title: 'Figuras',
+          headerLargeTitle: true
         }}
       />
 
@@ -41,8 +42,16 @@ export function RootStack() {
         name="CubeForm"
         component={CubeFormScreen}
         options={{
-          title: 'Cubo',
-          headerLargeTitle: false
+          title: 'Cubo'
+        }}
+      />
+
+      <Stack.Screen
+        name="CubeInformation"
+        component={CubeInformation}
+        options={{
+          title: 'Cálculo do cubo',
+          headerLargeTitle: true
         }}
       />
 
@@ -50,8 +59,7 @@ export function RootStack() {
         name="ConeForm"
         component={ConeFormScreen}
         options={{
-          title: 'Cone',
-          headerLargeTitle: false
+          title: 'Cone'
         }}
       />
 
@@ -59,8 +67,7 @@ export function RootStack() {
         name="ParallelepipedForm"
         component={ParallelepipedFormScreen}
         options={{
-          title: 'Paralelepípedo',
-          headerLargeTitle: false
+          title: 'Paralelepípedo'
         }}
       />
 
@@ -68,8 +75,7 @@ export function RootStack() {
         name="CylinderForm"
         component={CylinderFormScreen}
         options={{
-          title: 'Cilindro',
-          headerLargeTitle: false
+          title: 'Cilindro'
         }}
       />
 
