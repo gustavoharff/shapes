@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useTheme } from '@react-navigation/native'
 import * as React from 'react'
 import {
   LayoutAnimation,
@@ -7,7 +7,6 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  useColorScheme,
   View,
   ViewStyle
 } from 'react-native'
@@ -33,13 +32,15 @@ const list = [
 interface FiguresListProps {
   readonly filter: string
   readonly style?: StyleProp<ViewStyle>
+  readonly footer?: React.ReactNode
 }
 
 export function FiguresList(props: FiguresListProps) {
-  const { filter, style } = props
+  const { filter, style, footer } = props
 
   const navigation = useNavigation()
-  const isDark = useColorScheme() === 'dark'
+
+  const theme = useTheme()
 
   const data = React.useMemo(() => {
     if (!filter) return list
@@ -81,12 +82,14 @@ export function FiguresList(props: FiguresListProps) {
           >
             <Figure size={120} />
 
-            <Text style={[{ color: isDark ? '#fff' : '#000' }, styles.title]}>
+            <Text style={[{ color: theme.colors.text }, styles.title]}>
               {title}
             </Text>
           </TouchableOpacity>
         ))}
       </View>
+
+      {footer}
     </ScrollView>
   )
 }
