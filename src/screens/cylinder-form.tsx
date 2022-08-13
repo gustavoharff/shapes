@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 import { RootStackScreenProps } from '../navigation/types'
 import { DensityUnit, Unit } from '../types/unit'
-import { Cylinder, Form, Tip } from '../ui'
+import { Cylinder, Form, VolumeTip, WeightTip } from '../ui'
 import { UnitInput } from '../ui/unit-input'
-import { cmToM, m3ToCm3, m3ToMm3, mmToM } from '../utils'
+import { cmToM, mmToM } from '../utils'
 
 type CylinderFormProps = RootStackScreenProps<'CylinderForm'>
 
@@ -121,22 +121,7 @@ export function CylinderFormScreen(props: CylinderFormProps) {
         containerStyles={{ marginTop: 16 }}
       />
 
-      <Tip title="Volume" style={{ marginTop: 16 }}>
-        <Text style={styles.tipValue} numberOfLines={1}>
-          •{' '}
-          {volume.toLocaleString('pt-BR', {
-            maximumFractionDigits: 5,
-            maximumSignificantDigits: 5
-          })}{' '}
-          m³
-        </Text>
-        <Text style={styles.tipValue} numberOfLines={1}>
-          • {m3ToCm3(volume).toLocaleString('pt-BR')} cm³
-        </Text>
-        <Text style={styles.tipValue} numberOfLines={1}>
-          • {m3ToMm3(volume).toLocaleString('pt-BR')} mm³
-        </Text>
-      </Tip>
+      <VolumeTip volume={volume} />
 
       <UnitInput
         placeholder="Peso especifico"
@@ -153,15 +138,7 @@ export function CylinderFormScreen(props: CylinderFormProps) {
         containerStyles={{ marginTop: 16 }}
       />
 
-      <Tip title="Peso" style={{ marginTop: 16 }}>
-        <Text style={styles.tipValue} numberOfLines={1}>
-          •{' '}
-          {weight.toLocaleString('pt-BR', {
-            maximumSignificantDigits: 6
-          })}{' '}
-          kg/m³
-        </Text>
-      </Tip>
+      <WeightTip weight={weight} />
     </Form>
   )
 }
@@ -169,10 +146,5 @@ export function CylinderFormScreen(props: CylinderFormProps) {
 const styles = StyleSheet.create({
   figure: {
     alignItems: 'center'
-  },
-  tipValue: {
-    color: '#ebeaea',
-    fontSize: 16,
-    fontWeight: '600'
   }
 })
