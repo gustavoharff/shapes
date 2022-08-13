@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
+import { useWeight } from '../hooks'
 import { RootStackScreenProps } from '../navigation/types'
 import { DensityUnit, Unit } from '../types/unit'
 import { Cone, Form, VolumeTip, WeightTip } from '../ui'
@@ -66,25 +67,7 @@ export function ConeFormScreen({ navigation }: CubeFormProps) {
     return (Math.PI * radiusM ** 2 * heightM) / 3
   }, [height, heightUnit, radius, radiusUnit])
 
-  // kg/m3
-  const weight = React.useMemo(() => {
-    if (!volume) return 0
-    if (!specificWeight) return 0
-
-    const value = Number(specificWeight.replace(',', '.'))
-
-    if (Number.isNaN(value)) return 0
-
-    let valueKgM3: number
-
-    switch (specificWeightUnit) {
-      case 'kg/m³': {
-        valueKgM3 = value
-      }
-    }
-
-    return valueKgM3 * volume
-  }, [specificWeight, specificWeightUnit, volume])
+  const weight = useWeight(specificWeight, specificWeightUnit, volume)
 
   return (
     <Form>

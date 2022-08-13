@@ -2,7 +2,7 @@ import { useHeaderHeight } from '@react-navigation/elements'
 import * as React from 'react'
 import { Platform, useColorScheme } from 'react-native'
 
-import { useDebounce } from '../hooks/use-debounce-effect'
+import { useDebounce } from '../hooks'
 import { RootStackScreenProps } from '../navigation/types'
 import { theme } from '../theme'
 import { FiguresList } from '../ui'

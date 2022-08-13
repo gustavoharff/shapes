@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
+import { useWeight } from '../hooks'
 import { RootStackScreenProps } from '../navigation/types'
 import { DensityUnit, Unit } from '../types/unit'
-import { Cube, Input, Form, WeightTip, VolumeTip } from '../ui'
+import { Cube, Form, WeightTip, VolumeTip } from '../ui'
 import { UnitInput } from '../ui/unit-input'
 import { cmToM, mmToM } from '../utils'
 
@@ -42,32 +43,7 @@ export function CubeFormScreen({ navigation }: CubeFormProps) {
   const [specificWeightUnit, setSpecificWeightUnit] =
     React.useState<DensityUnit>('kg/m³')
 
-  const edgeRef = React.useRef<Input>(null)
-
-  React.useEffect(() => {
-    edgeRef.current?.focus()
-  }, [])
-
-  // kg/m3
-  const weight = React.useMemo(() => {
-    if (!edge) return 0
-
-    if (!specificWeight) return 0
-
-    const value = Number(specificWeight.replace(',', '.'))
-
-    if (Number.isNaN(value)) return 0
-
-    let valueKgM3: number
-
-    switch (specificWeightUnit) {
-      case 'kg/m³': {
-        valueKgM3 = value
-      }
-    }
-
-    return valueKgM3 * volume
-  }, [edge, specificWeight, specificWeightUnit, volume])
+  const weight = useWeight(specificWeight, specificWeightUnit, volume)
 
   return (
     <Form>
