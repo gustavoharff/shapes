@@ -2,17 +2,12 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useWeight } from '../hooks'
-import { RootStackScreenProps } from '../navigation/types'
 import { DensityUnit, Unit } from '../types/unit'
 import { Parallelepiped, Form, VolumeTip, WeightTip } from '../ui'
 import { UnitInput } from '../ui/unit-input'
 import { cmToM, mmToM } from '../utils'
 
-type ParallelepipedFormProps = RootStackScreenProps<'ParallelepipedForm'>
-
-export function ParallelepipedFormScreen(props: ParallelepipedFormProps) {
-  const { navigation } = props
-
+export function ParallelepipedFormScreen() {
   const [width, setWidth] = React.useState('')
   const [widthUnit, setWidthUnit] = React.useState<Unit>('cm')
 
@@ -90,59 +85,43 @@ export function ParallelepipedFormScreen(props: ParallelepipedFormProps) {
       </View>
 
       <UnitInput
+        type="unit"
         placeholder="Largura"
         value={width}
         onChangeText={setWidth}
         unitValue={widthUnit}
-        onUnitPress={() => {
-          navigation.navigate('SelectUnit', {
-            unit: widthUnit,
-            onSelect: value => setWidthUnit(value)
-          })
-        }}
+        onChangeUnit={setWidthUnit}
       />
 
       <UnitInput
+        type="unit"
         placeholder="Altura"
         value={height}
         onChangeText={setHeight}
         unitValue={heightUnit}
-        onUnitPress={() => {
-          navigation.navigate('SelectUnit', {
-            unit: heightUnit,
-            onSelect: value => setHeightUnit(value)
-          })
-        }}
+        onChangeUnit={setHeightUnit}
         containerStyles={{ marginTop: 16 }}
       />
 
       <UnitInput
+        type="unit"
         placeholder="Cumprimento"
         value={greeting}
         onChangeText={setGreeting}
         unitValue={greetingUnit}
-        onUnitPress={() => {
-          navigation.navigate('SelectUnit', {
-            unit: greetingUnit,
-            onSelect: value => setGreetingUnit(value)
-          })
-        }}
+        onChangeUnit={setGreetingUnit}
         containerStyles={{ marginTop: 16 }}
       />
 
       <VolumeTip volume={volume} />
 
       <UnitInput
+        type="density-unit"
         placeholder="Peso especifico"
         value={specificWeight}
         onChangeText={setSpecificWeight}
         unitValue={specificWeightUnit}
-        onUnitPress={() => {
-          navigation.navigate('SelectDensityUnit', {
-            unit: specificWeightUnit,
-            onSelect: value => setSpecificWeightUnit(value)
-          })
-        }}
+        onChangeUnit={setSpecificWeightUnit}
         containerStyles={{ marginTop: 16 }}
       />
 

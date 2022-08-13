@@ -2,15 +2,12 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useWeight } from '../hooks'
-import { RootStackScreenProps } from '../navigation/types'
 import { DensityUnit, Unit } from '../types/unit'
 import { Cube, Form, WeightTip, VolumeTip } from '../ui'
 import { UnitInput } from '../ui/unit-input'
 import { cmToM, mmToM } from '../utils'
 
-type CubeFormProps = RootStackScreenProps<'CubeForm'>
-
-export function CubeFormScreen({ navigation }: CubeFormProps) {
+export function CubeFormScreen() {
   const [edge, setEdge] = React.useState('')
   const [edgeUnit, setEdgeUnit] = React.useState<Unit>('m')
 
@@ -52,32 +49,24 @@ export function CubeFormScreen({ navigation }: CubeFormProps) {
       </View>
 
       <UnitInput
+        type="unit"
         placeholder="Aresta"
         value={edge}
         onChangeText={setEdge}
         unitValue={edgeUnit}
-        onUnitPress={() => {
-          navigation.navigate('SelectUnit', {
-            unit: edgeUnit,
-            onSelect: value => setEdgeUnit(value)
-          })
-        }}
+        onChangeUnit={setEdgeUnit}
       />
 
       <VolumeTip volume={volume} />
 
       <UnitInput
+        type="density-unit"
         placeholder="Peso especifico"
         value={specificWeight}
         onChangeText={setSpecificWeight}
         editable={!!edge}
         unitValue={specificWeightUnit}
-        onUnitPress={() => {
-          navigation.navigate('SelectDensityUnit', {
-            unit: specificWeightUnit,
-            onSelect: value => setSpecificWeightUnit(value)
-          })
-        }}
+        onChangeUnit={setSpecificWeightUnit}
         containerStyles={{ marginTop: 16 }}
       />
 

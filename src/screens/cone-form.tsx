@@ -2,15 +2,12 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useWeight } from '../hooks'
-import { RootStackScreenProps } from '../navigation/types'
 import { DensityUnit, Unit } from '../types/unit'
 import { Cone, Form, VolumeTip, WeightTip } from '../ui'
 import { UnitInput } from '../ui/unit-input'
 import { cmToM, mmToM } from '../utils'
 
-type CubeFormProps = RootStackScreenProps<'ConeForm'>
-
-export function ConeFormScreen({ navigation }: CubeFormProps) {
+export function ConeFormScreen() {
   const [radius, setRadius] = React.useState('')
   const [radiusUnit, setRadiusUnit] = React.useState<Unit>('m')
   const [height, setHeight] = React.useState('')
@@ -76,46 +73,34 @@ export function ConeFormScreen({ navigation }: CubeFormProps) {
       </View>
 
       <UnitInput
+        type="unit"
         placeholder="Raio da base"
         value={radius}
         onChangeText={setRadius}
         unitValue={radiusUnit}
-        onUnitPress={() => {
-          navigation.navigate('SelectUnit', {
-            unit: radiusUnit,
-            onSelect: value => setRadiusUnit(value)
-          })
-        }}
+        onChangeUnit={setRadiusUnit}
       />
 
       <UnitInput
+        type="unit"
         placeholder="Altura"
         value={height}
         onChangeText={setHeight}
         unitValue={heightUnit}
-        onUnitPress={() => {
-          navigation.navigate('SelectUnit', {
-            unit: heightUnit,
-            onSelect: value => setHeightUnit(value)
-          })
-        }}
+        onChangeUnit={setHeightUnit}
         containerStyles={{ marginTop: 16 }}
       />
 
       <VolumeTip volume={volume} />
 
       <UnitInput
+        type="density-unit"
         placeholder="Peso especifico"
         value={specificWeight}
         onChangeText={setSpecificWeight}
         editable={!!radius && !!height}
         unitValue={specificWeightUnit}
-        onUnitPress={() => {
-          navigation.navigate('SelectDensityUnit', {
-            unit: specificWeightUnit,
-            onSelect: value => setSpecificWeightUnit(value)
-          })
-        }}
+        onChangeUnit={setSpecificWeightUnit}
         containerStyles={{ marginTop: 16 }}
       />
 
