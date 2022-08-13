@@ -7,9 +7,14 @@ import { Section } from '../ui/section'
 
 type SelectDensityUnitProps = RootStackScreenProps<'SelectDensityUnit'>
 
-const unitMap: Record<DensityUnit, string> = {
-  'kg/m³': 'Quilograma por metro cúbico (kg/m³)'
-}
+type DensityUnitsType = Array<{ unit: DensityUnit; label: string }>
+
+const densityUnits: DensityUnitsType = [
+  { unit: 'kg/l', label: 'Quilograma por litro (kg/l)' },
+  { unit: 'kg/m³', label: 'Quilograma por metro cúbico (kg/m³)' },
+  { unit: 'kg/cm³', label: 'Quilograma por centímetro cúbico (kg/cm³)' },
+  { unit: 'kg/mm³', label: 'Quilograma por milímetro cúbico (kg/mm³)' }
+]
 
 export function SelectDensityUnit({
   route,
@@ -29,13 +34,11 @@ export function SelectDensityUnit({
       <Section
         title="UNIDADES"
         selectable
-        items={[
-          {
-            label: unitMap['kg/m³'],
-            onPress: () => onUnitSelect('kg/m³'),
-            selected: unit === 'kg/m³'
-          }
-        ]}
+        items={densityUnits.map(densityUnit => ({
+          label: densityUnit.label,
+          selected: densityUnit.unit === unit,
+          onPress: () => onUnitSelect(densityUnit.unit)
+        }))}
       />
     </ScrollView>
   )

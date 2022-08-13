@@ -7,11 +7,13 @@ import { Section } from '../ui/section'
 
 type SelectUnitProps = RootStackScreenProps<'SelectUnit'>
 
-const unitMap: Record<Unit, string> = {
-  m: 'Metro (m)',
-  cm: 'Centímetro (cm)',
-  mm: 'Milímetro (mm)'
-}
+type UnitsType = Array<{ unit: Unit; label: string }>
+
+const units: UnitsType = [
+  { unit: 'm', label: 'Metro (m)' },
+  { unit: 'cm', label: 'Centímetro (cm)' },
+  { unit: 'mm', label: 'Milímetro (mm)' }
+]
 
 export function SelectUnit({ route, navigation }: SelectUnitProps) {
   const { unit, onSelect } = route.params
@@ -28,23 +30,11 @@ export function SelectUnit({ route, navigation }: SelectUnitProps) {
       <Section
         title="UNIDADES"
         selectable
-        items={[
-          {
-            label: unitMap.m,
-            onPress: () => onUnitSelect('m'),
-            selected: unit === 'm'
-          },
-          {
-            label: unitMap.cm,
-            onPress: () => onUnitSelect('cm'),
-            selected: unit === 'cm'
-          },
-          {
-            label: unitMap.mm,
-            onPress: () => onUnitSelect('mm'),
-            selected: unit === 'mm'
-          }
-        ]}
+        items={units.map(item => ({
+          label: item.label,
+          selected: item.unit === unit,
+          onPress: () => onUnitSelect(item.unit)
+        }))}
       />
     </ScrollView>
   )
