@@ -12,9 +12,11 @@ export class Form extends React.Component<FormProps> {
       <HeaderHeightContext.Consumer>
         {height => (
           <ScrollView
-            style={[
+            contentContainerStyle={[
               styles.form,
-              { marginTop: Platform.OS === 'android' ? height : 0 }
+              {
+                marginTop: Platform.OS === 'android' ? height : 0
+              }
             ]}
             contentInsetAdjustmentBehavior="automatic"
           >
