@@ -1,8 +1,8 @@
 import { useTheme } from '@react-navigation/native'
 import * as React from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 
-import { Form } from '../ui'
+import { CubeEdge, Form } from '../ui'
 
 export function CubeInformation() {
   const theme = useTheme()
@@ -13,6 +13,10 @@ export function CubeInformation() {
         Para realizar o cálculo do volume de um cubo, basta elevar o valor de
         uma das arestas à terceira potência, por exemplo:
       </Text>
+
+      <View style={styles.figure}>
+        <CubeEdge size={130} primaryColor={theme.colors.primary} />
+      </View>
 
       <Text style={[styles.text, { color: theme.colors.text, marginTop: 8 }]}>
         Digamos que o valor de uma das arestas seja 4 centímetros, então podemos
@@ -53,5 +57,8 @@ const styles = StyleSheet.create({
   calc: {
     fontWeight: '500',
     fontSize: 15
+  },
+  figure: {
+    alignItems: 'center'
   }
 })
