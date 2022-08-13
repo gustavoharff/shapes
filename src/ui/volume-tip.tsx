@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { StyleSheet, Text } from 'react-native'
 
-import { m3ToCm3, m3ToMm3 } from '../utils'
+import { m3ToCm3, m3ToL, m3ToMm3 } from '../utils'
 import { DEFAULT_UNIT_FORMAT } from '../utils/format-default-options'
 import { Tip } from './tip'
 
@@ -14,6 +14,10 @@ export function VolumeTip(props: VolumeTipProps) {
 
   return (
     <Tip title="Volume" style={{ marginTop: 16 }}>
+      <Text style={styles.value} numberOfLines={1}>
+        • {m3ToL(volume).toLocaleString('pt-BR', DEFAULT_UNIT_FORMAT)} litros
+      </Text>
+
       <Text style={styles.value} numberOfLines={1}>
         • {volume.toLocaleString('pt-BR', DEFAULT_UNIT_FORMAT)} m³
       </Text>
