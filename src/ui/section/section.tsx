@@ -5,7 +5,7 @@ import { SectionItem, SectionItemType } from './item'
 
 interface SectionProps {
   title?: string
-  items: SectionItemType[]
+  items: Omit<SectionItemType, 'selectable'>[]
   selectable?: boolean
 }
 
