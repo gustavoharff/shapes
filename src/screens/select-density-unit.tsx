@@ -39,6 +39,7 @@ export function SelectDensityUnit({
           selected: densityUnit.unit === unit,
           onPress: () => onUnitSelect(densityUnit.unit)
         }))}
+        isModal
       />
     </ScrollView>
   )

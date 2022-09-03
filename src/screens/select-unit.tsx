@@ -35,6 +35,7 @@ export function SelectUnit({ route, navigation }: SelectUnitProps) {
           selected: item.unit === unit,
           onPress: () => onUnitSelect(item.unit)
         }))}
+        isModal
       />
     </ScrollView>
   )
