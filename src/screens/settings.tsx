@@ -13,7 +13,7 @@ export function SettingsScreen({
         title="OPÇÕES"
         items={[
           {
-            label: 'Preferências',
+            label: 'Preferências de exibição',
             onPress: () => navigation.navigate('Preferences')
           }
         ]}
