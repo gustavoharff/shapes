@@ -3,14 +3,15 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import * as React from 'react'
 
 import {
-  Home,
   ConeFormScreen,
   CubeFormScreen,
-  SelectUnit,
-  SelectDensityUnit,
-  ParallelepipedFormScreen,
+  CubeInformation,
   CylinderFormScreen,
-  CubeInformation
+  Home,
+  ParallelepipedFormScreen,
+  PyramidFormScreen,
+  SelectDensityUnit,
+  SelectUnit
 } from '../screens'
 
 const Stack = createNativeStackNavigator()
@@ -76,6 +77,14 @@ export function RootStack() {
         component={CylinderFormScreen}
         options={{
           title: 'Cilindro'
+        }}
+      />
+
+      <Stack.Screen
+        name="PyramidForm"
+        component={PyramidFormScreen}
+        options={{
+          title: 'Pirâmide'
         }}
       />
 

@@ -78,6 +78,10 @@ export function FiguresList(props: FiguresListProps) {
               if (figure === 'cylinder') {
                 navigation.navigate('CylinderForm')
               }
+
+              if (figure === 'pyramid') {
+                navigation.navigate('PyramidForm')
+              }
             }}
           >
             <Figure size={120} />
