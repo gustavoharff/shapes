@@ -25,8 +25,8 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
-    'eslint-plugin-import-helpers',
-    'react-native'
+    'react-native',
+    'simple-import-sort'
   ],
   rules: {
     'prettier/prettier': [
@@ -40,22 +40,13 @@ module.exports = {
         semi: false
       }
     ],
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
     'no-use-before-define': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
     'react-native/no-unused-styles': 'error',
-    'react-native/no-single-element-style-arrays': 'error',
-    'import-helpers/order-imports': [
-      'warn',
-      {
-        newlinesBetween: 'always',
-        groups: ['module', 'absolute', ['parent', 'sibling', 'index']],
-        alphabetize: {
-          order: 'asc',
-          ignoreCase: true
-        }
-      }
-    ]
+    'react-native/no-single-element-style-arrays': 'error'
   },
   settings: {
     react: {

@@ -1,12 +1,12 @@
 import * as React from 'react'
 import {
+  Appearance,
+  NativeEventSubscription,
   NativeSyntheticEvent,
   StyleSheet,
   TextInput,
   TextInputFocusEventData,
-  TextInputProps,
-  Appearance,
-  NativeEventSubscription
+  TextInputProps
 } from 'react-native'
 
 import { theme } from '../theme'
