@@ -6,7 +6,7 @@ import { getVersion } from 'react-native-device-info'
 
 import { useDebounce } from '../hooks'
 import { RootStackScreenProps } from '../navigation/types'
-import { FiguresList } from '../ui'
+import { FiguresList, HeaderIconButton } from '../ui'
 
 export function Home({ navigation }: RootStackScreenProps<'Home'>) {
   const [filter, setFilter] = React.useState('')
@@ -19,6 +19,12 @@ export function Home({ navigation }: RootStackScreenProps<'Home'>) {
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
+      headerRight: () => (
+        <HeaderIconButton
+          name="cog-outline"
+          onPress={() => navigation.navigate('Settings')}
+        />
+      ),
       headerSearchBarOptions: {
         onChangeText: event => setFilter(event.nativeEvent.text),
         onCancelButtonPress: () => setFilter(''),

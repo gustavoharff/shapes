@@ -11,7 +11,8 @@ import {
   ParallelepipedFormScreen,
   PyramidFormScreen,
   SelectDensityUnit,
-  SelectUnit
+  SelectUnit,
+  SettingsScreen
 } from '../screens'
 
 const Stack = createNativeStackNavigator()
@@ -111,6 +112,14 @@ export function RootStack() {
         <Stack.Screen name="SelectUnit" component={SelectUnit} />
         <Stack.Screen name="SelectDensityUnit" component={SelectDensityUnit} />
       </Stack.Group>
+
+      <Stack.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          title: 'Configurações'
+        }}
+      />
     </Stack.Navigator>
   )
 }
