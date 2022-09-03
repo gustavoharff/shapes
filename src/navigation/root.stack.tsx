@@ -9,6 +9,7 @@ import {
   CylinderFormScreen,
   Home,
   ParallelepipedFormScreen,
+  PreferencesScreen,
   PyramidFormScreen,
   SelectDensityUnit,
   SelectUnit,
@@ -118,6 +119,14 @@ export function RootStack() {
         component={SettingsScreen}
         options={{
           title: 'Configurações'
+        }}
+      />
+
+      <Stack.Screen
+        name="Preferences"
+        component={PreferencesScreen}
+        options={{
+          title: 'Preferências'
         }}
       />
     </Stack.Navigator>

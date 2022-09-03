@@ -21,6 +21,7 @@ export type RootStackParamList = {
     onSelect: (unit: DensityUnit) => void
   }
   Settings: undefined
+  Preferences: undefined
 }
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =

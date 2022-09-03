@@ -11,10 +11,11 @@ interface SectionProps {
   readonly selectable?: boolean
   readonly style?: StyleProp<ViewStyle>
   readonly isModal?: boolean
+  readonly showArrow?: boolean
 }
 
 export function Section(props: SectionProps) {
-  const { title, selectable, items, isModal, style } = props
+  const { title, selectable, items, isModal, showArrow = true, style } = props
 
   const theme = useTheme()
 
@@ -32,6 +33,7 @@ export function Section(props: SectionProps) {
             selectable={selectable}
             isLast={index + 1 === items.length}
             isModal={isModal}
+            showArrow={showArrow}
           />
         ))}
       </View>

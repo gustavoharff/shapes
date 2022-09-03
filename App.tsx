@@ -1,7 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native'
 import * as React from 'react'
-import { Platform, UIManager, useColorScheme, LogBox } from 'react-native'
+import { LogBox, Platform, UIManager, useColorScheme } from 'react-native'
 
+import { RealmProvider } from './src/contexts'
 import { RootStack } from './src/navigation/root.stack'
 import { darkTheme, lightTheme } from './src/navigation/theme'
 
@@ -20,8 +21,10 @@ export default function App() {
   const isDark = useColorScheme() === 'dark'
 
   return (
-    <NavigationContainer theme={isDark ? darkTheme : lightTheme}>
-      <RootStack />
-    </NavigationContainer>
+    <RealmProvider>
+      <NavigationContainer theme={isDark ? darkTheme : lightTheme}>
+        <RootStack />
+      </NavigationContainer>
+    </RealmProvider>
   )
 }

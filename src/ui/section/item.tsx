@@ -10,6 +10,7 @@ export type SectionItemType = {
   readonly selectable?: boolean
   readonly isLast: boolean
   readonly isModal?: boolean
+  readonly showArrow?: boolean
 }
 
 const DARK_MODAL_BACKGROUND = '#2C2C2E'
@@ -25,7 +26,8 @@ const LIGHT_SCREEN_BACKGROUND = '#ffff'
 const LIGHT_SCREEN_BORDER_COLOR = '#C6C6C8'
 
 export function SectionItem(props: SectionItemType) {
-  const { label, onPress, selected, selectable, isLast, isModal } = props
+  const { label, onPress, selected, selectable, isLast, isModal, showArrow } =
+    props
 
   const theme = useTheme()
 
@@ -54,14 +56,14 @@ export function SectionItem(props: SectionItemType) {
   return (
     <TouchableOpacity
       style={[styles.container, { backgroundColor }]}
-      activeOpacity={0.6}
+      activeOpacity={0.8}
       onPress={onPress}
       disabled={!onPress}
     >
       {selectable && (
         <Icon
           name="check"
-          size={24}
+          size={20}
           color={theme.colors.primary}
           style={{ opacity: selected ? 1 : 0, marginRight: 8 }}
         />
@@ -76,11 +78,14 @@ export function SectionItem(props: SectionItemType) {
         <Text numberOfLines={1} style={[styles.label, { color: textColor }]}>
           {label}
         </Text>
-        {selectable && onPress && (
+
+        {selectable && onPress && showArrow && (
           <Icon
             name="chevron-right"
-            size={24}
-            color={theme.colors.primary}
+            size={20}
+            color={
+              theme.dark ? 'rgba(235, 235, 245, 0.3)' : 'rgba(60, 60, 67, 0.3)'
+            }
             style={styles.arrow}
           />
         )}
@@ -93,6 +98,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
+    height: 44,
     paddingLeft: 16
   },
   content: {
@@ -100,7 +106,7 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     alignItems: 'center',
     flexDirection: 'row',
-    paddingVertical: 11
+    paddingVertical: 10
   },
   label: {
     flex: 1,
