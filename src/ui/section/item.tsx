@@ -79,7 +79,7 @@ export function SectionItem(props: SectionItemType) {
           {label}
         </Text>
 
-        {selectable && onPress && showArrow && (
+        {onPress && showArrow && (
           <Icon
             name="chevron-right"
             size={20}
