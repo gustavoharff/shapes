@@ -2,44 +2,51 @@ import { useTheme } from '@react-navigation/native'
 import * as React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 
+import { SectionContext } from './context'
 import { SectionHeader } from './header'
-import { SectionItem, SectionItemType } from './item'
+import { SectionItem } from './item'
 
 interface SectionProps {
   readonly title?: string
-  readonly items: Omit<SectionItemType, 'selectable' | 'isLast'>[]
+  readonly children: React.ReactNode
   readonly selectable?: boolean
   readonly style?: StyleProp<ViewStyle>
   readonly isModal?: boolean
   readonly showArrow?: boolean
+  readonly radius?: boolean
 }
 
 export function Section(props: SectionProps) {
-  const { title, selectable, items, isModal, showArrow = true, style } = props
+  const {
+    title,
+    children,
+    style,
+    radius,
+    showArrow = true,
+    isModal,
+    selectable
+  } = props
 
   const theme = useTheme()
 
-  const borderColor = theme.dark ? '#38383A' : 'rgb(237, 237, 238)'
+  const borderColor = React.useMemo(() => {
+    if (radius) return 'transparent'
+
+    return theme.dark ? '#38383A' : 'rgb(237, 237, 238)'
+  }, [radius, theme.dark])
 
   return (
-    <View style={style}>
-      {title && <SectionHeader title={title} />}
+    <SectionContext.Provider value={{ showArrow, isModal, selectable, radius }}>
+      <View style={style}>
+        {title && <SectionHeader title={title} />}
 
-      <View style={[styles.container, { borderColor }]}>
-        {items.map((item, index) => (
-          <SectionItem
-            key={item.label}
-            {...item}
-            selectable={selectable}
-            isLast={index + 1 === items.length}
-            isModal={isModal}
-            showArrow={showArrow}
-          />
-        ))}
+        <View style={[styles.container, { borderColor }]}>{children}</View>
       </View>
-    </View>
+    </SectionContext.Provider>
   )
 }
+
+Section.Item = SectionItem
 
 const styles = StyleSheet.create({
   container: {

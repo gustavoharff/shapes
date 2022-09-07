@@ -24,16 +24,18 @@ export function SelectUnit({ route, navigation }: SelectUnitProps) {
     <ScrollView>
       <StatusBar barStyle="light-content" />
 
-      <Section
-        title="UNIDADES"
-        selectable
-        items={filteredUnits.map(item => ({
-          label: item.description,
-          selected: item.name === unit,
-          onPress: () => onUnitSelect(item.name)
-        }))}
-        isModal
-      />
+      <Section title="UNIDADES" selectable isModal>
+        {filteredUnits.map((item, index) => (
+          <Section.Item
+            key={item.description}
+            label={item.description}
+            selected={item.name === unit}
+            onPress={() => onUnitSelect(item.name)}
+            isFirst={index === 0}
+            isLast={index + 1 === filteredUnits.length}
+          />
+        ))}
+      </Section>
     </ScrollView>
   )
 }

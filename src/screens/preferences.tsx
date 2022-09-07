@@ -46,39 +46,57 @@ export function PreferencesScreen() {
     <Form padding={false}>
       <Section
         title="UNIDADES"
-        items={units.map(unit => ({
-          label: unit.description,
-          selected: unit.selected,
-          onPress: () => onUnitPress(unit.name)
-        }))}
         selectable
         showArrow={false}
         style={{ marginTop: 32 }}
-      />
+      >
+        {units.map((unit, index) => (
+          <Section.Item
+            key={unit.description}
+            label={unit.description}
+            selected={unit.selected}
+            onPress={() => onUnitPress(unit.name)}
+            isFirst={index === 0}
+            isLast={index + 1 === units.length}
+          />
+        ))}
+      </Section>
 
       <Section
         title="UNIDADES DE VOLUME"
-        items={volumeUnits.map(unit => ({
-          label: unit.description,
-          selected: unit.selected,
-          onPress: () => onVolumeUnitPress(unit.name)
-        }))}
         selectable
         showArrow={false}
         style={{ marginTop: 32 }}
-      />
+      >
+        {volumeUnits.map((unit, index) => (
+          <Section.Item
+            key={unit.description}
+            label={unit.description}
+            selected={unit.selected}
+            onPress={() => onVolumeUnitPress(unit.name)}
+            isFirst={index === 0}
+            isLast={index + 1 === volumeUnits.length}
+          />
+        ))}
+      </Section>
 
       <Section
         title="UNIDADES DE DENSIDADE"
-        items={densityUnits.map(unit => ({
-          label: unit.description,
-          selected: unit.selected,
-          onPress: () => onDensityUnitPress(unit.name)
-        }))}
         selectable
         showArrow={false}
         style={{ marginVertical: 32 }}
-      />
+      >
+        {densityUnits.map((unit, index) => (
+          <Section.Item
+            key={unit.description}
+            label={unit.description}
+            selected={unit.selected}
+            onPress={() => onDensityUnitPress(unit.name)}
+            isFirst={index === 0}
+            isLast={index + 1 === densityUnits.length}
+          />
+        ))}
+      </Section>
     </Form>
   )
 }

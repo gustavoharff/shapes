@@ -1,10 +1,16 @@
-import { NavigationContainer } from '@react-navigation/native'
+import 'intl'
+import 'intl/locale-data/jsonp/pt-BR' // or any other locale you need
+
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer
+} from '@react-navigation/native'
 import * as React from 'react'
 import { LogBox, Platform, UIManager, useColorScheme } from 'react-native'
 
 import { RealmProvider } from './src/contexts'
 import { RootStack } from './src/navigation/root.stack'
-import { darkTheme, lightTheme } from './src/navigation/theme'
 
 LogBox.ignoreLogs([
   'Non-serializable values were found in the navigation state'
@@ -22,7 +28,7 @@ export default function App() {
 
   return (
     <RealmProvider>
-      <NavigationContainer theme={isDark ? darkTheme : lightTheme}>
+      <NavigationContainer theme={isDark ? DarkTheme : DefaultTheme}>
         <RootStack />
       </NavigationContainer>
     </RealmProvider>

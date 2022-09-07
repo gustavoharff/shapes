@@ -1,16 +1,18 @@
 import { useTheme } from '@react-navigation/native'
 import * as React from 'react'
+import { useContext } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+
+import { SectionContext } from './context'
 
 export type SectionItemType = {
   readonly onPress?: () => void
   readonly label?: string
   readonly selected?: boolean
-  readonly selectable?: boolean
+  readonly isFirst: boolean
   readonly isLast: boolean
-  readonly isModal?: boolean
-  readonly showArrow?: boolean
+  readonly leftContent?: () => JSX.Element
 }
 
 const DARK_MODAL_BACKGROUND = '#2C2C2E'
@@ -26,12 +28,42 @@ const LIGHT_SCREEN_BACKGROUND = '#ffff'
 const LIGHT_SCREEN_BORDER_COLOR = '#C6C6C8'
 
 export function SectionItem(props: SectionItemType) {
-  const { label, onPress, selected, selectable, isLast, isModal, showArrow } =
-    props
+  const { label, onPress, selected, isFirst, isLast, leftContent } = props
 
   const theme = useTheme()
 
+  const { isModal, showArrow, selectable, radius } = useContext(SectionContext)
+
+  const [height, setHeight] = React.useState<number | undefined>(undefined)
+
   const textColor = theme.dark ? 'rgb(255, 255, 255)' : 'rgb(0, 0, 0)'
+
+  const borders = React.useMemo(() => {
+    if (!radius || (!isFirst && !isLast)) {
+      return {
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0
+      }
+    }
+
+    if (isFirst) {
+      return {
+        borderTopLeftRadius: 12,
+        borderTopRightRadius: 12,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0
+      }
+    }
+
+    return {
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0,
+      borderBottomLeftRadius: 12,
+      borderBottomRightRadius: 12
+    }
+  }, [isFirst, isLast, radius])
 
   const borderColor = React.useMemo(() => {
     if (theme.dark && isModal) return DARK_MODAL_BORDER_COLOR
@@ -55,11 +87,14 @@ export function SectionItem(props: SectionItemType) {
 
   return (
     <TouchableOpacity
-      style={[styles.container, { backgroundColor }]}
-      activeOpacity={0.8}
+      style={[styles.container, { backgroundColor, ...borders }]}
+      activeOpacity={0.9}
       onPress={onPress}
       disabled={!onPress}
+      onLayout={e => setHeight(e.nativeEvent.layout.height)}
     >
+      {leftContent && leftContent()}
+
       {selectable && (
         <Icon
           name="check"
@@ -72,7 +107,7 @@ export function SectionItem(props: SectionItemType) {
       <View
         style={[
           styles.content,
-          { borderColor, borderBottomWidth: isLast ? 0 : 0.5 }
+          { borderColor, borderBottomWidth: isLast ? 0 : 0.5, height }
         ]}
       >
         <Text numberOfLines={1} style={[styles.label, { color: textColor }]}>
@@ -98,7 +133,6 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 44,
     paddingLeft: 16
   },
   content: {

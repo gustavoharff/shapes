@@ -1,8 +1,6 @@
-import { useHeaderHeight } from '@react-navigation/elements'
 import { useTheme } from '@react-navigation/native'
 import * as React from 'react'
-import { Platform, StyleSheet, Text, useColorScheme } from 'react-native'
-import { getVersion } from 'react-native-device-info'
+import { Platform, useColorScheme } from 'react-native'
 
 import { useDebounce } from '../hooks'
 import { RootStackScreenProps } from '../navigation/types'
@@ -10,7 +8,6 @@ import { FiguresList, HeaderIconButton } from '../ui'
 
 export function Home({ navigation }: RootStackScreenProps<'Home'>) {
   const [filter, setFilter] = React.useState('')
-  const headerHeight = useHeaderHeight()
   const isDark = useColorScheme() === 'dark'
 
   const theme = useTheme()
@@ -24,7 +21,11 @@ export function Home({ navigation }: RootStackScreenProps<'Home'>) {
           name="cog-outline"
           onPress={() => navigation.navigate('Settings')}
         />
-      ),
+      )
+    })
+
+    if (Platform.OS === 'android') return
+    navigation.setOptions({
       headerSearchBarOptions: {
         onChangeText: event => setFilter(event.nativeEvent.text),
         onCancelButtonPress: () => setFilter(''),
@@ -42,22 +43,7 @@ export function Home({ navigation }: RootStackScreenProps<'Home'>) {
 
   return (
     <React.Fragment>
-      <FiguresList
-        filter={debouncedFilter}
-        footer={
-          <Text style={[styles.version, { color: theme.colors.text }]}>
-            {getVersion()}
-          </Text>
-        }
-        style={{ marginTop: Platform.OS === 'android' ? headerHeight : 0 }}
-      />
+      <FiguresList filter={debouncedFilter} />
     </React.Fragment>
   )
 }
-
-const styles = StyleSheet.create({
-  version: {
-    textAlign: 'center',
-    paddingVertical: 8
-  }
-})
