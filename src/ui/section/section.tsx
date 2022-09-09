@@ -2,7 +2,7 @@ import { useTheme } from '@react-navigation/native'
 import * as React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 
-import { SectionContext } from './context'
+import { SectionContext } from '../../contexts'
 import { SectionHeader } from './header'
 import { SectionItem } from './item'
 
@@ -32,7 +32,7 @@ export function Section(props: SectionProps) {
   const borderColor = React.useMemo(() => {
     if (radius) return 'transparent'
 
-    return theme.dark ? '#38383A' : 'rgb(237, 237, 238)'
+    return theme.dark ? '#38383A' : '#C6C6C8'
   }, [radius, theme.dark])
 
   return (

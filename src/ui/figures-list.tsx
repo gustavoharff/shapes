@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import * as React from 'react'
-import { LayoutAnimation, View } from 'react-native'
+import { LayoutAnimation, StyleSheet, View } from 'react-native'
 
 import { Cone } from './figures/cone'
 import { Cube } from './figures/cube'
@@ -45,7 +45,7 @@ export function FiguresList(props: FiguresListProps) {
   }, [data])
 
   return (
-    <Form>
+    <Form style={styles.form}>
       <Section radius>
         {list.map(({ title, figure, component: Component }, index) => (
           <Section.Item
@@ -86,3 +86,9 @@ export function FiguresList(props: FiguresListProps) {
     </Form>
   )
 }
+
+const styles = StyleSheet.create({
+  form: {
+    padding: 16
+  }
+})

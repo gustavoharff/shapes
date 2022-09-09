@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { StyleProp, StyleSheet, Text, ViewStyle } from 'react-native'
 
 import { useDensityUnits } from '../hooks'
 import { kgm3ToKgcm3, kgm3ToKgL, kgm3ToKgmm3 } from '../utils/density-unit'
@@ -7,16 +7,17 @@ import { DEFAULT_UNIT_FORMAT } from '../utils/format-default-options'
 import { Tip } from './tip'
 
 interface WeightTipProps {
-  weight: number
+  readonly weight: number
+  readonly style?: StyleProp<ViewStyle>
 }
 
 export function WeightTip(props: WeightTipProps) {
-  const { weight } = props
+  const { weight, style } = props
 
   const densityUnits = useDensityUnits()
 
   return (
-    <Tip title="Peso" style={{ marginTop: 16 }}>
+    <Tip title="Peso" style={style}>
       {densityUnits.find(unit => unit.name === 'kg/l')?.selected && (
         <Text style={styles.value} numberOfLines={1}>
           • {kgm3ToKgL(weight).toLocaleString('pt-BR', DEFAULT_UNIT_FORMAT)}{' '}

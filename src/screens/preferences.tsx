@@ -43,7 +43,7 @@ export function PreferencesScreen() {
   }
 
   return (
-    <Form padding={false}>
+    <Form>
       <Section
         title="UNIDADES"
         selectable

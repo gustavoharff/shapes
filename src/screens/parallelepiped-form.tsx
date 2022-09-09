@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native'
 import { useWeight } from '../hooks'
 import { DensityUnit, Unit } from '../types/unit'
 import { Form, Parallelepiped, VolumeTip, WeightTip } from '../ui'
+import { Section } from '../ui/section'
 import { UnitInput } from '../ui/unit-input'
 import { cmToM, mmToM } from '../utils'
 
@@ -79,59 +80,69 @@ export function ParallelepipedFormScreen() {
   const weight = useWeight(specificWeight, specificWeightUnit, volume)
 
   return (
-    <Form>
+    <Form style={styles.form}>
       <View style={styles.cube}>
         <Parallelepiped size={120} />
       </View>
 
-      <UnitInput
-        type="unit"
-        placeholder="Largura"
-        value={width}
-        onChangeText={setWidth}
-        unitValue={widthUnit}
-        onChangeUnit={setWidthUnit}
-      />
+      <Section>
+        <UnitInput
+          type="unit"
+          placeholder="Largura"
+          value={width}
+          onChangeText={setWidth}
+          unitValue={widthUnit}
+          onChangeUnit={setWidthUnit}
+        />
 
-      <UnitInput
-        type="unit"
-        placeholder="Altura"
-        value={height}
-        onChangeText={setHeight}
-        unitValue={heightUnit}
-        onChangeUnit={setHeightUnit}
-        containerStyles={{ marginTop: 16 }}
-      />
+        <UnitInput
+          type="unit"
+          placeholder="Altura"
+          value={height}
+          onChangeText={setHeight}
+          unitValue={heightUnit}
+          onChangeUnit={setHeightUnit}
+        />
 
-      <UnitInput
-        type="unit"
-        placeholder="Cumprimento"
-        value={greeting}
-        onChangeText={setGreeting}
-        unitValue={greetingUnit}
-        onChangeUnit={setGreetingUnit}
-        containerStyles={{ marginTop: 16 }}
-      />
+        <UnitInput
+          type="unit"
+          placeholder="Cumprimento"
+          value={greeting}
+          onChangeText={setGreeting}
+          unitValue={greetingUnit}
+          onChangeUnit={setGreetingUnit}
+          isLast
+        />
+      </Section>
 
-      <VolumeTip volume={volume} />
+      <VolumeTip volume={volume} style={styles.tip} />
 
-      <UnitInput
-        type="density-unit"
-        placeholder="Peso especifico"
-        value={specificWeight}
-        onChangeText={setSpecificWeight}
-        unitValue={specificWeightUnit}
-        onChangeUnit={setSpecificWeightUnit}
-        containerStyles={{ marginTop: 16 }}
-      />
+      <Section style={{ marginTop: 16 }}>
+        <UnitInput
+          type="density-unit"
+          placeholder="Peso especifico"
+          value={specificWeight}
+          onChangeText={setSpecificWeight}
+          unitValue={specificWeightUnit}
+          onChangeUnit={setSpecificWeightUnit}
+          isLast
+        />
+      </Section>
 
-      <WeightTip weight={weight} />
+      <WeightTip weight={weight} style={styles.tip} />
     </Form>
   )
 }
 
 const styles = StyleSheet.create({
+  form: {
+    paddingVertical: 16
+  },
   cube: {
     alignItems: 'center'
+  },
+  tip: {
+    marginTop: 16,
+    marginHorizontal: 16
   }
 })

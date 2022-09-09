@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native'
 
 import { Unit } from '../types/unit'
 import { Form, Pyramid, UnitInput, VolumeTip } from '../ui'
+import { Section } from '../ui/section'
 import { cmToM, mmToM } from '../utils'
 
 export function PyramidFormScreen() {
@@ -70,47 +71,55 @@ export function PyramidFormScreen() {
   }, [depth, depthUnit, height, heightUnit, width, widthUnit])
 
   return (
-    <Form>
+    <Form style={styles.form}>
       <View style={styles.figure}>
         <Pyramid size={120} />
       </View>
 
-      <UnitInput
-        type="unit"
-        placeholder="Altura"
-        value={height}
-        onChangeText={setHeight}
-        unitValue={heightUnit}
-        onChangeUnit={setHeightUnit}
-      />
+      <Section>
+        <UnitInput
+          type="unit"
+          placeholder="Altura"
+          value={height}
+          onChangeText={setHeight}
+          unitValue={heightUnit}
+          onChangeUnit={setHeightUnit}
+        />
 
-      <UnitInput
-        type="unit"
-        placeholder="Largura da base"
-        value={width}
-        onChangeText={setWidth}
-        unitValue={widthUnit}
-        onChangeUnit={setWidthUnit}
-        containerStyles={{ marginTop: 16 }}
-      />
+        <UnitInput
+          type="unit"
+          placeholder="Largura da base"
+          value={width}
+          onChangeText={setWidth}
+          unitValue={widthUnit}
+          onChangeUnit={setWidthUnit}
+        />
 
-      <UnitInput
-        type="unit"
-        placeholder="Profundidade da base"
-        value={depth}
-        onChangeText={setDepth}
-        unitValue={depthUnit}
-        onChangeUnit={setDepthUnit}
-        containerStyles={{ marginTop: 16 }}
-      />
+        <UnitInput
+          type="unit"
+          placeholder="Profundidade da base"
+          value={depth}
+          onChangeText={setDepth}
+          unitValue={depthUnit}
+          onChangeUnit={setDepthUnit}
+          isLast
+        />
+      </Section>
 
-      <VolumeTip volume={volume} />
+      <VolumeTip volume={volume} style={styles.tip} />
     </Form>
   )
 }
 
 const styles = StyleSheet.create({
+  form: {
+    paddingVertical: 16
+  },
   figure: {
     alignItems: 'center'
+  },
+  tip: {
+    marginTop: 16,
+    marginHorizontal: 16
   }
 })

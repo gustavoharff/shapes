@@ -6,6 +6,7 @@ import { useWeight } from '../hooks'
 import { RootStackParamList } from '../navigation/types'
 import { DensityUnit, Unit } from '../types/unit'
 import { Cube, Form, HeaderIconButton, VolumeTip, WeightTip } from '../ui'
+import { Section } from '../ui/section'
 import { UnitInput } from '../ui/unit-input'
 import { cmToM, mmToM } from '../utils'
 
@@ -63,40 +64,52 @@ export function CubeFormScreen(props: CubeFormScreenProps) {
   }, [navigation])
 
   return (
-    <Form>
+    <Form style={styles.form}>
       <View style={styles.cube}>
         <Cube size={120} />
       </View>
 
-      <UnitInput
-        type="unit"
-        placeholder="Aresta"
-        value={edge}
-        onChangeText={setEdge}
-        unitValue={edgeUnit}
-        onChangeUnit={setEdgeUnit}
-      />
+      <Section>
+        <UnitInput
+          type="unit"
+          placeholder="Aresta"
+          value={edge}
+          onChangeText={setEdge}
+          unitValue={edgeUnit}
+          onChangeUnit={setEdgeUnit}
+          isLast
+        />
+      </Section>
 
-      <VolumeTip volume={volume} />
+      <VolumeTip volume={volume} style={styles.tip} />
 
-      <UnitInput
-        type="density-unit"
-        placeholder="Peso especifico"
-        value={specificWeight}
-        onChangeText={setSpecificWeight}
-        editable={!!edge}
-        unitValue={specificWeightUnit}
-        onChangeUnit={setSpecificWeightUnit}
-        containerStyles={{ marginTop: 16 }}
-      />
+      <Section style={{ marginTop: 16 }}>
+        <UnitInput
+          type="density-unit"
+          placeholder="Peso especifico"
+          value={specificWeight}
+          onChangeText={setSpecificWeight}
+          editable={!!edge}
+          unitValue={specificWeightUnit}
+          onChangeUnit={setSpecificWeightUnit}
+          isLast
+        />
+      </Section>
 
-      <WeightTip weight={weight} />
+      <WeightTip weight={weight} style={styles.tip} />
     </Form>
   )
 }
 
 const styles = StyleSheet.create({
+  form: {
+    paddingVertical: 16
+  },
   cube: {
     alignItems: 'center'
+  },
+  tip: {
+    marginTop: 16,
+    marginHorizontal: 16
   }
 })

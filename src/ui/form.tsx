@@ -1,25 +1,23 @@
 import { HeaderHeightContext } from '@react-navigation/elements'
 import * as React from 'react'
-import { Platform, ScrollView } from 'react-native'
+import { Platform, ScrollView, StyleProp, ViewStyle } from 'react-native'
 
 interface FormProps {
   readonly children: React.ReactNode
-  readonly padding?: boolean
+  readonly style?: StyleProp<ViewStyle>
 }
 
 export class Form extends React.Component<FormProps> {
   public render() {
-    const { padding = true } = this.props
-
     return (
       <HeaderHeightContext.Consumer>
         {height => (
           <ScrollView
             contentContainerStyle={[
               {
-                marginTop: Platform.OS === 'android' ? height : 0,
-                padding: padding ? 16 : 0
-              }
+                marginTop: Platform.OS === 'android' ? height : 0
+              },
+              this.props.style
             ]}
             contentInsetAdjustmentBehavior="automatic"
           >

@@ -1,7 +1,15 @@
 import { useNavigation, useTheme } from '@react-navigation/native'
 import * as React from 'react'
-import { Button, StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
+import {
+  StyleProp,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewStyle
+} from 'react-native'
 
+import { SectionContext } from '../contexts'
 import { DensityUnit, Unit } from '../types/unit'
 import { Input } from './input'
 
@@ -23,6 +31,7 @@ type UnitInputProps = (UnitInputType | DensityUnitInputType) & {
   readonly onChangeText: (text: string) => void
   readonly editable?: boolean
   readonly containerStyles?: StyleProp<ViewStyle>
+  readonly isLast?: boolean
 }
 
 export function UnitInput(props: UnitInputProps) {
@@ -34,7 +43,8 @@ export function UnitInput(props: UnitInputProps) {
     unitValue,
     onChangeUnit,
     editable,
-    containerStyles
+    containerStyles,
+    isLast
   } = props
 
   const theme = useTheme()
@@ -55,22 +65,45 @@ export function UnitInput(props: UnitInputProps) {
     }
   }
 
+  const sectionContext = React.useContext(SectionContext)
+
+  const backgroundColor = theme.dark ? '#1C1C1E' : '#FFFFFF'
+
+  const border = React.useMemo(() => {
+    if (sectionContext && isLast)
+      return {
+        borderBottomWidth: 0,
+        borderBottomColor: 'transparent'
+      }
+
+    return {
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      borderBottomColor: theme.dark ? '#38383A' : '#C6C6C8'
+    }
+  }, [isLast, sectionContext, theme.dark])
+
   return (
-    <View style={[styles.container, containerStyles]}>
+    <View style={[styles.container, { backgroundColor }, containerStyles]}>
       <Input
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
         keyboardType="numeric"
         editable={editable}
-        style={{ flex: 1 }}
+        isLast={isLast}
       />
 
-      <Button
-        title={unitValue}
-        color={theme.colors.primary}
-        onPress={onButtonPress}
-      />
+      <View style={{ ...border }}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={onButtonPress}
+          style={styles.button}
+        >
+          <Text style={[styles.buttonText, { color: theme.colors.primary }]}>
+            {unitValue}
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
@@ -79,5 +112,13 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  button: {
+    paddingVertical: 11
+  },
+  buttonText: {
+    marginRight: 16,
+    fontSize: 17,
+    lineHeight: 22
   }
 })

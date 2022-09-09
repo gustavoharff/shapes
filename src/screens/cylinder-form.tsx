@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native'
 import { useWeight } from '../hooks'
 import { DensityUnit, Unit } from '../types/unit'
 import { Cylinder, Form, VolumeTip, WeightTip } from '../ui'
+import { Section } from '../ui/section'
 import { UnitInput } from '../ui/unit-input'
 import { cmToM, mmToM } from '../utils'
 
@@ -67,50 +68,61 @@ export function CylinderFormScreen() {
   const weight = useWeight(specificWeight, specificWeightUnit, volume)
 
   return (
-    <Form>
+    <Form style={styles.form}>
       <View style={styles.figure}>
         <Cylinder size={120} />
       </View>
 
-      <UnitInput
-        type="unit"
-        placeholder="Raio da base"
-        value={radius}
-        onChangeText={setRadius}
-        unitValue={radiusUnit}
-        onChangeUnit={setRadiusUnit}
-      />
+      <Section>
+        <UnitInput
+          type="unit"
+          placeholder="Raio da base"
+          value={radius}
+          onChangeText={setRadius}
+          unitValue={radiusUnit}
+          onChangeUnit={setRadiusUnit}
+        />
 
-      <UnitInput
-        type="unit"
-        placeholder="Altura"
-        value={height}
-        onChangeText={setHeight}
-        unitValue={heightUnit}
-        onChangeUnit={setHeightUnit}
-        containerStyles={{ marginTop: 16 }}
-      />
+        <UnitInput
+          type="unit"
+          placeholder="Altura"
+          value={height}
+          onChangeText={setHeight}
+          unitValue={heightUnit}
+          onChangeUnit={setHeightUnit}
+          isLast
+        />
+      </Section>
 
-      <VolumeTip volume={volume} />
+      <VolumeTip volume={volume} style={styles.tip} />
 
-      <UnitInput
-        type="density-unit"
-        placeholder="Peso especifico"
-        value={specificWeight}
-        onChangeText={setSpecificWeight}
-        editable={!!radius && !!height}
-        unitValue={specificWeightUnit}
-        onChangeUnit={setSpecificWeightUnit}
-        containerStyles={{ marginTop: 16 }}
-      />
+      <Section style={{ marginTop: 16 }}>
+        <UnitInput
+          type="density-unit"
+          placeholder="Peso especifico"
+          value={specificWeight}
+          onChangeText={setSpecificWeight}
+          editable={!!radius && !!height}
+          unitValue={specificWeightUnit}
+          onChangeUnit={setSpecificWeightUnit}
+          isLast
+        />
+      </Section>
 
-      <WeightTip weight={weight} />
+      <WeightTip weight={weight} style={styles.tip} />
     </Form>
   )
 }
 
 const styles = StyleSheet.create({
+  form: {
+    paddingVertical: 16
+  },
   figure: {
     alignItems: 'center'
+  },
+  tip: {
+    marginTop: 16,
+    marginHorizontal: 16
   }
 })

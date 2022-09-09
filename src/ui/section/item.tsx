@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import { SectionContext } from './context'
+import { SectionContext } from '../../contexts'
 
 export type SectionItemType = {
   readonly onPress?: () => void

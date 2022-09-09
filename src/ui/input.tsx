@@ -1,97 +1,68 @@
 import * as React from 'react'
 import {
-  Appearance,
-  NativeEventSubscription,
-  NativeSyntheticEvent,
   StyleSheet,
   TextInput,
-  TextInputFocusEventData,
-  TextInputProps
+  TextInputProps,
+  useColorScheme,
+  View
 } from 'react-native'
 
-import { theme } from '../theme'
+import { SectionContext } from '../contexts'
 
-interface InputState {
-  readonly isFocus: boolean
-  readonly isDark: boolean
+interface InputProps extends TextInputProps {
+  readonly isLast?: boolean
 }
 
-export class Input extends React.Component<TextInputProps, InputState> {
-  private ref = React.createRef<TextInput>()
+export const Input = React.forwardRef<TextInput, InputProps>((props, ref) => {
+  const { style, isLast, ...rest } = props
 
-  private colorSchemeSubscription: NativeEventSubscription | null = null
+  const isDark = useColorScheme() === 'dark'
 
-  constructor(props: TextInputProps) {
-    super(props)
+  const sectionContext = React.useContext(SectionContext)
 
-    this.state = {
-      isFocus: false,
-      isDark: Appearance.getColorScheme() === 'dark'
+  const placeholderTextColor = isDark
+    ? 'rgba(235, 235, 245, 0.6)'
+    : 'rgba(60, 60, 67, 0.6)'
+
+  const border = React.useMemo(() => {
+    if (sectionContext && isLast)
+      return {
+        borderBottomWidth: 0,
+        borderBottomColor: 'transparent'
+      }
+
+    return {
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      borderBottomColor: isDark ? '#38383A' : '#C6C6C8'
     }
-  }
+  }, [isDark, isLast, sectionContext])
 
-  componentDidMount() {
-    this.colorSchemeSubscription = Appearance.addChangeListener(
-      this.onColorSchemeChange
-    )
-  }
+  const backgroundColor = isDark ? '#1C1C1E' : '#FFFFFF'
+  const color = isDark ? '#fff' : '#000000'
 
-  componentWillUnmount() {
-    this.colorSchemeSubscription?.remove()
-  }
-
-  private onColorSchemeChange: Appearance.AppearanceListener = preference => {
-    this.setState({ isDark: preference.colorScheme === 'dark' })
-  }
-
-  public focus = () => {
-    this.ref.current?.focus()
-  }
-
-  private onBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    this.setState({ isFocus: false })
-
-    this.props.onBlur?.(e)
-  }
-
-  private onFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    this.setState({ isFocus: true })
-
-    this.props.onBlur?.(e)
-  }
-
-  public render() {
-    const { style, ...rest } = this.props
-    const { isDark, isFocus } = this.state
-
-    return (
+  return (
+    <View style={[styles.container, { backgroundColor }]}>
       <TextInput
-        ref={this.ref}
+        ref={ref}
+        style={[styles.input, { ...border, color }, style]}
+        placeholderTextColor={placeholderTextColor}
         {...rest}
-        style={[
-          styles.input,
-          { color: isDark ? '#fff' : '#434545' },
-          {
-            borderColor: isFocus ? theme.dark.primary : theme.dark.secondary
-          },
-          style
-        ]}
-        onBlur={this.onBlur}
-        onFocus={this.onFocus}
-        selectionColor={isDark ? theme.dark.primary : theme.light.primary}
-        placeholderTextColor={isDark ? '#a9a7a7' : '#918e8e'}
       />
-    )
-  }
-}
+    </View>
+  )
+})
+
+Input.displayName = 'Input'
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingLeft: 16
+  },
   input: {
     borderBottomWidth: StyleSheet.hairlineWidth,
-    paddingHorizontal: 8,
-    paddingVertical: 12,
-    fontSize: 16,
-    lineHeight: 20,
-    fontWeight: '500'
+    paddingVertical: 11,
+    fontSize: 17,
+    lineHeight: 22
   }
 })

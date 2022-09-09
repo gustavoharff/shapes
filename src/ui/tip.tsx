@@ -93,7 +93,6 @@ export class Tip extends React.Component<TipProps, TipState> {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
     backgroundColor: 'rgba(94, 102, 215, 0.85)',
     borderRadius: 6,
     borderLeftWidth: 8
