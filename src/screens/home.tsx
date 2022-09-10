@@ -41,9 +41,5 @@ export function Home({ navigation }: RootStackScreenProps<'Home'>) {
     })
   }, [isDark, navigation, theme.colors.primary])
 
-  return (
-    <React.Fragment>
-      <FiguresList filter={debouncedFilter} />
-    </React.Fragment>
-  )
+  return <FiguresList filter={debouncedFilter} />
 }

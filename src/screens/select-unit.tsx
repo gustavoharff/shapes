@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ScrollView, StatusBar } from 'react-native'
+import { ScrollView, StatusBar, StyleSheet } from 'react-native'
 
 import { useUnits } from '../hooks'
 import { RootStackScreenProps } from '../navigation/types'
@@ -21,7 +21,7 @@ export function SelectUnit({ route, navigation }: SelectUnitProps) {
   const filteredUnits = units.filter(unit => unit.visible)
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.list}>
       <StatusBar barStyle="light-content" />
 
       <Section title="UNIDADES" selectable isModal>
@@ -39,3 +39,9 @@ export function SelectUnit({ route, navigation }: SelectUnitProps) {
     </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  list: {
+    flex: 1
+  }
+})

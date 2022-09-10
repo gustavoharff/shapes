@@ -109,7 +109,8 @@ export function CubeFormScreen(props: CubeFormScreenProps) {
 
 const styles = StyleSheet.create({
   form: {
-    paddingVertical: 16
+    paddingVertical: 16,
+    flex: 1
   },
   cube: {
     alignItems: 'center'

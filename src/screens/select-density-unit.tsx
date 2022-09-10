@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ScrollView, StatusBar } from 'react-native'
+import { ScrollView, StatusBar, StyleSheet } from 'react-native'
 
 import { useDensityUnits } from '../hooks'
 import { RootStackScreenProps } from '../navigation/types'
@@ -24,7 +24,7 @@ export function SelectDensityUnit({
   const filteredUnits = densityUnits.filter(unit => unit.visible)
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.list}>
       <StatusBar barStyle="light-content" />
 
       <Section title="UNIDADES" selectable isModal>
@@ -42,3 +42,9 @@ export function SelectDensityUnit({
     </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  list: {
+    flex: 1
+  }
+})

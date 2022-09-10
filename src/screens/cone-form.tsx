@@ -122,7 +122,8 @@ export function ConeFormScreen() {
 
 const styles = StyleSheet.create({
   form: {
-    paddingVertical: 16
+    paddingVertical: 16,
+    flex: 1
   },
   figure: {
     alignItems: 'center'

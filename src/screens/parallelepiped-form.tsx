@@ -142,7 +142,8 @@ export function ParallelepipedFormScreen() {
 
 const styles = StyleSheet.create({
   form: {
-    paddingVertical: 16
+    paddingVertical: 16,
+    flex: 1
   },
   cube: {
     alignItems: 'center'
