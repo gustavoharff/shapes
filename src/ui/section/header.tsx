@@ -7,11 +7,12 @@ interface SectionHeaderProps {
 }
 
 export function SectionHeader(props: SectionHeaderProps) {
+  const { title } = props
+
   const theme = useTheme()
 
   const color = theme.dark ? '#EBEBF5' : '#3C3C43'
 
-  const { title } = props
   return (
     <View style={styles.header}>
       <Text style={[styles.title, { color }]}>{title}</Text>

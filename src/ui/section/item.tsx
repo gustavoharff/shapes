@@ -48,29 +48,11 @@ export function SectionItem(props: SectionItemType) {
       }
     }
 
-    if (isFirst && isLast) {
-      return {
-        borderTopLeftRadius: 12,
-        borderTopRightRadius: 12,
-        borderBottomLeftRadius: 12,
-        borderBottomRightRadius: 12
-      }
-    }
-
-    if (isFirst) {
-      return {
-        borderTopLeftRadius: 12,
-        borderTopRightRadius: 12,
-        borderBottomLeftRadius: 0,
-        borderBottomRightRadius: 0
-      }
-    }
-
     return {
-      borderTopLeftRadius: 0,
-      borderTopRightRadius: 0,
-      borderBottomLeftRadius: 12,
-      borderBottomRightRadius: 12
+      borderTopLeftRadius: isFirst ? 12 : 0,
+      borderTopRightRadius: isFirst ? 12 : 0,
+      borderBottomLeftRadius: isLast ? 12 : 0,
+      borderBottomRightRadius: isLast ? 12 : 0
     }
   }, [isFirst, isLast, radius])
 

@@ -14,9 +14,7 @@ export class Form extends React.Component<FormProps> {
         {height => (
           <ScrollView
             contentContainerStyle={[
-              {
-                marginTop: Platform.OS === 'android' ? height : 0
-              },
+              { marginTop: Platform.OS === 'android' ? height : 0 },
               this.props.style
             ]}
             contentInsetAdjustmentBehavior="automatic"

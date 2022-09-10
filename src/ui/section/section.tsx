@@ -37,19 +37,21 @@ export function Section(props: SectionProps) {
     return theme.dark ? '#38383A' : '#C6C6C8'
   }, [radius, theme.dark])
 
-  return (
-    <SectionContext.Provider value={{ showArrow, isModal, selectable, radius }}>
-      <View
-        style={[
-          style,
-          { paddingHorizontal: radius ? 16 : 0, opacity: disabled ? 0.6 : 1 }
-        ]}
-      >
-        {title && <SectionHeader title={title} />}
+  const opacity = disabled ? 0.6 : 1
+  const paddingHorizontal = radius ? 16 : 0
 
-        <View style={[styles.container, { borderColor }]}>{children}</View>
+  return (
+    <View style={[style, { paddingHorizontal, opacity }]}>
+      {title && <SectionHeader title={title} />}
+
+      <View style={[styles.container, { borderColor }]}>
+        <SectionContext.Provider
+          value={{ showArrow, isModal, selectable, radius }}
+        >
+          {children}
+        </SectionContext.Provider>
       </View>
-    </SectionContext.Provider>
+    </View>
   )
 }
 
