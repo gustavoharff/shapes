@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "GeometricFigures.app"
-               BlueprintName = "GeometricFigures"
-               ReferencedContainer = "container:GeometricFigures.xcodeproj">
+               BuildableName = "Shapes.app"
+               BlueprintName = "Shapes"
+               ReferencedContainer = "container:Shapes.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "GeometricFiguresTests.xctest"
-               BlueprintName = "GeometricFiguresTests"
-               ReferencedContainer = "container:GeometricFigures.xcodeproj">
+               BuildableName = "ShapesTests.xctest"
+               BlueprintName = "ShapesTests"
+               ReferencedContainer = "container:Shapes.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "GeometricFigures.app"
-            BlueprintName = "GeometricFigures"
-            ReferencedContainer = "container:GeometricFigures.xcodeproj">
+            BuildableName = "Shapes.app"
+            BlueprintName = "Shapes"
+            ReferencedContainer = "container:Shapes.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "GeometricFigures.app"
-            BlueprintName = "GeometricFigures"
-            ReferencedContainer = "container:GeometricFigures.xcodeproj">
+            BuildableName = "Shapes.app"
+            BlueprintName = "Shapes"
+            ReferencedContainer = "container:Shapes.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

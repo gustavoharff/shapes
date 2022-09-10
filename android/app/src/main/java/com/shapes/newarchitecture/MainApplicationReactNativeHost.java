@@ -1,4 +1,4 @@
-package com.geometricfigures.newarchitecture;
+package com.shapes.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.geometricfigures.BuildConfig;
-import com.geometricfigures.newarchitecture.components.MainComponentsRegistry;
-import com.geometricfigures.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.shapes.BuildConfig;
+import com.shapes.newarchitecture.components.MainComponentsRegistry;
+import com.shapes.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

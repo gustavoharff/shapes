@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface GeometricFiguresTests : XCTestCase
+@interface ShapesTests : XCTestCase
 
 @end
 
-@implementation GeometricFiguresTests
+@implementation ShapesTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {

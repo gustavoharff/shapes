@@ -1,4 +1,4 @@
-package com.geometricfigures.newarchitecture.components;
+package com.shapes.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;
