@@ -47,12 +47,12 @@ export function FiguresList(props: FiguresListProps) {
   return (
     <Form style={styles.form}>
       <Section radius>
-        {list.map(({ title, figure, component: Component }, index) => (
+        {data.map(({ title, figure, component: Component }, index) => (
           <Section.Item
             key={figure}
             label={title}
             isFirst={index === 0}
-            isLast={index + 1 === list.length}
+            isLast={index + 1 === data.length}
             onPress={() => {
               if (figure === 'cubo') {
                 navigation.navigate('CubeForm')

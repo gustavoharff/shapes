@@ -48,6 +48,15 @@ export function SectionItem(props: SectionItemType) {
       }
     }
 
+    if (isFirst && isLast) {
+      return {
+        borderTopLeftRadius: 12,
+        borderTopRightRadius: 12,
+        borderBottomLeftRadius: 12,
+        borderBottomRightRadius: 12
+      }
+    }
+
     if (isFirst) {
       return {
         borderTopLeftRadius: 12,
