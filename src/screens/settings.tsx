@@ -14,13 +14,19 @@ export function SettingsScreen({
 
   return (
     <>
-      <Form padding={false}>
+      <Form>
         <Section title="OPÇÕES" style={{ marginTop: 32 }}>
           <Section.Item
             label="Preferências de exibição"
-            onPress={() => navigation.navigate('Preferences')}
+            onPress={() => navigation.navigate('DisplayPreferences')}
             isFirst
+            isLast={false}
+          />
+          <Section.Item
+            label="Preferências de seleção"
+            onPress={() => navigation.navigate('SelectionPreferences')}
             isLast
+            isFirst={false}
           />
         </Section>
       </Form>

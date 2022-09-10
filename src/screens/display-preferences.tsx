@@ -5,7 +5,7 @@ import { DensityUnit, Unit, VolumeUnit } from '../services/realm'
 import { Form } from '../ui'
 import { Section } from '../ui/section'
 
-export function PreferencesScreen() {
+export function DisplayPreferencesScreen() {
   const units = useUnits()
   const volumeUnits = useVolumeUnits()
   const densityUnits = useDensityUnits()
@@ -18,7 +18,7 @@ export function PreferencesScreen() {
     if (!unit) return
 
     realm.write(() => {
-      unit.selected = !unit.selected
+      unit.visible = !unit.visible
     })
   }
 
@@ -28,7 +28,7 @@ export function PreferencesScreen() {
     if (!unit) return
 
     realm.write(() => {
-      unit.selected = !unit.selected
+      unit.visible = !unit.visible
     })
   }
 
@@ -38,7 +38,7 @@ export function PreferencesScreen() {
     if (!unit) return
 
     realm.write(() => {
-      unit.selected = !unit.selected
+      unit.visible = !unit.visible
     })
   }
 
@@ -54,7 +54,7 @@ export function PreferencesScreen() {
           <Section.Item
             key={unit.description}
             label={unit.description}
-            selected={unit.selected}
+            selected={unit.visible}
             onPress={() => onUnitPress(unit.name)}
             isFirst={index === 0}
             isLast={index + 1 === units.length}
@@ -72,7 +72,7 @@ export function PreferencesScreen() {
           <Section.Item
             key={unit.description}
             label={unit.description}
-            selected={unit.selected}
+            selected={unit.visible}
             onPress={() => onVolumeUnitPress(unit.name)}
             isFirst={index === 0}
             isLast={index + 1 === volumeUnits.length}
@@ -90,7 +90,7 @@ export function PreferencesScreen() {
           <Section.Item
             key={unit.description}
             label={unit.description}
-            selected={unit.selected}
+            selected={unit.visible}
             onPress={() => onDensityUnitPress(unit.name)}
             isFirst={index === 0}
             isLast={index + 1 === densityUnits.length}

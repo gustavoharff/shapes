@@ -21,7 +21,7 @@ export function SelectDensityUnit({
     navigation.goBack()
   }
 
-  const filteredUnits = densityUnits.filter(unit => unit.selected)
+  const filteredUnits = densityUnits.filter(unit => unit.visible)
 
   return (
     <ScrollView>

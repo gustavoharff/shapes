@@ -7,11 +7,12 @@ import {
   CubeFormScreen,
   CubeInformation,
   CylinderFormScreen,
+  DisplayPreferencesScreen,
   Home,
   ParallelepipedFormScreen,
-  PreferencesScreen,
   PyramidFormScreen,
   SelectDensityUnit,
+  SelectionPreferencesScreen,
   SelectUnit,
   SettingsScreen
 } from '../screens'
@@ -123,10 +124,18 @@ export function RootStack() {
       />
 
       <Stack.Screen
-        name="Preferences"
-        component={PreferencesScreen}
+        name="DisplayPreferences"
+        component={DisplayPreferencesScreen}
         options={{
-          title: 'Preferências'
+          title: 'Preferências de exibição'
+        }}
+      />
+
+      <Stack.Screen
+        name="SelectionPreferences"
+        component={SelectionPreferencesScreen}
+        options={{
+          title: 'Preferências de seleção'
         }}
       />
     </Stack.Navigator>

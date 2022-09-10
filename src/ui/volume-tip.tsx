@@ -17,7 +17,7 @@ export function VolumeTip(props: VolumeTipProps) {
 
   const volumeUnits = useVolumeUnits()
 
-  const selectedVolumeUnits = volumeUnits.filter(unit => unit.selected)
+  const visibleVolumeUnits = volumeUnits.filter(unit => unit.visible)
 
   function renderText(unit: VolumeUnit, index: number, intl: IntlShape) {
     let value: number
@@ -48,19 +48,19 @@ export function VolumeTip(props: VolumeTipProps) {
         key={unit.name}
         label={`${formattedValue} ${unit.name}`}
         isFirst={index === 0}
-        isLast={index + 1 === selectedVolumeUnits.length}
+        isLast={index + 1 === visibleVolumeUnits.length}
       />
     )
   }
 
-  if (!selectedVolumeUnits) return null
+  if (!visibleVolumeUnits) return null
 
   return (
     <Section title="VOLUME" style={style} disabled={!volume}>
       <IntlProvider locale="pt-BR">
         <IntlContext.Consumer>
           {intl =>
-            selectedVolumeUnits.map((unit, index) =>
+            visibleVolumeUnits.map((unit, index) =>
               renderText(unit, index, intl)
             )
           }

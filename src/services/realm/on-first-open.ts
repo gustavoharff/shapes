@@ -44,10 +44,13 @@ const dencityUnits: DensityUnits[] = [
 
 export function onFirstOpen(realm: Realm) {
   for (const unit of units) {
+    const selected = unit.name === 'cm'
+
     realm.create<Unit>('Unit', {
       name: unit.name,
       description: unit.description,
-      selected: true
+      selected,
+      visible: true
     })
   }
 
@@ -55,15 +58,18 @@ export function onFirstOpen(realm: Realm) {
     realm.create<VolumeUnit>('VolumeUnit', {
       name: volumeUnit.name,
       description: volumeUnit.description,
-      selected: true
+      visible: true
     })
   }
 
   for (const dencityUnit of dencityUnits) {
+    const selected = dencityUnit.name === 'kg/m³'
+
     realm.create<DensityUnit>('DensityUnit', {
       name: dencityUnit.name,
       description: dencityUnit.description,
-      selected: true
+      selected,
+      visible: true
     })
   }
 }

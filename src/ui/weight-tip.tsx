@@ -17,7 +17,7 @@ export function WeightTip(props: WeightTipProps) {
 
   const densityUnits = useDensityUnits()
 
-  const selectedDensityUnits = densityUnits.filter(unit => unit.selected)
+  const visibleDensityUnits = densityUnits.filter(unit => unit.visible)
 
   function renderText(unit: DensityUnit, index: number, intl: IntlShape) {
     let value: number
@@ -48,19 +48,19 @@ export function WeightTip(props: WeightTipProps) {
         key={unit.name}
         label={`${formattedValue} ${unit.name}`}
         isFirst={index === 0}
-        isLast={index + 1 === selectedDensityUnits.length}
+        isLast={index + 1 === visibleDensityUnits.length}
       />
     )
   }
 
-  if (!selectedDensityUnits) return null
+  if (!visibleDensityUnits) return null
 
   return (
     <Section title="PESO" style={style} disabled={!weight}>
       <IntlProvider locale="pt-BR">
         <IntlContext.Consumer>
           {intl =>
-            selectedDensityUnits.map((unit, index) =>
+            visibleDensityUnits.map((unit, index) =>
               renderText(unit, index, intl)
             )
           }

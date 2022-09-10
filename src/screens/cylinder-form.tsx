@@ -2,6 +2,8 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useWeight } from '../hooks'
+import { useDefaultDensityUnit } from '../hooks/use-default-density-unit'
+import { useDefaultUnit } from '../hooks/use-default-unit'
 import { DensityUnit, Unit } from '../types/unit'
 import { Cylinder, Form, VolumeTip, WeightTip } from '../ui'
 import { Section } from '../ui/section'
@@ -9,15 +11,19 @@ import { UnitInput } from '../ui/unit-input'
 import { cmToM, mmToM } from '../utils'
 
 export function CylinderFormScreen() {
+  const defaultUnit = useDefaultUnit()
+
   const [radius, setRadius] = React.useState('')
-  const [radiusUnit, setRadiusUnit] = React.useState<Unit>('cm')
+  const [radiusUnit, setRadiusUnit] = React.useState<Unit>(defaultUnit)
 
   const [height, setHeight] = React.useState('')
-  const [heightUnit, setHeightUnit] = React.useState<Unit>('cm')
+  const [heightUnit, setHeightUnit] = React.useState<Unit>(defaultUnit)
+
+  const defaultDensityUnit = useDefaultDensityUnit()
 
   const [specificWeight, setSpecificWeight] = React.useState('')
   const [specificWeightUnit, setSpecificWeightUnit] =
-    React.useState<DensityUnit>('kg/m³')
+    React.useState<DensityUnit>(defaultDensityUnit)
 
   const volume = React.useMemo(() => {
     if (!radius) return 0

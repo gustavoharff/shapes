@@ -1,20 +1,23 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
+import { useDefaultUnit } from '../hooks/use-default-unit'
 import { Unit } from '../types/unit'
 import { Form, Pyramid, UnitInput, VolumeTip } from '../ui'
 import { Section } from '../ui/section'
 import { cmToM, mmToM } from '../utils'
 
 export function PyramidFormScreen() {
+  const defaultUnit = useDefaultUnit()
+
   const [height, setHeight] = React.useState('')
-  const [heightUnit, setHeightUnit] = React.useState<Unit>('cm')
+  const [heightUnit, setHeightUnit] = React.useState<Unit>(defaultUnit)
 
   const [width, setWidth] = React.useState('')
-  const [widthUnit, setWidthUnit] = React.useState<Unit>('cm')
+  const [widthUnit, setWidthUnit] = React.useState<Unit>(defaultUnit)
 
   const [depth, setDepth] = React.useState('')
-  const [depthUnit, setDepthUnit] = React.useState<Unit>('cm')
+  const [depthUnit, setDepthUnit] = React.useState<Unit>(defaultUnit)
 
   const volume = React.useMemo(() => {
     if (!width) return 0

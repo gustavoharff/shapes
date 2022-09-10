@@ -18,7 +18,7 @@ export function SelectUnit({ route, navigation }: SelectUnitProps) {
     navigation.goBack()
   }
 
-  const filteredUnits = units.filter(unit => unit.selected)
+  const filteredUnits = units.filter(unit => unit.visible)
 
   return (
     <ScrollView>

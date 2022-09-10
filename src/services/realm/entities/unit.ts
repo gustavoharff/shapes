@@ -9,9 +9,16 @@ export class Unit extends Realm.Object<Unit> {
 
   public selected!: boolean
 
+  public visible!: boolean
+
   public static schema: Realm.ObjectSchema = {
     name: 'Unit',
-    properties: { name: 'string', selected: 'bool', description: 'string' },
+    properties: {
+      name: 'string',
+      selected: 'bool',
+      visible: 'bool',
+      description: 'string'
+    },
     primaryKey: 'name'
   }
 }

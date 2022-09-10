@@ -3,6 +3,8 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useWeight } from '../hooks'
+import { useDefaultDensityUnit } from '../hooks/use-default-density-unit'
+import { useDefaultUnit } from '../hooks/use-default-unit'
 import { RootStackParamList } from '../navigation/types'
 import { DensityUnit, Unit } from '../types/unit'
 import { Cube, Form, HeaderIconButton, VolumeTip, WeightTip } from '../ui'
@@ -18,8 +20,16 @@ type CubeFormScreenProps = NativeStackScreenProps<
 export function CubeFormScreen(props: CubeFormScreenProps) {
   const { navigation } = props
 
+  const defaultUnit = useDefaultUnit()
+
   const [edge, setEdge] = React.useState('')
-  const [edgeUnit, setEdgeUnit] = React.useState<Unit>('m')
+  const [edgeUnit, setEdgeUnit] = React.useState<Unit>(defaultUnit)
+
+  const defaultDensityUnit = useDefaultDensityUnit()
+
+  const [specificWeight, setSpecificWeight] = React.useState('')
+  const [specificWeightUnit, setSpecificWeightUnit] =
+    React.useState<DensityUnit>(defaultDensityUnit)
 
   // m
   const volume = React.useMemo(() => {
@@ -45,10 +55,6 @@ export function CubeFormScreen(props: CubeFormScreenProps) {
 
     return valueM ** 3
   }, [edge, edgeUnit])
-
-  const [specificWeight, setSpecificWeight] = React.useState('')
-  const [specificWeightUnit, setSpecificWeightUnit] =
-    React.useState<DensityUnit>('kg/m³')
 
   const weight = useWeight(specificWeight, specificWeightUnit, volume)
 

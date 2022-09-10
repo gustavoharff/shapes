@@ -7,11 +7,11 @@ export class VolumeUnit extends Realm.Object<VolumeUnit> {
 
   public description!: string
 
-  public selected!: boolean
+  public visible!: boolean
 
   public static schema: Realm.ObjectSchema = {
     name: 'VolumeUnit',
-    properties: { name: 'string', selected: 'bool', description: 'string' },
+    properties: { name: 'string', visible: 'bool', description: 'string' },
     primaryKey: 'name'
   }
 }
