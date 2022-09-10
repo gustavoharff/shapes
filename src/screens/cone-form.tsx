@@ -73,10 +73,10 @@ export function ConeFormScreen() {
         <Cone size={120} />
       </View>
 
-      <Section>
+      <Section style={{ marginTop: 16 }}>
         <UnitInput
           type="unit"
-          placeholder="Raio da base"
+          label="Raio"
           value={radius}
           onChangeText={setRadius}
           unitValue={radiusUnit}
@@ -85,7 +85,7 @@ export function ConeFormScreen() {
 
         <UnitInput
           type="unit"
-          placeholder="Altura"
+          label="Altura"
           value={height}
           onChangeText={setHeight}
           unitValue={heightUnit}
@@ -96,10 +96,10 @@ export function ConeFormScreen() {
 
       <VolumeTip volume={volume} style={styles.tip} />
 
-      <Section style={{ marginTop: 16 }}>
+      <Section disabled={!radius || !height} style={{ marginTop: 16 }}>
         <UnitInput
           type="density-unit"
-          placeholder="Peso especifico"
+          label="Peso específico"
           value={specificWeight}
           onChangeText={setSpecificWeight}
           editable={!!radius && !!height}
@@ -122,7 +122,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   tip: {
-    marginTop: 16,
-    marginHorizontal: 16
+    marginTop: 16
   }
 })

@@ -1,10 +1,11 @@
 import * as React from 'react'
-import { StyleProp, StyleSheet, Text, ViewStyle } from 'react-native'
+import { IntlContext, IntlProvider, IntlShape } from 'react-intl'
+import { StyleProp, ViewStyle } from 'react-native'
 
 import { useDensityUnits } from '../hooks'
+import { DensityUnit } from '../services/realm'
 import { kgm3ToKgcm3, kgm3ToKgL, kgm3ToKgmm3 } from '../utils/density-unit'
-import { DEFAULT_UNIT_FORMAT } from '../utils/format-default-options'
-import { Tip } from './tip'
+import { Section } from './section'
 
 interface WeightTipProps {
   readonly weight: number
@@ -16,42 +17,55 @@ export function WeightTip(props: WeightTipProps) {
 
   const densityUnits = useDensityUnits()
 
+  const selectedDensityUnits = densityUnits.filter(unit => unit.selected)
+
+  function renderText(unit: DensityUnit, index: number, intl: IntlShape) {
+    let value: number
+
+    switch (unit.name) {
+      case 'kg/cm³':
+        value = kgm3ToKgcm3(weight)
+        break
+      case 'kg/l':
+        value = kgm3ToKgL(weight)
+        break
+      case 'kg/mm³':
+        value = kgm3ToKgmm3(weight)
+        break
+      case 'kg/m³':
+        value = weight
+        break
+      default:
+        value = weight
+    }
+
+    const formattedValue = intl.formatNumber(value, {
+      maximumSignificantDigits: 5
+    })
+
+    return (
+      <Section.Item
+        key={unit.name}
+        label={`${formattedValue} ${unit.name}`}
+        isFirst={index === 0}
+        isLast={index + 1 === selectedDensityUnits.length}
+      />
+    )
+  }
+
+  if (!selectedDensityUnits) return null
+
   return (
-    <Tip title="Peso" style={style}>
-      {densityUnits.find(unit => unit.name === 'kg/l')?.selected && (
-        <Text style={styles.value} numberOfLines={1}>
-          • {kgm3ToKgL(weight).toLocaleString('pt-BR', DEFAULT_UNIT_FORMAT)}{' '}
-          kg/l
-        </Text>
-      )}
-
-      {densityUnits.find(unit => unit.name === 'kg/m³')?.selected && (
-        <Text style={styles.value} numberOfLines={1}>
-          • {weight.toLocaleString('pt-BR', DEFAULT_UNIT_FORMAT)} kg/m³
-        </Text>
-      )}
-
-      {densityUnits.find(unit => unit.name === 'kg/cm³')?.selected && (
-        <Text style={styles.value} numberOfLines={1}>
-          • {kgm3ToKgcm3(weight).toLocaleString('pt-BR', DEFAULT_UNIT_FORMAT)}{' '}
-          kg/cm³
-        </Text>
-      )}
-
-      {densityUnits.find(unit => unit.name === 'kg/mm³')?.selected && (
-        <Text style={styles.value} numberOfLines={1}>
-          • {kgm3ToKgmm3(weight).toLocaleString('pt-BR', DEFAULT_UNIT_FORMAT)}{' '}
-          kg/mm³
-        </Text>
-      )}
-    </Tip>
+    <Section title="PESO" style={style} disabled={!weight}>
+      <IntlProvider locale="pt-BR">
+        <IntlContext.Consumer>
+          {intl =>
+            selectedDensityUnits.map((unit, index) =>
+              renderText(unit, index, intl)
+            )
+          }
+        </IntlContext.Consumer>
+      </IntlProvider>
+    </Section>
   )
 }
-
-const styles = StyleSheet.create({
-  value: {
-    color: '#ebeaea',
-    fontSize: 16,
-    fontWeight: '600'
-  }
-})

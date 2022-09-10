@@ -89,6 +89,6 @@ export function FiguresList(props: FiguresListProps) {
 
 const styles = StyleSheet.create({
   form: {
-    padding: 16
+    paddingVertical: 16
   }
 })

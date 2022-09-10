@@ -85,10 +85,10 @@ export function ParallelepipedFormScreen() {
         <Parallelepiped size={120} />
       </View>
 
-      <Section>
+      <Section style={{ marginTop: 16 }}>
         <UnitInput
           type="unit"
-          placeholder="Largura"
+          label="Largura"
           value={width}
           onChangeText={setWidth}
           unitValue={widthUnit}
@@ -97,7 +97,7 @@ export function ParallelepipedFormScreen() {
 
         <UnitInput
           type="unit"
-          placeholder="Altura"
+          label="Altura"
           value={height}
           onChangeText={setHeight}
           unitValue={heightUnit}
@@ -106,7 +106,7 @@ export function ParallelepipedFormScreen() {
 
         <UnitInput
           type="unit"
-          placeholder="Cumprimento"
+          label="Cumprimento"
           value={greeting}
           onChangeText={setGreeting}
           unitValue={greetingUnit}
@@ -117,10 +117,10 @@ export function ParallelepipedFormScreen() {
 
       <VolumeTip volume={volume} style={styles.tip} />
 
-      <Section style={{ marginTop: 16 }}>
+      <Section disabled={!greeting || !height} style={{ marginTop: 16 }}>
         <UnitInput
           type="density-unit"
-          placeholder="Peso especifico"
+          label="Peso especifico"
           value={specificWeight}
           onChangeText={setSpecificWeight}
           unitValue={specificWeightUnit}
@@ -142,7 +142,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   tip: {
-    marginTop: 16,
-    marginHorizontal: 16
+    marginTop: 16
   }
 })

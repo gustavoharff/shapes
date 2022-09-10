@@ -76,10 +76,10 @@ export function PyramidFormScreen() {
         <Pyramid size={120} />
       </View>
 
-      <Section>
+      <Section style={{ marginTop: 16 }}>
         <UnitInput
           type="unit"
-          placeholder="Altura"
+          label="Altura"
           value={height}
           onChangeText={setHeight}
           unitValue={heightUnit}
@@ -88,7 +88,7 @@ export function PyramidFormScreen() {
 
         <UnitInput
           type="unit"
-          placeholder="Largura da base"
+          label="Largura da base"
           value={width}
           onChangeText={setWidth}
           unitValue={widthUnit}
@@ -97,7 +97,7 @@ export function PyramidFormScreen() {
 
         <UnitInput
           type="unit"
-          placeholder="Profundidade da base"
+          label="Profundidade da base"
           value={depth}
           onChangeText={setDepth}
           unitValue={depthUnit}
@@ -119,7 +119,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   tip: {
-    marginTop: 16,
-    marginHorizontal: 16
+    marginTop: 16
   }
 })

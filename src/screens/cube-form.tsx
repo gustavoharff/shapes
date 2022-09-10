@@ -69,10 +69,10 @@ export function CubeFormScreen(props: CubeFormScreenProps) {
         <Cube size={120} />
       </View>
 
-      <Section>
+      <Section style={{ marginTop: 16 }}>
         <UnitInput
           type="unit"
-          placeholder="Aresta"
+          label="Aresta"
           value={edge}
           onChangeText={setEdge}
           unitValue={edgeUnit}
@@ -83,10 +83,10 @@ export function CubeFormScreen(props: CubeFormScreenProps) {
 
       <VolumeTip volume={volume} style={styles.tip} />
 
-      <Section style={{ marginTop: 16 }}>
+      <Section disabled={!edge} style={{ marginTop: 16 }}>
         <UnitInput
           type="density-unit"
-          placeholder="Peso especifico"
+          label="Peso especifico"
           value={specificWeight}
           onChangeText={setSpecificWeight}
           editable={!!edge}
@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   tip: {
-    marginTop: 16,
-    marginHorizontal: 16
+    marginTop: 16
   }
 })

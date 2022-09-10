@@ -14,6 +14,7 @@ interface SectionProps {
   readonly isModal?: boolean
   readonly showArrow?: boolean
   readonly radius?: boolean
+  readonly disabled?: boolean
 }
 
 export function Section(props: SectionProps) {
@@ -24,7 +25,8 @@ export function Section(props: SectionProps) {
     radius,
     showArrow = true,
     isModal,
-    selectable
+    selectable,
+    disabled
   } = props
 
   const theme = useTheme()
@@ -37,7 +39,12 @@ export function Section(props: SectionProps) {
 
   return (
     <SectionContext.Provider value={{ showArrow, isModal, selectable, radius }}>
-      <View style={style}>
+      <View
+        style={[
+          style,
+          { paddingHorizontal: radius ? 16 : 0, opacity: disabled ? 0.6 : 1 }
+        ]}
+      >
         {title && <SectionHeader title={title} />}
 
         <View style={[styles.container, { borderColor }]}>{children}</View>

@@ -26,12 +26,13 @@ type DensityUnitInputType = {
 }
 
 type UnitInputProps = (UnitInputType | DensityUnitInputType) & {
-  readonly placeholder: string
+  readonly placeholder?: string
   readonly value: string
   readonly onChangeText: (text: string) => void
   readonly editable?: boolean
   readonly containerStyles?: StyleProp<ViewStyle>
   readonly isLast?: boolean
+  readonly label: string
 }
 
 export function UnitInput(props: UnitInputProps) {
@@ -44,7 +45,8 @@ export function UnitInput(props: UnitInputProps) {
     onChangeUnit,
     editable,
     containerStyles,
-    isLast
+    isLast,
+    label
   } = props
 
   const theme = useTheme()
@@ -85,6 +87,7 @@ export function UnitInput(props: UnitInputProps) {
   return (
     <View style={[styles.container, { backgroundColor }, containerStyles]}>
       <Input
+        label={label}
         placeholder={placeholder}
         value={value}
         onChangeText={onChangeText}
@@ -114,6 +117,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   button: {
+    paddingLeft: 8,
     paddingVertical: 11
   },
   buttonText: {
