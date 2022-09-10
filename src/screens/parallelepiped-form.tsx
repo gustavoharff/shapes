@@ -126,7 +126,7 @@ export function ParallelepipedFormScreen() {
       <Section disabled={!greeting || !height} style={{ marginTop: 16 }}>
         <UnitInput
           type="density-unit"
-          label="Peso especifico"
+          label="Peso específico"
           value={specificWeight}
           onChangeText={setSpecificWeight}
           unitValue={specificWeightUnit}
