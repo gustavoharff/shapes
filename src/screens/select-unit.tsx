@@ -4,7 +4,7 @@ import { ScrollView, StatusBar, StyleSheet } from 'react-native'
 import { useUnits } from '../hooks'
 import { RootStackScreenProps } from '../navigation/types'
 import { Unit } from '../types/unit'
-import { Section } from '../ui/section'
+import { HeaderTextButton, Section } from '../ui'
 
 type SelectUnitProps = RootStackScreenProps<'SelectUnit'>
 
@@ -17,6 +17,14 @@ export function SelectUnit({ route, navigation }: SelectUnitProps) {
     onSelect(selectedUnit)
     navigation.goBack()
   }
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <HeaderTextButton onPress={navigation.goBack}>OK</HeaderTextButton>
+      )
+    })
+  }, [navigation])
 
   const filteredUnits = units.filter(unit => unit.visible)
 

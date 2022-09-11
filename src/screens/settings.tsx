@@ -4,8 +4,7 @@ import { StyleSheet, Text } from 'react-native'
 import { getVersion } from 'react-native-device-info'
 
 import { RootStackScreenProps } from '../navigation/types'
-import { Form } from '../ui'
-import { Section } from '../ui/section'
+import { Form, Section } from '../ui'
 
 export function SettingsScreen({
   navigation

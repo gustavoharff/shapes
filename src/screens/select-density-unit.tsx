@@ -4,7 +4,7 @@ import { ScrollView, StatusBar, StyleSheet } from 'react-native'
 import { useDensityUnits } from '../hooks'
 import { RootStackScreenProps } from '../navigation/types'
 import { DensityUnit } from '../types/unit'
-import { Section } from '../ui/section'
+import { Section } from '../ui'
 
 type SelectDensityUnitProps = RootStackScreenProps<'SelectDensityUnit'>
 

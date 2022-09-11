@@ -8,6 +8,7 @@ import {
   View,
   ViewStyle
 } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { SectionContext } from '../contexts'
 import { DensityUnit, Unit } from '../types/unit'
@@ -43,7 +44,7 @@ export function UnitInput(props: UnitInputProps) {
     onChangeText,
     unitValue,
     onChangeUnit,
-    editable,
+    editable = true,
     containerStyles,
     isLast,
     label
@@ -101,10 +102,19 @@ export function UnitInput(props: UnitInputProps) {
           activeOpacity={0.8}
           onPress={onButtonPress}
           style={styles.button}
+          disabled={!editable}
         >
           <Text style={[styles.buttonText, { color: theme.colors.primary }]}>
             {unitValue}
           </Text>
+
+          <Icon
+            name="chevron-right"
+            size={20}
+            color={
+              theme.dark ? 'rgba(235, 235, 245, 0.3)' : 'rgba(60, 60, 67, 0.3)'
+            }
+          />
         </TouchableOpacity>
       </View>
     </View>
@@ -117,12 +127,14 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   button: {
-    paddingLeft: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 8,
     paddingVertical: 11
   },
   buttonText: {
-    marginRight: 16,
     fontSize: 17,
-    lineHeight: 22
+    lineHeight: 22,
+    marginRight: 4
   }
 })

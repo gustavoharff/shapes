@@ -3,8 +3,7 @@ import { StyleSheet } from 'react-native'
 
 import { useDensityUnits, useRealm, useUnits, useVolumeUnits } from '../hooks'
 import { DensityUnit, Unit, VolumeUnit } from '../services/realm'
-import { Form } from '../ui'
-import { Section } from '../ui/section'
+import { Form, Section } from '../ui'
 
 export function DisplayPreferencesScreen() {
   const units = useUnits()

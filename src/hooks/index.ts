@@ -1,4 +1,6 @@
 export { useDebounce } from './use-debounce-effect'
+export { useDefaultDensityUnit } from './use-default-density-unit'
+export { useDefaultUnit } from './use-default-unit'
 export { useDensityUnits } from './use-density-units'
 export { useRealm } from './use-realm'
 export { useUnits } from './use-units'
