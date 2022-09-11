@@ -14,14 +14,15 @@ interface RealmContextData {
 }
 
 interface RealmProviderProps {
-  children: ReactNode
+  readonly children: ReactNode
+  readonly onRealmInit?: () => void
 }
 
 export const RealmContext = createContext<RealmContextData>(
   {} as RealmContextData
 )
 
-export function RealmProvider({ children }: RealmProviderProps) {
+export function RealmProvider({ children, onRealmInit }: RealmProviderProps) {
   const [realm, setRealm] = useState<Realm | null>(null)
 
   const currentRealm = useRef(realm)
@@ -47,7 +48,7 @@ export function RealmProvider({ children }: RealmProviderProps) {
     }
 
     if (shouldInitRealm) {
-      initRealm().catch(console.error)
+      initRealm().then(onRealmInit).catch(console.error)
     }
 
     return () => {
@@ -56,7 +57,7 @@ export function RealmProvider({ children }: RealmProviderProps) {
         setRealm(null)
       }
     }
-  }, [realm])
+  }, [onRealmInit, realm])
 
   if (!realm) {
     return null
