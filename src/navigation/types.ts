@@ -5,7 +5,8 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { DensityUnit, Unit } from '../types/unit'
 
 export type RootStackParamList = {
-  Home: undefined
+  Polyhedra: undefined
+  NonPolyhedrons: undefined
   CubeForm: undefined
   CubeInformation: undefined
   ConeForm: undefined

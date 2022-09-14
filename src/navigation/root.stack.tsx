@@ -8,7 +8,6 @@ import {
   CubeInformation,
   CylinderFormScreen,
   DisplayPreferencesScreen,
-  Home,
   ParallelepipedFormScreen,
   PyramidFormScreen,
   SelectDensityUnit,
@@ -16,6 +15,7 @@ import {
   SelectUnit,
   SettingsScreen
 } from '../screens'
+import { Tabs } from './tabs'
 
 const Stack = createNativeStackNavigator()
 
@@ -34,10 +34,9 @@ export function RootStack() {
       }}
     >
       <Stack.Screen
-        name="Home"
-        component={Home}
+        name="Tabs"
+        component={Tabs}
         options={{
-          title: 'Figuras',
           headerLargeTitle: true
         }}
       />
