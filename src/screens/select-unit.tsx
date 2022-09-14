@@ -21,7 +21,9 @@ export function SelectUnit({ route, navigation }: SelectUnitProps) {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <HeaderTextButton onPress={navigation.goBack}>OK</HeaderTextButton>
+        <HeaderTextButton bold onPress={navigation.goBack}>
+          OK
+        </HeaderTextButton>
       )
     })
   }, [navigation])
