@@ -80,7 +80,7 @@ export function UnitInput(props: UnitInputProps) {
       }
 
     return {
-      borderBottomWidth: StyleSheet.hairlineWidth,
+      borderBottomWidth: 0.5,
       borderBottomColor: theme.dark ? '#38383A' : '#C6C6C8'
     }
   }, [isLast, sectionContext, theme.dark])
@@ -130,7 +130,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 8,
-    paddingVertical: 11
+    paddingVertical: 11,
+    flex: 1
   },
   buttonText: {
     fontSize: 17,

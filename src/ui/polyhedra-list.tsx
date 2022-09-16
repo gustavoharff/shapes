@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import * as React from 'react'
-import { LayoutAnimation, StyleSheet, View } from 'react-native'
+import { LayoutAnimation, View } from 'react-native'
 
 import { Cube } from './figures/cube'
 import { Parallelepiped } from './figures/parallelepiped'
@@ -41,7 +41,7 @@ export function PolyhedraList(props: PolyhedraListProps) {
   }, [data])
 
   return (
-    <Form style={styles.form}>
+    <Form>
       <Section radius>
         {data.map(({ title, figure, component: Component }, index) => (
           <Section.Item
@@ -82,9 +82,3 @@ export function PolyhedraList(props: PolyhedraListProps) {
     </Form>
   )
 }
-
-const styles = StyleSheet.create({
-  form: {
-    paddingVertical: 16
-  }
-})

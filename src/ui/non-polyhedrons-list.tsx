@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import * as React from 'react'
-import { LayoutAnimation, StyleSheet, View } from 'react-native'
+import { LayoutAnimation, View } from 'react-native'
 
 import { Cone } from './figures/cone'
 import { Cylinder } from './figures/cylinder'
@@ -35,7 +35,7 @@ export function NonPolyhedronsList(props: NonPolyhedronsListProps) {
   }, [data])
 
   return (
-    <Form style={styles.form}>
+    <Form>
       <Section radius>
         {data.map(({ title, figure, component: Component }, index) => (
           <Section.Item
@@ -76,9 +76,3 @@ export function NonPolyhedronsList(props: NonPolyhedronsListProps) {
     </Form>
   )
 }
-
-const styles = StyleSheet.create({
-  form: {
-    paddingVertical: 16
-  }
-})

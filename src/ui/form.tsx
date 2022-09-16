@@ -1,28 +1,67 @@
 import { HeaderHeightContext } from '@react-navigation/elements'
 import * as React from 'react'
-import { Platform, ScrollView, StyleProp, ViewStyle } from 'react-native'
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleProp,
+  StyleSheet,
+  ViewStyle
+} from 'react-native'
 
 interface FormProps {
   readonly children: React.ReactNode
   readonly style?: StyleProp<ViewStyle>
 }
 
-export class Form extends React.Component<FormProps> {
-  public render() {
-    return (
-      <HeaderHeightContext.Consumer>
-        {height => (
+export function Form(props: FormProps) {
+  const { children, style } = props
+
+  const [avoidingView, setAvoidingView] = React.useState(false)
+
+  React.useEffect(() => {
+    const keyboardWillShow = Keyboard.addListener('keyboardWillShow', () => {
+      setAvoidingView(true)
+    })
+
+    const keyboardWillHide = Keyboard.addListener('keyboardWillHide', () => {
+      setAvoidingView(false)
+    })
+
+    return () => {
+      keyboardWillShow.remove()
+      keyboardWillHide.remove()
+    }
+  }, [])
+
+  return (
+    <HeaderHeightContext.Consumer>
+      {height => (
+        <KeyboardAvoidingView
+          enabled={avoidingView}
+          behavior="padding"
+          style={[
+            { marginTop: Platform.OS === 'android' ? height : 0 },
+            styles.form,
+            style
+          ]}
+        >
           <ScrollView
-            contentContainerStyle={[
-              { marginTop: Platform.OS === 'android' ? height : 0 },
-              this.props.style
-            ]}
             contentInsetAdjustmentBehavior="automatic"
+            keyboardShouldPersistTaps="never"
           >
-            {this.props.children}
+            {children}
           </ScrollView>
-        )}
-      </HeaderHeightContext.Consumer>
-    )
-  }
+        </KeyboardAvoidingView>
+      )}
+    </HeaderHeightContext.Consumer>
+  )
 }
+
+const styles = StyleSheet.create({
+  form: {
+    paddingVertical: 16,
+    flex: 1
+  }
+})

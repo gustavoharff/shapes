@@ -89,7 +89,7 @@ export function ParallelepipedFormScreen() {
   const weight = useWeight(specificWeight, specificWeightUnit, volume)
 
   return (
-    <Form style={styles.form}>
+    <Form>
       <View style={styles.cube}>
         <Parallelepiped size={120} />
       </View>
@@ -144,14 +144,11 @@ export function ParallelepipedFormScreen() {
 }
 
 const styles = StyleSheet.create({
-  form: {
-    paddingVertical: 16,
-    flex: 1
-  },
   cube: {
     alignItems: 'center'
   },
   tip: {
-    marginTop: 16
+    marginTop: 16,
+    marginBottom: 32
   }
 })

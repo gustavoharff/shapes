@@ -74,7 +74,7 @@ export function CubeFormScreen(props: CubeFormScreenProps) {
   }, [navigation])
 
   return (
-    <Form style={styles.form}>
+    <Form>
       <View style={styles.cube}>
         <Cube size={120} />
       </View>
@@ -112,14 +112,11 @@ export function CubeFormScreen(props: CubeFormScreenProps) {
 }
 
 const styles = StyleSheet.create({
-  form: {
-    paddingVertical: 16,
-    flex: 1
-  },
   cube: {
     alignItems: 'center'
   },
   tip: {
-    marginTop: 16
+    marginTop: 16,
+    marginBottom: 32
   }
 })
