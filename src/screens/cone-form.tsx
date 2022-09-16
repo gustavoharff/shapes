@@ -70,7 +70,7 @@ export function ConeFormScreen() {
   const weight = useWeight(specificWeight, specificWeightUnit, volume)
 
   return (
-    <Form style={styles.form}>
+    <Form>
       <View style={styles.figure}>
         <Cone size={120} />
       </View>
@@ -117,14 +117,11 @@ export function ConeFormScreen() {
 }
 
 const styles = StyleSheet.create({
-  form: {
-    paddingVertical: 16,
-    flex: 1
-  },
   figure: {
     alignItems: 'center'
   },
   tip: {
-    marginTop: 16
+    marginTop: 16,
+    marginBottom: 32
   }
 })

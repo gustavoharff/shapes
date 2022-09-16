@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { StyleSheet } from 'react-native'
 
 import { useDensityUnits, useRealm, useUnits, useVolumeUnits } from '../hooks'
 import { DensityUnit, Unit, VolumeUnit } from '../services/realm'
@@ -43,7 +42,7 @@ export function DisplayPreferencesScreen() {
   }
 
   return (
-    <Form style={styles.form}>
+    <Form>
       <Section
         title="UNIDADES"
         selectable
@@ -100,9 +99,3 @@ export function DisplayPreferencesScreen() {
     </Form>
   )
 }
-
-const styles = StyleSheet.create({
-  form: {
-    flex: 1
-  }
-})

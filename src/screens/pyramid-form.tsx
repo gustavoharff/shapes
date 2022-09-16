@@ -73,7 +73,7 @@ export function PyramidFormScreen() {
   }, [depth, depthUnit, height, heightUnit, width, widthUnit])
 
   return (
-    <Form style={styles.form}>
+    <Form>
       <View style={styles.figure}>
         <Pyramid size={120} />
       </View>
@@ -114,14 +114,11 @@ export function PyramidFormScreen() {
 }
 
 const styles = StyleSheet.create({
-  form: {
-    paddingVertical: 16,
-    flex: 1
-  },
   figure: {
     alignItems: 'center'
   },
   tip: {
-    marginTop: 16
+    marginTop: 16,
+    marginBottom: 32
   }
 })

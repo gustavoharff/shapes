@@ -8,7 +8,7 @@ export function CubeInformation() {
   const theme = useTheme()
 
   return (
-    <Form style={styles.form}>
+    <Form>
       <Text style={[styles.text, { color: theme.colors.text }]}>
         Para realizar o cálculo do volume de um cubo, basta elevar o valor de
         uma das arestas à terceira potência, por exemplo:
@@ -51,9 +51,6 @@ export function CubeInformation() {
 }
 
 const styles = StyleSheet.create({
-  form: {
-    padding: 16
-  },
   text: {
     lineHeight: 24
   },

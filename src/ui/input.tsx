@@ -45,7 +45,7 @@ export const Input = React.forwardRef<InputRef, InputProps>((props, ref) => {
       }
 
     return {
-      borderBottomWidth: StyleSheet.hairlineWidth,
+      borderBottomWidth: 0.5,
       borderBottomColor: isDark ? '#38383A' : '#C6C6C8'
     }
   }, [isDark, isLast, sectionContext])
@@ -93,7 +93,6 @@ const styles = StyleSheet.create({
     paddingLeft: 16
   },
   input: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
     paddingVertical: 11,
     fontSize: 17,
     flex: 1,
