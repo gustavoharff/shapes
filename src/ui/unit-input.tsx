@@ -86,7 +86,13 @@ export function UnitInput(props: UnitInputProps) {
   }, [isLast, sectionContext, theme.dark])
 
   return (
-    <View style={[styles.container, { backgroundColor }, containerStyles]}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor, ...border },
+        containerStyles
+      ]}
+    >
       <Input
         label={label}
         placeholder={placeholder}
@@ -95,9 +101,13 @@ export function UnitInput(props: UnitInputProps) {
         keyboardType="numeric"
         editable={editable}
         isLast={isLast}
+        style={[
+          styles.divider,
+          { borderLeftColor: theme.dark ? '#38383A' : '#C6C6C8' }
+        ]}
       />
 
-      <View style={{ ...border }}>
+      <View>
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={onButtonPress}
@@ -125,6 +135,10 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  divider: {
+    borderLeftWidth: 0.5,
+    paddingLeft: 16
   },
   button: {
     flexDirection: 'row',

@@ -9,15 +9,15 @@ import { cmToM, mmToM } from '../utils'
 export function CylinderFormScreen() {
   const defaultUnit = useDefaultUnit()
 
-  const [radius, setRadius] = React.useState('')
+  const [radius, setRadius] = React.useState('0')
   const [radiusUnit, setRadiusUnit] = React.useState<Unit>(defaultUnit)
 
-  const [height, setHeight] = React.useState('')
+  const [height, setHeight] = React.useState('0')
   const [heightUnit, setHeightUnit] = React.useState<Unit>(defaultUnit)
 
   const defaultDensityUnit = useDefaultDensityUnit()
 
-  const [specificWeight, setSpecificWeight] = React.useState('')
+  const [specificWeight, setSpecificWeight] = React.useState('0')
   const [specificWeightUnit, setSpecificWeightUnit] =
     React.useState<DensityUnit>(defaultDensityUnit)
 
@@ -98,13 +98,16 @@ export function CylinderFormScreen() {
 
       <VolumeTip volume={volume} style={styles.tip} />
 
-      <Section disabled={!radius || !height} style={{ marginTop: 16 }}>
+      <Section
+        disabled={!Number(radius) || !Number(height)}
+        style={{ marginTop: 16 }}
+      >
         <UnitInput
           type="density-unit"
           label="Peso específico"
           value={specificWeight}
           onChangeText={setSpecificWeight}
-          editable={!!radius && !!height}
+          editable={!!(Number(radius) && Number(height))}
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
           isLast

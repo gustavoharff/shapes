@@ -16,18 +16,18 @@ import { cmToM, mmToM } from '../utils'
 export function ParallelepipedFormScreen() {
   const defaultUnit = useDefaultUnit()
 
-  const [width, setWidth] = React.useState('')
+  const [width, setWidth] = React.useState('0')
   const [widthUnit, setWidthUnit] = React.useState<Unit>(defaultUnit)
 
-  const [height, setHeight] = React.useState('')
+  const [height, setHeight] = React.useState('0')
   const [heightUnit, setHeightUnit] = React.useState<Unit>(defaultUnit)
 
-  const [greeting, setGreeting] = React.useState('')
+  const [greeting, setGreeting] = React.useState('0')
   const [greetingUnit, setGreetingUnit] = React.useState<Unit>(defaultUnit)
 
   const defaultDensityUnit = useDefaultDensityUnit()
 
-  const [specificWeight, setSpecificWeight] = React.useState('')
+  const [specificWeight, setSpecificWeight] = React.useState('0')
   const [specificWeightUnit, setSpecificWeightUnit] =
     React.useState<DensityUnit>(defaultDensityUnit)
 
@@ -126,7 +126,10 @@ export function ParallelepipedFormScreen() {
 
       <VolumeTip volume={volume} style={styles.tip} />
 
-      <Section disabled={!greeting || !height} style={{ marginTop: 16 }}>
+      <Section
+        disabled={!Number(greeting) || !Number(height)}
+        style={{ marginTop: 16 }}
+      >
         <UnitInput
           type="density-unit"
           label="Peso específico"
@@ -134,6 +137,7 @@ export function ParallelepipedFormScreen() {
           onChangeText={setSpecificWeight}
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
+          editable={!!(Number(greeting) && Number(height))}
           isLast
         />
       </Section>

@@ -26,7 +26,7 @@ export function CubeFormScreen(props: CubeFormScreenProps) {
 
   const defaultUnit = useDefaultUnit()
 
-  const [edge, setEdge] = React.useState('')
+  const [edge, setEdge] = React.useState('0')
   const [edgeUnit, setEdgeUnit] = React.useState<Unit>(defaultUnit)
 
   const defaultDensityUnit = useDefaultDensityUnit()
@@ -93,13 +93,13 @@ export function CubeFormScreen(props: CubeFormScreenProps) {
 
       <VolumeTip volume={volume} style={styles.tip} />
 
-      <Section disabled={!edge} style={{ marginTop: 16 }}>
+      <Section disabled={Number(edge) <= 0} style={{ marginTop: 16 }}>
         <UnitInput
           type="density-unit"
           label="Peso específico"
           value={specificWeight}
           onChangeText={setSpecificWeight}
-          editable={!!edge}
+          editable={Number(edge) > 0}
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
           isLast

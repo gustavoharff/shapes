@@ -9,13 +9,13 @@ import { cmToM, mmToM } from '../utils'
 export function PyramidFormScreen() {
   const defaultUnit = useDefaultUnit()
 
-  const [height, setHeight] = React.useState('')
+  const [height, setHeight] = React.useState('0')
   const [heightUnit, setHeightUnit] = React.useState<Unit>(defaultUnit)
 
-  const [width, setWidth] = React.useState('')
+  const [width, setWidth] = React.useState('0')
   const [widthUnit, setWidthUnit] = React.useState<Unit>(defaultUnit)
 
-  const [depth, setDepth] = React.useState('')
+  const [depth, setDepth] = React.useState('0')
   const [depthUnit, setDepthUnit] = React.useState<Unit>(defaultUnit)
 
   const volume = React.useMemo(() => {
