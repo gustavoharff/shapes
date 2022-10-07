@@ -4,7 +4,7 @@ import {
   NavigationContainer
 } from '@react-navigation/native'
 import * as React from 'react'
-import { LogBox, Platform, UIManager, useColorScheme } from 'react-native'
+import { LogBox, Platform, UIManager, useColorScheme, View } from 'react-native'
 import RNBootSplash from 'react-native-bootsplash'
 
 import { RealmProvider } from './src/contexts'
@@ -26,9 +26,18 @@ export default function App() {
 
   return (
     <RealmProvider onRealmInit={() => RNBootSplash.hide()}>
-      <NavigationContainer theme={isDark ? DarkTheme : DefaultTheme}>
-        <RootStack />
-      </NavigationContainer>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: isDark
+            ? DarkTheme.colors.background
+            : DefaultTheme.colors.background
+        }}
+      >
+        <NavigationContainer theme={isDark ? DarkTheme : DefaultTheme}>
+          <RootStack />
+        </NavigationContainer>
+      </View>
     </RealmProvider>
   )
 }

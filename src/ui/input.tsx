@@ -73,7 +73,7 @@ export const Input = React.forwardRef<InputRef, InputProps>((props, ref) => {
       <TextInput
         ref={inputRef}
         placeholderTextColor={placeholderTextColor}
-        style={[styles.input, { ...border, color }, style]}
+        style={[styles.input, { color }, style]}
         {...rest}
       />
     </View>
