@@ -2,7 +2,9 @@ import { useNavigation } from '@react-navigation/native'
 import * as React from 'react'
 import { LayoutAnimation, View } from 'react-native'
 
+import { Cone } from './figures/cone'
 import { Cube } from './figures/cube'
+import { Cylinder } from './figures/cylinder'
 import { Parallelepiped } from './figures/parallelepiped'
 import { Pyramid } from './figures/pyramid'
 import { Form } from './form'
@@ -15,15 +17,17 @@ const list = [
     component: Parallelepiped,
     figure: 'parallelepiped'
   },
-  { title: 'Pirâmide', component: Pyramid, figure: 'pyramid' }
+  { title: 'Pirâmide', component: Pyramid, figure: 'pyramid' },
+  { title: 'Cone', component: Cone, figure: 'cone' },
+  { title: 'Cilindro', component: Cylinder, figure: 'cylinder' }
 ]
 
-interface PolyhedraListProps {
+interface FiguresListProps {
   readonly filter: string
   readonly footer?: React.ReactNode
 }
 
-export function PolyhedraList(props: PolyhedraListProps) {
+export function FiguresList(props: FiguresListProps) {
   const { filter, footer } = props
 
   const navigation = useNavigation()

@@ -1,9 +1,8 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useDefaultDensityUnit, useDefaultUnit, useWeight } from '../hooks'
-import { RootStackParamList } from '../navigation/types'
+import { RootStackScreenProps } from '../navigation/types'
 import { DensityUnit, Unit } from '../types/unit'
 import {
   Cube,
@@ -16,12 +15,7 @@ import {
 } from '../ui'
 import { cmToM, mmToM } from '../utils'
 
-type CubeFormScreenProps = NativeStackScreenProps<
-  RootStackParamList,
-  'ConeForm'
->
-
-export function CubeFormScreen(props: CubeFormScreenProps) {
+export function CubeFormScreen(props: RootStackScreenProps<'CubeForm'>) {
   const { navigation } = props
 
   const defaultUnit = useDefaultUnit()

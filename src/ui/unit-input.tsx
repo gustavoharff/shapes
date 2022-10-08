@@ -100,7 +100,8 @@ export function UnitInput(props: UnitInputProps) {
         onChangeText={onChangeText}
         keyboardType="numeric"
         editable={editable}
-        isLast={isLast}
+        borderTop={false}
+        borderBottom={false}
         style={[
           styles.divider,
           { borderLeftColor: theme.dark ? '#38383A' : '#C6C6C8' }

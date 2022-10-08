@@ -4,11 +4,9 @@ import { Platform, useColorScheme } from 'react-native'
 
 import { useDebounce } from '../hooks'
 import { RootStackScreenProps } from '../navigation/types'
-import { HeaderIconButton, NonPolyhedronsList } from '../ui'
+import { FiguresList, HeaderIconButton } from '../ui'
 
-export function NonPolyhedronsScreen(
-  props: RootStackScreenProps<'NonPolyhedrons'>
-) {
+export function HomeScreen(props: RootStackScreenProps<'Home'>) {
   const { navigation } = props
 
   const [filter, setFilter] = React.useState('')
@@ -20,17 +18,11 @@ export function NonPolyhedronsScreen(
 
   useFocusEffect(
     React.useCallback(() => {
-      const parent = navigation.getParent()
-
-      parent?.setOptions({
-        headerTitle: 'Não poliedros'
-      })
-
       if (Platform.OS === 'android') return
 
-      parent?.setOptions({
+      navigation.setOptions({
         headerSearchBarOptions: {
-          onChangeText: (event: any) => setFilter(event.nativeEvent.text),
+          onChangeText: event => setFilter(event.nativeEvent.text),
           onCancelButtonPress: () => setFilter(''),
           headerIconColor: isDark ? '#fff' : '#000',
           hintTextColor: isDark ? '#fff' : '#000',
@@ -46,7 +38,7 @@ export function NonPolyhedronsScreen(
   )
 
   React.useLayoutEffect(() => {
-    navigation.getParent()?.setOptions({
+    navigation.setOptions({
       headerRight: () => (
         <HeaderIconButton
           name="cog-outline"
@@ -56,5 +48,5 @@ export function NonPolyhedronsScreen(
     })
   }, [navigation])
 
-  return <NonPolyhedronsList filter={debouncedFilter} />
+  return <FiguresList filter={debouncedFilter} />
 }

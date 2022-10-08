@@ -6,13 +6,11 @@ import { RootStackScreenProps } from '../navigation/types'
 import { DensityUnit } from '../types/unit'
 import { Section } from '../ui'
 
-type SelectDensityUnitProps = RootStackScreenProps<'SelectDensityUnit'>
-
-export function SelectDensityUnit({
-  route,
-  navigation
-}: SelectDensityUnitProps) {
-  const { unit, onSelect } = route.params
+export function SelectDensityUnit(
+  props: RootStackScreenProps<'SelectDensityUnit'>
+) {
+  const { unit, onSelect } = props.route.params
+  const { navigation } = props
 
   const densityUnits = useDensityUnits()
 

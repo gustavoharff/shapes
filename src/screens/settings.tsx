@@ -6,9 +6,9 @@ import { getVersion } from 'react-native-device-info'
 import { RootStackScreenProps } from '../navigation/types'
 import { Form, Section } from '../ui'
 
-export function SettingsScreen({
-  navigation
-}: RootStackScreenProps<'Settings'>) {
+export function SettingsScreen(props: RootStackScreenProps<'Settings'>) {
+  const { navigation } = props
+
   const theme = useTheme()
 
   return (

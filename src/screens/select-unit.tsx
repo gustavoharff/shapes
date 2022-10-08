@@ -6,10 +6,9 @@ import { RootStackScreenProps } from '../navigation/types'
 import { Unit } from '../types/unit'
 import { HeaderTextButton, Section } from '../ui'
 
-type SelectUnitProps = RootStackScreenProps<'SelectUnit'>
-
-export function SelectUnit({ route, navigation }: SelectUnitProps) {
-  const { unit, onSelect } = route.params
+export function SelectUnit(props: RootStackScreenProps<'SelectUnit'>) {
+  const { unit, onSelect } = props.route.params
+  const { navigation } = props
 
   const units = useUnits()
 

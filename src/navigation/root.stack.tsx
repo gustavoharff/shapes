@@ -8,6 +8,7 @@ import {
   CubeInformation,
   CylinderFormScreen,
   DisplayPreferencesScreen,
+  HomeScreen,
   ParallelepipedFormScreen,
   PyramidFormScreen,
   SelectDensityUnit,
@@ -15,15 +16,16 @@ import {
   SelectUnit,
   SettingsScreen
 } from '../screens'
-import { Tabs } from './tabs'
+import { RootStackParamList } from './types'
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export function RootStack() {
   const theme = useTheme()
 
   return (
     <Stack.Navigator
+      initialRouteName="Home"
       screenOptions={{
         headerBackTitle: 'Voltar',
         headerBlurEffect: theme.dark ? 'dark' : 'light',
@@ -34,9 +36,10 @@ export function RootStack() {
       }}
     >
       <Stack.Screen
-        name="Tabs"
-        component={Tabs}
+        name="Home"
+        component={HomeScreen}
         options={{
+          title: 'Figuras',
           headerLargeTitle: true
         }}
       />

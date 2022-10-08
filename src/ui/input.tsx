@@ -6,14 +6,14 @@ import {
   TextInputProps,
   TouchableOpacity,
   useColorScheme,
-  View
+  View,
+  ViewStyle
 } from 'react-native'
 
-import { SectionContext } from '../contexts'
-
 interface InputProps extends TextInputProps {
-  readonly isLast?: boolean
   readonly label?: string
+  readonly borderTop?: boolean
+  readonly borderBottom?: boolean
 }
 
 interface InputRef {
@@ -21,13 +21,11 @@ interface InputRef {
 }
 
 export const Input = React.forwardRef<InputRef, InputProps>((props, ref) => {
-  const { style, isLast, label, ...rest } = props
+  const { style, label, borderTop = true, borderBottom = true, ...rest } = props
 
   const inputRef = React.useRef<TextInput>(null)
 
   const isDark = useColorScheme() === 'dark'
-
-  const sectionContext = React.useContext(SectionContext)
 
   const placeholderTextColor = isDark
     ? 'rgba(235, 235, 245, 0.6)'
@@ -37,18 +35,23 @@ export const Input = React.forwardRef<InputRef, InputProps>((props, ref) => {
     focus: () => inputRef.current?.focus()
   }))
 
-  const border = React.useMemo(() => {
-    if (sectionContext && isLast)
-      return {
-        borderBottomWidth: 0,
-        borderBottomColor: 'transparent'
-      }
+  const borderStyle: ViewStyle = React.useMemo(() => {
+    const style: ViewStyle = {}
 
-    return {
-      borderBottomWidth: 0.5,
-      borderBottomColor: isDark ? '#38383A' : '#C6C6C8'
+    const color = isDark ? '#38383A' : '#C6C6C8'
+
+    if (borderTop) {
+      style.borderTopWidth = 0.5
+      style.borderTopColor = color
     }
-  }, [isDark, isLast, sectionContext])
+
+    if (borderBottom) {
+      style.borderBottomWidth = 0.5
+      style.borderBottomColor = color
+    }
+
+    return style
+  }, [borderBottom, borderTop, isDark])
 
   const backgroundColor = isDark ? '#1C1C1E' : '#FFFFFF'
   const color = isDark ? '#fff' : '#000000'
@@ -67,7 +70,7 @@ export const Input = React.forwardRef<InputRef, InputProps>((props, ref) => {
   }
 
   return (
-    <View style={[styles.container, { backgroundColor }]}>
+    <View style={[styles.container, { backgroundColor }, borderStyle]}>
       {renderLabel()}
 
       <TextInput
