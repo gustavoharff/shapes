@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import { useDefaultUnit } from '../hooks'
-import { Unit } from '../types/unit'
-import { Form, Pyramid, Section, UnitInput, VolumeTip } from '../ui'
+import { useDefaultDensityUnit, useDefaultUnit, useWeight } from '../hooks'
+import { DensityUnit, Unit } from '../types/unit'
+import { Form, Pyramid, Section, UnitInput, VolumeTip, WeightTip } from '../ui'
 import { cmToM, mmToM } from '../utils'
 
 export function PyramidFormScreen() {
@@ -17,6 +17,12 @@ export function PyramidFormScreen() {
 
   const [depth, setDepth] = React.useState('0')
   const [depthUnit, setDepthUnit] = React.useState<Unit>(defaultUnit)
+
+  const defaultDensityUnit = useDefaultDensityUnit()
+
+  const [specificWeight, setSpecificWeight] = React.useState('0')
+  const [specificWeightUnit, setSpecificWeightUnit] =
+    React.useState<DensityUnit>(defaultDensityUnit)
 
   const volume = React.useMemo(() => {
     if (!width) return 0
@@ -72,6 +78,8 @@ export function PyramidFormScreen() {
     return (widthM * depthM * heightM) / 3
   }, [depth, depthUnit, height, heightUnit, width, widthUnit])
 
+  const weight = useWeight(specificWeight, specificWeightUnit, volume)
+
   return (
     <Form>
       <View style={styles.figure}>
@@ -109,6 +117,24 @@ export function PyramidFormScreen() {
       </Section>
 
       <VolumeTip volume={volume} style={styles.tip} />
+
+      <Section
+        disabled={!Number(width) || !Number(depth) || !Number(height)}
+        style={{ marginTop: 16 }}
+      >
+        <UnitInput
+          type="density-unit"
+          label="Peso específico"
+          value={specificWeight}
+          onChangeText={setSpecificWeight}
+          editable={!!(Number(width) && Number(height) && Number(depth))}
+          unitValue={specificWeightUnit}
+          onChangeUnit={setSpecificWeightUnit}
+          isLast
+        />
+      </Section>
+
+      <WeightTip weight={weight} style={styles.tip} />
     </Form>
   )
 }
