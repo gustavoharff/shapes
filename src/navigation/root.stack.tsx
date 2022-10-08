@@ -4,6 +4,7 @@ import * as React from 'react'
 
 import {
   ConeFormScreen,
+  ConeTrunkFormScreen,
   CubeFormScreen,
   CubeInformation,
   CylinderFormScreen,
@@ -66,6 +67,14 @@ export function RootStack() {
         component={ConeFormScreen}
         options={{
           title: 'Cone'
+        }}
+      />
+
+      <Stack.Screen
+        name="ConeTrunkForm"
+        component={ConeTrunkFormScreen}
+        options={{
+          title: 'Tronco do cone'
         }}
       />
 

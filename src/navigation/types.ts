@@ -9,6 +9,7 @@ export type RootStackParamList = {
   CubeForm: undefined
   CubeInformation: undefined
   ConeForm: undefined
+  ConeTrunkForm: undefined
   ParallelepipedForm: undefined
   CylinderForm: undefined
   PyramidForm: undefined

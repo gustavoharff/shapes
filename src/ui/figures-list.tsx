@@ -3,6 +3,7 @@ import * as React from 'react'
 import { LayoutAnimation, View } from 'react-native'
 
 import { Cone } from './figures/cone'
+import { ConeTrunk } from './figures/cone-trunk'
 import { Cube } from './figures/cube'
 import { Cylinder } from './figures/cylinder'
 import { Parallelepiped } from './figures/parallelepiped'
@@ -19,7 +20,8 @@ const list = [
   },
   { title: 'Pirâmide', component: Pyramid, figure: 'pyramid' },
   { title: 'Cone', component: Cone, figure: 'cone' },
-  { title: 'Cilindro', component: Cylinder, figure: 'cylinder' }
+  { title: 'Cilindro', component: Cylinder, figure: 'cylinder' },
+  { title: 'Tronco do cone', component: ConeTrunk, figure: 'cone-trunk' }
 ]
 
 interface FiguresListProps {
@@ -73,9 +75,13 @@ export function FiguresList(props: FiguresListProps) {
               if (figure === 'pyramid') {
                 navigation.navigate('PyramidForm')
               }
+
+              if (figure === 'cone-trunk') {
+                navigation.navigate('ConeTrunkForm')
+              }
             }}
             leftContent={() => (
-              <View style={{ marginRight: 8, paddingVertical: 8 }}>
+              <View style={{ marginRight: 8, paddingVertical: 4 }}>
                 <Component size={40} />
               </View>
             )}

@@ -1,39 +1,23 @@
+import { useTheme } from '@react-navigation/native'
 import * as React from 'react'
+import { View } from 'react-native'
 import Svg, { Path } from 'react-native-svg'
 
-interface ParallelepipedProps {
-  size?: number
-  primaryColor?: string
-  secondaryColor?: string
-}
+import { FigureProps } from './types'
 
-export class Parallelepiped extends React.Component<ParallelepipedProps> {
-  public render() {
-    const {
-      size = 250,
-      primaryColor = '#5E66D7',
-      secondaryColor = '#72DCCF'
-    } = this.props
+export function Parallelepiped(props: FigureProps) {
+  const { size = 250, style } = props
 
-    return (
-      <Svg width={size} height={size} viewBox="0 0 177 177" fill="none">
+  const theme = useTheme()
+
+  return (
+    <View style={[{ width: size, height: size }, style]}>
+      <Svg width="100%" height="100%" viewBox="0 0 100 100" fill="none">
         <Path
-          d="M110.407 46.7553L110.127 46.6522L19.1972 73.8559L19.7892 112.258L67.008 130.977L157.74 103.01L157.341 65.416L157.511 64.7031L110.407 46.7553ZM66.0926 128.554L21.6714 110.943L21.1576 76.0065L65.7205 93.6439L66.0926 128.554ZM23.2328 74.7746L110.017 48.6538L153.29 65.1434L66.7319 91.9871L23.2328 74.7746ZM155.81 101.545L68.0102 128.719L67.6441 93.7202L155.438 66.5363L155.81 101.545Z"
-          fill={primaryColor}
-        />
-        <Path
-          d="M153.284 65.1377L66.7319 91.9871L23.2347 74.7727L110.013 48.6539L153.284 65.1377Z"
-          fill={primaryColor}
-        />
-        <Path
-          d="M65.7244 93.6477L66.0926 128.554L21.6714 110.943L21.1616 76.0103L65.7244 93.6477Z"
-          fill={secondaryColor}
-        />
-        <Path
-          d="M155.434 66.5403L155.802 101.537L68.0064 128.723L67.6403 93.7242L155.434 66.5403Z"
-          fill={secondaryColor}
+          d="M16.1033 71.4754L39.168 84.542C40.8093 85.4794 42.3627 85.4794 44.0327 84.542L83.3627 65.4754C86.0593 63.952 87.466 62.3994 87.466 58.21V35.0067C87.466 31.9594 86.3527 30.0554 83.8907 28.6487L63.1407 16.8714C59.5947 14.8207 56.1653 14.8207 52.6193 16.8714L15.6047 34.6487C13.114 36.0554 12 37.9594 12 41.0067V64.2094C12 68.3994 13.436 69.952 16.1033 71.4754ZM18.7407 67.608C17.0407 66.6707 16.4547 65.6747 16.4547 64.0634V41.944L39.2853 54.9814V79.2974L18.7407 67.608ZM80.7547 61.608L43.8867 79.2974V54.9814L83.0113 35.944V58.0634C83.0113 59.6747 82.4247 60.6707 80.7547 61.608ZM41.6007 50.8794L18.9753 38.0767L54.5833 21.0607C56.84 19.772 58.9207 19.7427 61.2067 21.0607L80.52 32.0767L41.6007 50.8794Z"
+          fill={theme.colors.primary}
         />
       </Svg>
-    )
-  }
+    </View>
+  )
 }

@@ -1,39 +1,23 @@
+import { useTheme } from '@react-navigation/native'
 import * as React from 'react'
+import { View } from 'react-native'
 import Svg, { Path } from 'react-native-svg'
 
-interface PyramidProps {
-  size?: number
-  primaryColor?: string
-  secondaryColor?: string
-}
+import { FigureProps } from './types'
 
-export class Pyramid extends React.Component<PyramidProps> {
-  public render() {
-    const {
-      size = 250,
-      primaryColor = '#5E66D7',
-      secondaryColor = '#72DCCF'
-    } = this.props
+export function Pyramid(props: FigureProps) {
+  const { size = 250, style } = props
 
-    return (
-      <Svg width={size} height={size} viewBox="0 0 169 170" fill="none">
+  const theme = useTheme()
+
+  return (
+    <View style={[{ width: size, height: size }, style]}>
+      <Svg width="100%" height="100%" viewBox="0 0 100 100" fill="none">
         <Path
-          d="M21 140.544L22.854 140.76L22.9486 140.9L23.0892 140.806L100.007 149.71L148.007 114.349L72.3602 20L21.756 138.756L21.4978 138.93L21.602 139.084L21 140.544ZM99.3391 147.2L25.9548 138.678L66.1471 109.207L142.942 115.06L99.3391 147.2ZM73.6618 25.4597L143.602 112.691L67.104 106.851L73.6618 25.4597ZM70.8922 29.6446L64.6305 107.319L25.5989 135.937L70.8922 29.6446Z"
-          fill={primaryColor}
-        />
-        <Path
-          d="M25.9548 138.678L66.1442 109.209L142.945 115.071L99.3391 147.2L25.9548 138.678Z"
-          fill={primaryColor}
-        />
-        <Path
-          d="M25.5988 135.937L70.8921 29.6446L64.6304 107.319L25.5988 135.937Z"
-          fill={secondaryColor}
-        />
-        <Path
-          d="M67.0983 106.855L73.6618 25.4597L143.596 112.694L67.0983 106.855Z"
-          fill={secondaryColor}
+          d="M17.4965 66.7838C15.9731 69.4224 16.5349 72.3158 19.2839 73.507L47.9063 85.8162C49.3527 86.4285 50.7867 86.4285 52.3035 85.7951L80.8833 73.507C83.64 72.3158 84.2013 69.4224 82.678 66.7838L53.1516 15.242C52.2462 13.6593 51.1324 13.3334 50.0665 13.3334C49.0351 13.3334 47.9284 13.6593 47.023 15.242L17.4965 66.7838ZM22.7386 67.8004L49.4907 21.4136C49.6294 21.1503 49.8237 20.9976 50.0665 20.9976C50.3439 20.9976 50.5452 21.1433 50.6839 21.4136L77.4013 67.8004C77.8813 68.6697 77.6167 69.3939 76.8647 69.7282L51.2396 81.291C50.3382 81.6964 49.8435 81.6964 48.9983 81.3537L23.303 69.7282C22.5507 69.3939 22.2585 68.6697 22.7386 67.8004ZM47.6212 83.8248H52.5463V18.3184H47.6212V83.8248Z"
+          fill={theme.colors.primary}
         />
       </Svg>
-    )
-  }
+    </View>
+  )
 }

@@ -1,39 +1,23 @@
+import { useTheme } from '@react-navigation/native'
 import * as React from 'react'
+import { View } from 'react-native'
 import Svg, { Path } from 'react-native-svg'
 
-interface CubeProps {
-  size?: number
-  primaryColor?: string
-  secondaryColor?: string
-}
+import { FigureProps } from './types'
 
-export class Cube extends React.Component<CubeProps> {
-  public render() {
-    const {
-      size = 250,
-      primaryColor = '#5E66D7',
-      secondaryColor = '#72DCCF'
-    } = this.props
+export function Cube(props: FigureProps) {
+  const { size = 250, style } = props
 
-    return (
-      <Svg width={size} height={size} viewBox="0 0 146 130" fill="none">
+  const theme = useTheme()
+
+  return (
+    <View style={[{ width: size, height: size }, style]}>
+      <Svg width="100%" height="100%" viewBox="0 0 100 100" fill="none">
         <Path
-          d="M73.8972 24.5521L73.5697 24.4225L17.8603 39.8972L17.9471 83.8674L71.7001 106.033L127.195 89.6813L127.332 46.639L127.537 45.8364L73.8972 24.5521ZM70.6786 103.242L20.1152 82.3881L20.0806 42.397L70.8116 63.2806L70.6786 103.242ZM22.4689 41.0099L73.4138 26.725L122.683 46.2693L71.978 61.3814L22.4689 41.0099ZM124.997 87.9671L72.8697 103.464L72.9926 63.4058L125.123 47.9037L124.997 87.9671Z"
-          fill={primaryColor}
-        />
-        <Path
-          d="M122.682 46.265L71.9848 61.3954L22.4675 41.0126L73.4167 26.7193L122.682 46.265Z"
-          fill={primaryColor}
-        />
-        <Path
-          d="M70.806 63.2777L70.68 103.239L20.1097 82.3852L20.075 42.3942L70.806 63.2777Z"
-          fill={secondaryColor}
-        />
-        <Path
-          d="M125.123 47.9037L124.997 87.9671L72.8698 103.464L72.997 63.3974L125.123 47.9037Z"
-          fill={secondaryColor}
+          d="M21.89 70.3662L47.4875 84.8765C49.3412 85.9276 51.0429 85.9347 52.8762 84.8765L78.4734 70.3662C81.4614 68.6786 83.0647 66.9699 83.0647 62.2773V36.514C83.0647 33.1632 81.7927 31.0489 79.0567 29.4598L56.0467 16.3564C52.1004 14.1034 48.2978 14.1034 44.3515 16.3564L21.3417 29.4598C18.5711 31.0489 17.3333 33.1632 17.3333 36.514V62.2773C17.3333 66.9699 18.9295 68.6786 21.89 70.3662ZM24.7999 66.0986C22.9224 65.018 22.2866 63.9458 22.2866 62.1111V37.5645L47.6225 52.0372V79.0691L24.7999 66.0986ZM75.5983 66.0986L52.7687 79.0691V52.0372L78.1114 37.5645V62.1111C78.1114 63.9458 77.4414 65.018 75.5983 66.0986ZM50.1783 47.4923L25.0686 33.2878L46.5017 21.0591C49.0377 19.601 51.3605 19.5664 53.862 21.0591L75.3226 33.2878L50.1783 47.4923Z"
+          fill={theme.colors.primary}
         />
       </Svg>
-    )
-  }
+    </View>
+  )
 }
