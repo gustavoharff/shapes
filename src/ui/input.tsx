@@ -63,6 +63,7 @@ export const Input = React.forwardRef<InputRef, InputProps>((props, ref) => {
       <TouchableOpacity
         activeOpacity={1}
         onPress={() => inputRef.current?.focus()}
+        style={{ justifyContent: 'center' }}
       >
         <Text style={[styles.label, { color }]}>{label}</Text>
       </TouchableOpacity>
