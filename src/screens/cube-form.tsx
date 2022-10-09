@@ -20,7 +20,7 @@ export function CubeFormScreen(props: RootStackScreenProps<'CubeForm'>) {
 
   const defaultUnit = useDefaultUnit()
 
-  const [edge, setEdge] = React.useState('0')
+  const [edge, setEdge] = React.useState('')
   const [edgeUnit, setEdgeUnit] = React.useState<Unit>(defaultUnit)
 
   const defaultDensityUnit = useDefaultDensityUnit()
@@ -81,6 +81,7 @@ export function CubeFormScreen(props: RootStackScreenProps<'CubeForm'>) {
           onChangeText={setEdge}
           unitValue={edgeUnit}
           onChangeUnit={setEdgeUnit}
+          placeholder="0"
           isLast
         />
       </Section>
@@ -96,6 +97,7 @@ export function CubeFormScreen(props: RootStackScreenProps<'CubeForm'>) {
           editable={Number(edge) > 0}
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
+          placeholder="0"
           isLast
         />
       </Section>

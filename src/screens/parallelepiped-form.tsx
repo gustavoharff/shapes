@@ -16,18 +16,18 @@ import { cmToM, mmToM } from '../utils'
 export function ParallelepipedFormScreen() {
   const defaultUnit = useDefaultUnit()
 
-  const [width, setWidth] = React.useState('0')
+  const [width, setWidth] = React.useState('')
   const [widthUnit, setWidthUnit] = React.useState<Unit>(defaultUnit)
 
-  const [height, setHeight] = React.useState('0')
+  const [height, setHeight] = React.useState('')
   const [heightUnit, setHeightUnit] = React.useState<Unit>(defaultUnit)
 
-  const [greeting, setGreeting] = React.useState('0')
+  const [greeting, setGreeting] = React.useState('')
   const [greetingUnit, setGreetingUnit] = React.useState<Unit>(defaultUnit)
 
   const defaultDensityUnit = useDefaultDensityUnit()
 
-  const [specificWeight, setSpecificWeight] = React.useState('0')
+  const [specificWeight, setSpecificWeight] = React.useState('')
   const [specificWeightUnit, setSpecificWeightUnit] =
     React.useState<DensityUnit>(defaultDensityUnit)
 
@@ -102,6 +102,7 @@ export function ParallelepipedFormScreen() {
           onChangeText={setWidth}
           unitValue={widthUnit}
           onChangeUnit={setWidthUnit}
+          placeholder="0"
         />
 
         <UnitInput
@@ -111,6 +112,7 @@ export function ParallelepipedFormScreen() {
           onChangeText={setHeight}
           unitValue={heightUnit}
           onChangeUnit={setHeightUnit}
+          placeholder="0"
         />
 
         <UnitInput
@@ -120,6 +122,7 @@ export function ParallelepipedFormScreen() {
           onChangeText={setGreeting}
           unitValue={greetingUnit}
           onChangeUnit={setGreetingUnit}
+          placeholder="0"
           isLast
         />
       </Section>
@@ -138,6 +141,7 @@ export function ParallelepipedFormScreen() {
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
           editable={!!(Number(greeting) && Number(height))}
+          placeholder="0"
           isLast
         />
       </Section>

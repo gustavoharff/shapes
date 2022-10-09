@@ -9,15 +9,15 @@ import { cmToM, mmToM } from '../utils'
 export function CylinderFormScreen() {
   const defaultUnit = useDefaultUnit()
 
-  const [radius, setRadius] = React.useState('0')
+  const [radius, setRadius] = React.useState('')
   const [radiusUnit, setRadiusUnit] = React.useState<Unit>(defaultUnit)
 
-  const [height, setHeight] = React.useState('0')
+  const [height, setHeight] = React.useState('')
   const [heightUnit, setHeightUnit] = React.useState<Unit>(defaultUnit)
 
   const defaultDensityUnit = useDefaultDensityUnit()
 
-  const [specificWeight, setSpecificWeight] = React.useState('0')
+  const [specificWeight, setSpecificWeight] = React.useState('')
   const [specificWeightUnit, setSpecificWeightUnit] =
     React.useState<DensityUnit>(defaultDensityUnit)
 
@@ -83,6 +83,7 @@ export function CylinderFormScreen() {
           onChangeText={setRadius}
           unitValue={radiusUnit}
           onChangeUnit={setRadiusUnit}
+          placeholder="0"
         />
 
         <UnitInput
@@ -92,6 +93,7 @@ export function CylinderFormScreen() {
           onChangeText={setHeight}
           unitValue={heightUnit}
           onChangeUnit={setHeightUnit}
+          placeholder="0"
           isLast
         />
       </Section>
@@ -110,6 +112,7 @@ export function CylinderFormScreen() {
           editable={!!(Number(radius) && Number(height))}
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
+          placeholder="0"
           isLast
         />
       </Section>

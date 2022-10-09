@@ -9,18 +9,18 @@ import { cmToM, mmToM } from '../utils'
 export function PyramidFormScreen() {
   const defaultUnit = useDefaultUnit()
 
-  const [height, setHeight] = React.useState('0')
+  const [height, setHeight] = React.useState('')
   const [heightUnit, setHeightUnit] = React.useState<Unit>(defaultUnit)
 
-  const [width, setWidth] = React.useState('0')
+  const [width, setWidth] = React.useState('')
   const [widthUnit, setWidthUnit] = React.useState<Unit>(defaultUnit)
 
-  const [depth, setDepth] = React.useState('0')
+  const [depth, setDepth] = React.useState('')
   const [depthUnit, setDepthUnit] = React.useState<Unit>(defaultUnit)
 
   const defaultDensityUnit = useDefaultDensityUnit()
 
-  const [specificWeight, setSpecificWeight] = React.useState('0')
+  const [specificWeight, setSpecificWeight] = React.useState('')
   const [specificWeightUnit, setSpecificWeightUnit] =
     React.useState<DensityUnit>(defaultDensityUnit)
 
@@ -94,6 +94,7 @@ export function PyramidFormScreen() {
           onChangeText={setHeight}
           unitValue={heightUnit}
           onChangeUnit={setHeightUnit}
+          placeholder="0"
         />
 
         <UnitInput
@@ -103,6 +104,7 @@ export function PyramidFormScreen() {
           onChangeText={setWidth}
           unitValue={widthUnit}
           onChangeUnit={setWidthUnit}
+          placeholder="0"
         />
 
         <UnitInput
@@ -112,6 +114,7 @@ export function PyramidFormScreen() {
           onChangeText={setDepth}
           unitValue={depthUnit}
           onChangeUnit={setDepthUnit}
+          placeholder="0"
           isLast
         />
       </Section>
@@ -130,6 +133,7 @@ export function PyramidFormScreen() {
           editable={!!(Number(width) && Number(height) && Number(depth))}
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
+          placeholder="0"
           isLast
         />
       </Section>

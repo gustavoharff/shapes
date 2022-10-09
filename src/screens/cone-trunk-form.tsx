@@ -10,18 +10,18 @@ import { cmToM, mmToM } from '../utils'
 export function ConeTrunkFormScreen() {
   const defaultUnit = useDefaultUnit()
 
-  const [minorRadius, setMinorRadius] = React.useState('0')
+  const [minorRadius, setMinorRadius] = React.useState('')
   const [minorRadiusUnit, setMinorRadiusUnit] =
     React.useState<Unit>(defaultUnit)
-  const [greaterRadius, setGreaterRadius] = React.useState('0')
+  const [greaterRadius, setGreaterRadius] = React.useState('')
   const [greaterRadiusUnit, setGreaterRadiusUnit] =
     React.useState<Unit>(defaultUnit)
-  const [height, setHeight] = React.useState('0')
+  const [height, setHeight] = React.useState('')
   const [heightUnit, setHeightUnit] = React.useState<Unit>(defaultUnit)
 
   const defaultDensityUnit = useDefaultDensityUnit()
 
-  const [specificWeight, setSpecificWeight] = React.useState('0')
+  const [specificWeight, setSpecificWeight] = React.useState('')
   const [specificWeightUnit, setSpecificWeightUnit] =
     React.useState<DensityUnit>(defaultDensityUnit)
 
@@ -112,6 +112,7 @@ export function ConeTrunkFormScreen() {
           onChangeText={setMinorRadius}
           unitValue={minorRadiusUnit}
           onChangeUnit={setMinorRadiusUnit}
+          placeholder="0"
         />
 
         <UnitInput
@@ -121,6 +122,7 @@ export function ConeTrunkFormScreen() {
           onChangeText={setGreaterRadius}
           unitValue={greaterRadiusUnit}
           onChangeUnit={setGreaterRadiusUnit}
+          placeholder="0"
         />
 
         <UnitInput
@@ -130,6 +132,7 @@ export function ConeTrunkFormScreen() {
           onChangeText={setHeight}
           unitValue={heightUnit}
           onChangeUnit={setHeightUnit}
+          placeholder="0"
           isLast
         />
       </Section>
@@ -148,6 +151,7 @@ export function ConeTrunkFormScreen() {
           editable={!!(Number(minorRadius) && Number(height))}
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
+          placeholder="0"
           isLast
         />
       </Section>
