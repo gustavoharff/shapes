@@ -1,18 +1,19 @@
 import { useTheme } from '@react-navigation/native'
 import * as React from 'react'
 import { useContext } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import { SectionContext } from '../../contexts'
+import { SectionContext } from '../../../contexts'
+import { SectionItemContent } from './content'
+import { SectionItemIcon } from './icon'
 
 export type SectionItemType = {
   readonly onPress?: () => void
-  readonly label?: string
   readonly selected?: boolean
-  readonly isFirst: boolean
-  readonly isLast: boolean
-  readonly leftContent?: () => JSX.Element
+  readonly isFirst?: boolean
+  readonly isLast?: boolean
+  readonly children?: React.ReactNode
 }
 
 const DARK_MODAL_BACKGROUND = '#2C2C2E'
@@ -28,15 +29,13 @@ const LIGHT_SCREEN_BACKGROUND = '#ffff'
 const LIGHT_SCREEN_BORDER_COLOR = '#C6C6C8'
 
 export function SectionItem(props: SectionItemType) {
-  const { label, onPress, selected, isFirst, isLast, leftContent } = props
+  const { onPress, selected, isFirst, isLast, children } = props
 
   const theme = useTheme()
 
   const { isModal, showArrow, selectable, radius } = useContext(SectionContext)
 
   const [height, setHeight] = React.useState<number | undefined>(undefined)
-
-  const textColor = theme.dark ? 'rgb(255, 255, 255)' : 'rgb(0, 0, 0)'
 
   const borders = React.useMemo(() => {
     if (!radius || (!isFirst && !isLast)) {
@@ -84,8 +83,6 @@ export function SectionItem(props: SectionItemType) {
       disabled={!onPress}
       onLayout={e => setHeight(e.nativeEvent.layout.height)}
     >
-      {leftContent && leftContent()}
-
       {selectable && (
         <Icon
           name="check"
@@ -95,52 +92,45 @@ export function SectionItem(props: SectionItemType) {
         />
       )}
 
-      <View
-        style={[
-          styles.content,
-          { borderColor, borderBottomWidth: isLast ? 0 : 0.5, height }
-        ]}
-      >
-        <Text numberOfLines={1} style={[styles.label, { color: textColor }]}>
-          {label}
-        </Text>
+      {React.Children.map(children, child => {
+        if (typeof child === 'string') {
+          return (
+            <SectionItemContent
+              borderColor={borderColor}
+              height={height}
+              isLast={isLast}
+              pressable={!!onPress}
+              showArrow
+            >
+              {child}
+            </SectionItemContent>
+          )
+        }
 
-        {onPress && showArrow && (
-          <Icon
-            name="chevron-right"
-            size={20}
-            color={
-              theme.dark ? 'rgba(235, 235, 245, 0.3)' : 'rgba(60, 60, 67, 0.3)'
-            }
-            style={styles.arrow}
-          />
-        )}
-      </View>
+        // @ts-expect-error Property `type` exists
+        if (child?.type?.displayName === 'Section.Item.Content') {
+          return React.cloneElement(child as React.ReactElement, {
+            borderColor,
+            height,
+            isLast,
+            pressable: !!onPress,
+            showArrow
+          })
+        }
+
+        return child
+      })}
     </TouchableOpacity>
   )
 }
+
+SectionItem.Icon = SectionItemIcon
+SectionItem.Content = SectionItemContent
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 16
-  },
-  content: {
-    flex: 1,
-    paddingRight: 16,
-    alignItems: 'center',
-    flexDirection: 'row',
-    paddingVertical: 10
-  },
-  label: {
-    flex: 1,
-    fontSize: 17,
-    lineHeight: 22,
-    letterSpacing: -0.41,
-    height: 22
-  },
-  arrow: {
-    marginLeft: 'auto'
   }
 })

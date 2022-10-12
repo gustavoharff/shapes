@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { IntlContext, IntlProvider, IntlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import { StyleProp, ViewStyle } from 'react-native'
 
 import { useVolumeUnits } from '../hooks'
@@ -17,9 +17,11 @@ export function VolumeTip(props: VolumeTipProps) {
 
   const volumeUnits = useVolumeUnits()
 
+  const intl = useIntl()
+
   const visibleVolumeUnits = volumeUnits.filter(unit => unit.visible)
 
-  function renderText(unit: VolumeUnit, index: number, intl: IntlShape) {
+  function renderText(unit: VolumeUnit) {
     let value: number
 
     switch (unit.name) {
@@ -44,28 +46,19 @@ export function VolumeTip(props: VolumeTipProps) {
     })
 
     return (
-      <Section.Item
-        key={unit.name}
-        label={`${formattedValue} ${unit.name}`}
-        isFirst={index === 0}
-        isLast={index + 1 === visibleVolumeUnits.length}
-      />
+      <Section.Item key={unit.name}>
+        {`${formattedValue} ${unit.name}`}
+      </Section.Item>
     )
   }
 
   if (!visibleVolumeUnits) return null
 
   return (
-    <Section title="VOLUME" style={style} disabled={!volume}>
-      <IntlProvider locale="pt-BR">
-        <IntlContext.Consumer>
-          {intl =>
-            visibleVolumeUnits.map((unit, index) =>
-              renderText(unit, index, intl)
-            )
-          }
-        </IntlContext.Consumer>
-      </IntlProvider>
+    <Section style={style} disabled={!volume}>
+      <Section.Header>Volume</Section.Header>
+
+      {visibleVolumeUnits.map(unit => renderText(unit))}
     </Section>
   )
 }

@@ -7,7 +7,6 @@ import { SectionHeader } from './header'
 import { SectionItem } from './item'
 
 interface SectionProps {
-  readonly title?: string
   readonly children: React.ReactNode
   readonly selectable?: boolean
   readonly style?: StyleProp<ViewStyle>
@@ -19,7 +18,6 @@ interface SectionProps {
 
 export function Section(props: SectionProps) {
   const {
-    title,
     children,
     style,
     radius,
@@ -40,22 +38,48 @@ export function Section(props: SectionProps) {
   const opacity = disabled ? 0.6 : 1
   const paddingHorizontal = radius ? 16 : 0
 
+  const list = React.useMemo(() => {
+    return React.Children.toArray(children).filter(child => {
+      // @ts-expect-error Property `type` exists
+      if (child?.type.displayName === 'Section.Header') return false
+
+      return true
+    })
+  }, [children])
+
+  function renderHeader() {
+    return React.Children.map(children, child => {
+      // @ts-expect-error Property `type` exists
+      if (child?.type.displayName === 'Section.Header') {
+        return React.cloneElement(child as React.ReactElement)
+      }
+
+      return null
+    })
+  }
+
   return (
     <View style={[style, { paddingHorizontal, opacity }]}>
-      {title && <SectionHeader title={title} />}
+      <SectionContext.Provider
+        value={{ showArrow, isModal, selectable, radius }}
+      >
+        {renderHeader()}
 
-      <View style={[styles.container, { borderColor }]}>
-        <SectionContext.Provider
-          value={{ showArrow, isModal, selectable, radius }}
-        >
-          {children}
-        </SectionContext.Provider>
-      </View>
+        <View style={[styles.container, { borderColor }]}>
+          {React.Children.map(list, (child, index) => {
+            return React.cloneElement(child as React.ReactElement, {
+              isFirst: index === 0,
+              isLast: index + 1 === React.Children.toArray(list).length
+            })
+          })}
+        </View>
+      </SectionContext.Provider>
     </View>
   )
 }
 
 Section.Item = SectionItem
+Section.Header = SectionHeader
 
 const styles = StyleSheet.create({
   container: {

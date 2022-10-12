@@ -3,11 +3,11 @@ import * as React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 interface SectionHeaderProps {
-  title: string
+  children: string
 }
 
 export function SectionHeader(props: SectionHeaderProps) {
-  const { title } = props
+  const { children } = props
 
   const theme = useTheme()
 
@@ -15,10 +15,12 @@ export function SectionHeader(props: SectionHeaderProps) {
 
   return (
     <View style={styles.header}>
-      <Text style={[styles.title, { color }]}>{title}</Text>
+      <Text style={[styles.title, { color }]}>{children.toUpperCase()}</Text>
     </View>
   )
 }
+
+SectionHeader.displayName = 'Section.Header'
 
 const styles = StyleSheet.create({
   header: {

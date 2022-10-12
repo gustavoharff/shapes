@@ -14,19 +14,21 @@ export function SettingsScreen(props: RootStackScreenProps<'Settings'>) {
   return (
     <>
       <Form>
-        <Section title="OPÇÕES" style={{ marginTop: 32 }}>
+        <Section style={{ marginTop: 32 }}>
+          <Section.Header>Opções</Section.Header>
+
           <Section.Item
-            label="Preferências de exibição"
             onPress={() => navigation.navigate('DisplayPreferences')}
-            isFirst
-            isLast={false}
-          />
+          >
+            <Section.Item.Content>
+              Preferências de exibição
+            </Section.Item.Content>
+          </Section.Item>
           <Section.Item
-            label="Preferências de seleção"
             onPress={() => navigation.navigate('SelectionPreferences')}
-            isLast
-            isFirst={false}
-          />
+          >
+            <Section.Item.Content>Preferências de seleção</Section.Item.Content>
+          </Section.Item>
         </Section>
       </Form>
       <Text style={[styles.version, { color: theme.colors.text }]}>

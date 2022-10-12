@@ -76,6 +76,8 @@ export function CylinderFormScreen() {
       </View>
 
       <Section style={{ marginTop: 16 }}>
+        <Section.Header>Teste</Section.Header>
+
         <UnitInput
           type="unit"
           label="Raio da base"
@@ -94,7 +96,6 @@ export function CylinderFormScreen() {
           unitValue={heightUnit}
           onChangeUnit={setHeightUnit}
           placeholder="0"
-          isLast
         />
       </Section>
 
@@ -113,7 +114,6 @@ export function CylinderFormScreen() {
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
           placeholder="0"
-          isLast
         />
       </Section>
 

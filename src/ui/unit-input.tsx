@@ -132,6 +132,8 @@ export function UnitInput(props: UnitInputProps) {
   )
 }
 
+UnitInput.displayName = 'UnitInput'
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',

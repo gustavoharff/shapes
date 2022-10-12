@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import * as React from 'react'
-import { LayoutAnimation, View } from 'react-native'
+import { LayoutAnimation } from 'react-native'
 
 import { Cone } from './figures/cone'
 import { ConeTrunk } from './figures/cone-trunk'
@@ -49,12 +49,9 @@ export function FiguresList(props: FiguresListProps) {
   return (
     <Form>
       <Section radius>
-        {data.map(({ title, figure, component: Component }, index) => (
+        {data.map(({ title, figure, component: Component }) => (
           <Section.Item
             key={figure}
-            label={title}
-            isFirst={index === 0}
-            isLast={index + 1 === data.length}
             onPress={() => {
               if (figure === 'cubo') {
                 navigation.navigate('CubeForm')
@@ -80,12 +77,13 @@ export function FiguresList(props: FiguresListProps) {
                 navigation.navigate('ConeTrunkForm')
               }
             }}
-            leftContent={() => (
-              <View style={{ marginRight: 8, paddingVertical: 4 }}>
-                <Component size={40} />
-              </View>
-            )}
-          />
+          >
+            <Section.Item.Icon>
+              <Component size={40} />
+            </Section.Item.Icon>
+
+            {title}
+          </Section.Item>
         ))}
       </Section>
       {footer}

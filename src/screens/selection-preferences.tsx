@@ -46,39 +46,31 @@ export function SelectionPreferencesScreen() {
 
   return (
     <Form>
-      <Section
-        title="UNIDADES"
-        selectable
-        showArrow={false}
-        style={{ marginTop: 32 }}
-      >
-        {units.map((unit, index) => (
+      <Section selectable showArrow={false} style={{ marginTop: 32 }}>
+        <Section.Header>Unidades</Section.Header>
+
+        {units.map(unit => (
           <Section.Item
             key={unit.description}
-            label={unit.description}
             selected={unit.selected}
             onPress={() => onUnitPress(unit.name)}
-            isFirst={index === 0}
-            isLast={index + 1 === units.length}
-          />
+          >
+            {unit.description}
+          </Section.Item>
         ))}
       </Section>
 
-      <Section
-        title="UNIDADES DE DENSIDADE"
-        selectable
-        showArrow={false}
-        style={{ marginVertical: 32 }}
-      >
-        {densityUnits.map((unit, index) => (
+      <Section selectable showArrow={false} style={{ marginVertical: 32 }}>
+        <Section.Header>Unidades de densidade</Section.Header>
+
+        {densityUnits.map(unit => (
           <Section.Item
             key={unit.description}
-            label={unit.description}
             selected={unit.selected}
             onPress={() => onDensityUnitPress(unit.name)}
-            isFirst={index === 0}
-            isLast={index + 1 === densityUnits.length}
-          />
+          >
+            {unit.description}
+          </Section.Item>
         ))}
       </Section>
     </Form>

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { IntlContext, IntlProvider, IntlShape } from 'react-intl'
+import { useIntl } from 'react-intl'
 import { StyleProp, ViewStyle } from 'react-native'
 
 import { useDensityUnits } from '../hooks'
@@ -17,9 +17,11 @@ export function WeightTip(props: WeightTipProps) {
 
   const densityUnits = useDensityUnits()
 
+  const intl = useIntl()
+
   const visibleDensityUnits = densityUnits.filter(unit => unit.visible)
 
-  function renderText(unit: DensityUnit, index: number, intl: IntlShape) {
+  function renderText(unit: DensityUnit) {
     let value: number
 
     switch (unit.name) {
@@ -44,28 +46,19 @@ export function WeightTip(props: WeightTipProps) {
     })
 
     return (
-      <Section.Item
-        key={unit.name}
-        label={`${formattedValue} ${unit.name}`}
-        isFirst={index === 0}
-        isLast={index + 1 === visibleDensityUnits.length}
-      />
+      <Section.Item key={unit.name}>
+        {`${formattedValue} ${unit.name}`}
+      </Section.Item>
     )
   }
 
   if (!visibleDensityUnits) return null
 
   return (
-    <Section title="PESO" style={style} disabled={!weight}>
-      <IntlProvider locale="pt-BR">
-        <IntlContext.Consumer>
-          {intl =>
-            visibleDensityUnits.map((unit, index) =>
-              renderText(unit, index, intl)
-            )
-          }
-        </IntlContext.Consumer>
-      </IntlProvider>
+    <Section style={style} disabled={!weight}>
+      <Section.Header>Peso</Section.Header>
+
+      {visibleDensityUnits.map(unit => renderText(unit))}
     </Section>
   )
 }
