@@ -17,7 +17,7 @@
     "intl": "^1.2.5",
     "react": "18.1.0",
     "react-intl": "^6.1.1",
-    "react-native": "0.70.2",
+    "react-native": "0.70.3",
     "react-native-bootsplash": "^4.3.2",
     "react-native-collapsible": "^1.6.0",
     "react-native-device-info": "^10.0.2",
