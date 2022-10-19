@@ -4518,11 +4518,6 @@ intl-messageformat@10.1.4:
     "@formatjs/icu-messageformat-parser" "2.1.7"
     tslib "2.4.0"
 
-intl@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/intl/-/intl-1.2.5.tgz#82244a2190c4e419f8371f5aa34daa3420e2abde"
-  integrity sha512-rK0KcPHeBFBcqsErKSpvZnrOmWOj+EmDkyJ57e90YWaQNqbcivcqmKDlHEeNprDWOsKzPsh1BfSpPQdDvclHVw==
-
 invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
@@ -6944,33 +6939,33 @@ react-native-codegen@^0.70.5:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
-react-native-device-info@^10.0.2:
-  version "10.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-10.0.2.tgz#17cd96df277cca5a22fb80409527c181a08d4ed1"
-  integrity sha512-6XY8EctYqNEX6EHDoHxz3yONOYxCHKrgEdStP7HZDYzFXb1JB5BFt7UbXDWrmihXUZDv06sBsjN26+Tp0EajXw==
+react-native-device-info@10.2.1:
+  version "10.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-10.2.1.tgz#49189a73aba4804f61c5075c074d19db4a6e0f49"
+  integrity sha512-vXmcLThnCnrdhiJr7O4jaDY/xouFRshhGAU4HYkiSi5ShSXE+QqFQwKqICdHtw06VeX3ydZg3j0puG0lbTKVEA==
 
 react-native-gradle-plugin@^0.70.3:
   version "0.70.3"
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.70.3.tgz#cbcf0619cbfbddaa9128701aa2d7b4145f9c4fc8"
   integrity sha512-oOanj84fJEXUg9FoEAQomA8ISG+DVIrTZ3qF7m69VQUJyOGYyDZmPqKcjvRku4KXlEH6hWO9i4ACLzNBh8gC0A==
 
-react-native-safe-area-context@^4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-4.3.1.tgz#5cf97b25b395e0d09bc1f828920cd7da0d792ade"
-  integrity sha512-cEr7fknJCToTrSyDCVNg0GRdRMhyLeQa2NZwVCuzEQcWedOw/59ExomjmzCE4rxrKXs6OJbyfNtFRNyewDaHuA==
+react-native-safe-area-context@4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-4.4.1.tgz#239c60b8a9a80eac70a38a822b04c0f1d15ffc01"
+  integrity sha512-N9XTjiuD73ZpVlejHrUWIFZc+6Z14co1K/p1IFMkImU7+avD69F3y+lhkqA2hN/+vljdZrBSiOwXPkuo43nFQA==
 
-react-native-screens@^3.15.0:
-  version "3.15.0"
-  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-3.15.0.tgz#78e42c8df72851b1ff235ddf5434b961ae123ca5"
-  integrity sha512-ezC5TibsUYyqPuuHpZoM3iEl6bRzCVBMJeGaFkn7xznuOt1VwkZVub0BvafIEYR/+AQC/RjxzMSQPs1qal0+wA==
+react-native-screens@3.18.2:
+  version "3.18.2"
+  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-3.18.2.tgz#d7ab2d145258d3db9fa630fa5379dc4474117866"
+  integrity sha512-ANUEuvMUlsYJ1QKukEhzhfrvOUO9BVH9Nzg+6eWxpn3cfD/O83yPBOF8Mx6x5H/2+sMy+VS5x/chWOOo/U7QJw==
   dependencies:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
-react-native-svg@^12.4.0:
-  version "12.4.0"
-  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-12.4.0.tgz#934a89d3da7936aa76361b748e4ba58a1bcb9bf5"
-  integrity sha512-m2Hn5FMC7wF/BSwxrbZFVElOMAJZXLJl2bBMDXvs/fFy2v4oLBfcw8MwaBTlaIyk0p24WRC9lWv51kSA/Plj5w==
+react-native-svg@13.4.0:
+  version "13.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.4.0.tgz#82399ba0956c454144618aa581e2d748dd3f010a"
+  integrity sha512-B3TwK+H0+JuRhYPzF21AgqMt4fjhCwDZ9QUtwNstT5XcslJBXC0FoTkdZo8IEb1Sv4suSqhZwlAY6lwOv3tHag==
   dependencies:
     css-select "^5.1.0"
     css-tree "^1.1.3"
