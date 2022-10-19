@@ -12,6 +12,7 @@ export function useUnits() {
     const units = realm.objects<Unit>('Unit')
 
     units.addListener(response => {
+      // @ts-expect-error `toJSON` dont support generic
       setUnits(response.toJSON())
     })
 

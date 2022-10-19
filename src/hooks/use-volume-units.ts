@@ -12,6 +12,7 @@ export function useVolumeUnits() {
     const volumeUnits = realm.objects<VolumeUnit>('VolumeUnit')
 
     volumeUnits.addListener(response => {
+      // @ts-expect-error `toJSON` dont support generic
       setVolumeUnits(response.toJSON())
     })
 

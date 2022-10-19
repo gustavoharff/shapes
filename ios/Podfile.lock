@@ -374,7 +374,7 @@ PODS:
     - React-jsi (= 0.70.3)
     - React-logger (= 0.70.3)
     - React-perflogger (= 0.70.3)
-  - RealmJS (11.0.0-rc.2):
+  - RealmJS (11.0.0):
     - React
   - RNBootSplash (4.3.2):
     - React-Core
@@ -605,7 +605,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: b9a58ffdd18446f43d493a4b0ecd603ee86be847
   React-runtimeexecutor: e9b1f9310158a1e265bcdfdfd8c62d6174b947a2
   ReactCommon: 01064177e66d652192c661de899b1076da962fd9
-  RealmJS: 1a0478d2c2d98da875057b716c69c8d03eef2b3a
+  RealmJS: 55a0d0d600a0da7d5f0cf42ecbabcd09708c7601
   RNBootSplash: 5f346163977573d6b2aeba1b25df9d2245c0d73c
   RNDeviceInfo: 0a7c1d2532aa7691f9b9925a27e43af006db4dae
   RNScreens: 4a1af06327774490d97342c00aee0c2bafb497b7

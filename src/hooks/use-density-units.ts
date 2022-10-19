@@ -12,6 +12,7 @@ export function useDensityUnits() {
     const densityUnits = realm.objects<DensityUnit>('DensityUnit')
 
     densityUnits.addListener(response => {
+      // @ts-expect-error `toJSON` dont support generic
       setDensityUnits(response.toJSON())
     })
 
