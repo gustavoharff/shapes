@@ -8,6 +8,7 @@ import {
   CubeFormScreen,
   CylinderFormScreen,
   DisplayPreferencesScreen,
+  HexagonalPrismFormScreen,
   HomeScreen,
   ParallelepipedFormScreen,
   PyramidFormScreen,
@@ -73,6 +74,14 @@ export function RootStack() {
         component={ParallelepipedFormScreen}
         options={{
           title: 'Paralelepípedo'
+        }}
+      />
+
+      <Stack.Screen
+        name="HexagonalPrismForm"
+        component={HexagonalPrismFormScreen}
+        options={{
+          title: 'Prisma hexagonal'
         }}
       />
 

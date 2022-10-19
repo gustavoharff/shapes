@@ -6,6 +6,7 @@ import { Cone } from './figures/cone'
 import { ConeTrunk } from './figures/cone-trunk'
 import { Cube } from './figures/cube'
 import { Cylinder } from './figures/cylinder'
+import { HexagonalPrism } from './figures/hexagonal-prism'
 import { Parallelepiped } from './figures/parallelepiped'
 import { Pyramid } from './figures/pyramid'
 import { Form } from './form'
@@ -17,6 +18,11 @@ const list = [
     title: 'Paralelepípedo',
     component: Parallelepiped,
     figure: 'parallelepiped'
+  },
+  {
+    title: 'Prisma hexagonal',
+    component: HexagonalPrism,
+    figure: 'hexagonal-prism'
   },
   { title: 'Pirâmide', component: Pyramid, figure: 'pyramid' },
   { title: 'Cone', component: Cone, figure: 'cone' },
@@ -75,6 +81,10 @@ export function FiguresList(props: FiguresListProps) {
 
               if (figure === 'cone-trunk') {
                 navigation.navigate('ConeTrunkForm')
+              }
+
+              if (figure === 'hexagonal-prism') {
+                navigation.navigate('HexagonalPrismForm')
               }
             }}
           >

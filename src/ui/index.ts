@@ -1,6 +1,7 @@
 export { Cone } from './figures/cone'
 export { Cube } from './figures/cube'
 export { Cylinder } from './figures/cylinder'
+export { HexagonalPrism } from './figures/hexagonal-prism'
 export { Parallelepiped } from './figures/parallelepiped'
 export { Pyramid } from './figures/pyramid'
 export { FiguresList } from './figures-list'

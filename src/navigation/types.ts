@@ -12,6 +12,7 @@ export type RootStackParamList = {
   ParallelepipedForm: undefined
   CylinderForm: undefined
   PyramidForm: undefined
+  HexagonalPrismForm: undefined
   SelectUnit: {
     unit: Unit
     onSelect: (unit: Unit) => void
