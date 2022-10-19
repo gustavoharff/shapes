@@ -4,20 +4,10 @@ import { StyleSheet, View } from 'react-native'
 import { useDefaultDensityUnit, useDefaultUnit, useWeight } from '../hooks'
 import { RootStackScreenProps } from '../navigation/types'
 import { DensityUnit, Unit } from '../types/unit'
-import {
-  Cube,
-  Form,
-  HeaderIconButton,
-  Section,
-  UnitInput,
-  VolumeTip,
-  WeightTip
-} from '../ui'
+import { Cube, Form, Section, UnitInput, VolumeTip, WeightTip } from '../ui'
 import { cmToM, mmToM } from '../utils'
 
 export function CubeFormScreen(props: RootStackScreenProps<'CubeForm'>) {
-  const { navigation } = props
-
   const defaultUnit = useDefaultUnit()
 
   const [edge, setEdge] = React.useState('')
@@ -55,17 +45,6 @@ export function CubeFormScreen(props: RootStackScreenProps<'CubeForm'>) {
   }, [edge, edgeUnit])
 
   const weight = useWeight(specificWeight, specificWeightUnit, volume)
-
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <HeaderIconButton
-          name="information-outline"
-          onPress={() => navigation.navigate('CubeInformation')}
-        />
-      )
-    })
-  }, [navigation])
 
   return (
     <Form>

@@ -1,7 +1,6 @@
 export { ConeFormScreen } from './cone-form'
 export { ConeTrunkFormScreen } from './cone-trunk-form'
 export { CubeFormScreen } from './cube-form'
-export { CubeInformation } from './cube-information'
 export { CylinderFormScreen } from './cylinder-form'
 export { DisplayPreferencesScreen } from './display-preferences'
 export { HomeScreen } from './home'

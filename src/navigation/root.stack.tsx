@@ -6,7 +6,6 @@ import {
   ConeFormScreen,
   ConeTrunkFormScreen,
   CubeFormScreen,
-  CubeInformation,
   CylinderFormScreen,
   DisplayPreferencesScreen,
   HomeScreen,
@@ -50,15 +49,6 @@ export function RootStack() {
         component={CubeFormScreen}
         options={{
           title: 'Cubo'
-        }}
-      />
-
-      <Stack.Screen
-        name="CubeInformation"
-        component={CubeInformation}
-        options={{
-          title: 'Cálculo do cubo',
-          headerLargeTitle: true
         }}
       />
 
