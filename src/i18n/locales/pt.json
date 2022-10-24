@@ -1,0 +1,10 @@
+{
+  "navigation": {
+    "back": "Voltar"
+  },
+  "screens": {
+    "home": {
+      "title": "Figuras"
+    }
+  }
+}

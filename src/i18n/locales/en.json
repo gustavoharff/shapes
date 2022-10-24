@@ -1,0 +1,10 @@
+{
+  "navigation": {
+    "back": "Back"
+  },
+  "screens": {
+    "home": {
+      "title": "Figures"
+    }
+  }
+}

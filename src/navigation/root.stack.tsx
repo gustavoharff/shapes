@@ -2,6 +2,7 @@ import { useTheme } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import * as React from 'react'
 
+import { t } from '../i18n'
 import {
   ConeFormScreen,
   ConeTrunkFormScreen,
@@ -28,7 +29,7 @@ export function RootStack() {
     <Stack.Navigator
       initialRouteName="Home"
       screenOptions={{
-        headerBackTitle: 'Voltar',
+        headerBackTitle: t('navigation.back'),
         headerBlurEffect: theme.dark ? 'dark' : 'light',
         headerTransparent: true,
         headerLargeStyle: {
@@ -40,7 +41,7 @@ export function RootStack() {
         name="Home"
         component={HomeScreen}
         options={{
-          title: 'Figuras',
+          title: t('screens.home.title'),
           headerLargeTitle: true
         }}
       />

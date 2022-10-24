@@ -380,6 +380,8 @@ PODS:
     - React-Core
   - RNDeviceInfo (10.2.1):
     - React-Core
+  - RNLocalize (2.2.4):
+    - React-Core
   - RNScreens (3.18.2):
     - React-Core
     - React-RCTImage
@@ -453,6 +455,7 @@ DEPENDENCIES:
   - RealmJS (from `../node_modules/realm`)
   - RNBootSplash (from `../node_modules/react-native-bootsplash`)
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
+  - RNLocalize (from `../node_modules/react-native-localize`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -550,6 +553,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-bootsplash"
   RNDeviceInfo:
     :path: "../node_modules/react-native-device-info"
+  RNLocalize:
+    :path: "../node_modules/react-native-localize"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSVG:
@@ -608,6 +613,7 @@ SPEC CHECKSUMS:
   RealmJS: 55a0d0d600a0da7d5f0cf42ecbabcd09708c7601
   RNBootSplash: 5f346163977573d6b2aeba1b25df9d2245c0d73c
   RNDeviceInfo: c31137f22ee779fe3931d1a8d60cc1af80ef4077
+  RNLocalize: 0df7970cfc60389f00eb62fd7c097dc75af3fb4f
   RNScreens: 34cc502acf1b916c582c60003dc3089fa01dc66d
   RNSVG: 07dbd870b0dcdecc99b3a202fa37c8ca163caec2
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
