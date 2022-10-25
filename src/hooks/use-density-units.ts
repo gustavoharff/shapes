@@ -1,6 +1,7 @@
+import type { DensityUnit } from 'models'
+
 import { useEffect, useState } from 'react'
 
-import { DensityUnit } from '../services/realm'
 import { useRealm } from './use-realm'
 
 export function useDensityUnits() {

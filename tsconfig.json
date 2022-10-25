@@ -5,6 +5,28 @@
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
     /* Completeness */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true,                                /* Skip type checking all .d.ts files. */
+    "paths": {
+      "screens": ["./src/components/screens"],
+      "screens/*": ["./src/components/screens/*"],
+      "ui": ["./src/components/ui"],
+      "ui/*": ["./src/components/ui/*"],
+      "contexts": ["./src/contexts"],
+      "contexts/*": ["./src/contexts/*"],
+      "hooks": ["./src/hooks"],
+      "hooks/*": ["./src/hooks/*"],
+      "i18n": ["./src/i18n"],
+      "i18n/*": ["./src/i18n/*"],
+      "models": ["./src/models"],
+      "models/*": ["./src/models/*"],
+      "navigation": ["./src/navigation"],
+      "navigation/*": ["./src/navigation/*"],
+      "services": ["./src/services"],
+      "services/*": ["./src/services/*"],
+      "types": ["./src/types"],
+      "types/*": ["./src/types/*"],
+      "utils": ["./src/utils"],
+      "utils/*": ["./src/utils/*"],
+    }
   }
 }

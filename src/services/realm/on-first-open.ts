@@ -1,11 +1,9 @@
+import { DensityUnit, Unit, VolumeUnit } from 'models'
 import {
   DensityUnit as DensityUnitType,
   Unit as UnitType,
   VolumeUnit as VolumeUnitType
-} from '../../types/unit'
-import { Unit } from './entities'
-import { DensityUnit } from './entities/density-unit'
-import { VolumeUnit } from './entities/volume-unit'
+} from 'types'
 
 type Units = {
   name: UnitType

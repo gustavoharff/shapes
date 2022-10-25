@@ -1,23 +1,16 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import { useDefaultDensityUnit, useDefaultUnit, useWeight } from '../hooks'
-import { DensityUnit, Unit } from '../types/unit'
-import {
-  Form,
-  HexagonalPrism,
-  Section,
-  UnitInput,
-  VolumeTip,
-  WeightTip
-} from '../ui'
-import { cmToM, mmToM } from '../utils'
+import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
+import { DensityUnit, Unit } from 'types'
+import { Cylinder, Form, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
+import { cmToM, mmToM } from 'utils'
 
-export function HexagonalPrismFormScreen() {
+export function CylinderFormScreen() {
   const defaultUnit = useDefaultUnit()
 
-  const [width, setWidth] = React.useState('')
-  const [widthUnit, setWidthUnit] = React.useState<Unit>(defaultUnit)
+  const [radius, setRadius] = React.useState('')
+  const [radiusUnit, setRadiusUnit] = React.useState<Unit>(defaultUnit)
 
   const [height, setHeight] = React.useState('')
   const [heightUnit, setHeightUnit] = React.useState<Unit>(defaultUnit)
@@ -28,62 +21,70 @@ export function HexagonalPrismFormScreen() {
   const [specificWeightUnit, setSpecificWeightUnit] =
     React.useState<DensityUnit>(defaultDensityUnit)
 
-  // m
   const volume = React.useMemo(() => {
-    if (!width) return 0
+    if (!radius) return 0
     if (!height) return 0
 
-    const widthValue = Number(width.replace(',', '.'))
-    const heightValue = Number(height.replace(',', '.'))
+    const radiusParsed = Number(radius.replace(',', '.'))
+    const heightParsed = Number(height.replace(',', '.'))
 
-    if (Number.isNaN(widthValue)) return 0
+    if (Number.isNaN(radiusParsed)) return 0
+    if (Number.isNaN(heightParsed)) return 0
 
-    let widthM: number
+    let radiusM: number
     let heightM: number
 
-    switch (widthUnit) {
-      case 'cm':
-        widthM = cmToM(widthValue)
+    switch (radiusUnit) {
+      case 'cm': {
+        radiusM = cmToM(radiusParsed)
         break
-      case 'm':
-        widthM = widthValue
+      }
+      case 'm': {
+        radiusM = radiusParsed
         break
-      case 'mm':
-        widthM = mmToM(widthValue)
+      }
+      case 'mm': {
+        radiusM = mmToM(radiusParsed)
         break
+      }
     }
 
     switch (heightUnit) {
-      case 'cm':
-        heightM = cmToM(heightValue)
+      case 'cm': {
+        heightM = cmToM(heightParsed)
         break
-      case 'm':
-        heightM = heightValue
+      }
+      case 'm': {
+        heightM = heightParsed
         break
-      case 'mm':
-        heightM = mmToM(heightValue)
+      }
+      case 'mm': {
+        heightM = mmToM(heightParsed)
         break
+      }
     }
 
-    return ((6 * widthM ** 2 * Math.sqrt(3)) / 4) * heightM
-  }, [height, heightUnit, width, widthUnit])
+    return Math.PI * radiusM ** 2 * heightM
+  }, [height, heightUnit, radius, radiusUnit])
 
   const weight = useWeight(specificWeight, specificWeightUnit, volume)
 
   return (
     <Form>
-      <View style={styles.cube}>
-        <HexagonalPrism size={120} />
+      <View style={styles.figure}>
+        <Cylinder size={120} />
       </View>
 
       <Section style={{ marginTop: 16 }}>
+        <Section.Header>Teste</Section.Header>
+
         <UnitInput
           type="unit"
-          label="Largura"
-          value={width}
-          onChangeText={setWidth}
-          unitValue={widthUnit}
-          onChangeUnit={setWidthUnit}
+          label="Raio da base"
+          value={radius}
+          onChangeText={setRadius}
+          unitValue={radiusUnit}
+          onChangeUnit={setRadiusUnit}
           placeholder="0"
         />
 
@@ -100,16 +101,19 @@ export function HexagonalPrismFormScreen() {
 
       <VolumeTip volume={volume} style={styles.tip} />
 
-      <Section disabled={!Number(height)} style={{ marginTop: 16 }}>
+      <Section
+        disabled={!Number(radius) || !Number(height)}
+        style={{ marginTop: 16 }}
+      >
         <UnitInput
           type="density-unit"
           label="Peso específico"
           value={specificWeight}
           onChangeText={setSpecificWeight}
+          editable={!!(Number(radius) && Number(height))}
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
           placeholder="0"
-          isLast
         />
       </Section>
 
@@ -119,7 +123,7 @@ export function HexagonalPrismFormScreen() {
 }
 
 const styles = StyleSheet.create({
-  cube: {
+  figure: {
     alignItems: 'center'
   },
   tip: {

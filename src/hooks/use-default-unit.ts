@@ -1,4 +1,5 @@
-import { Unit } from '../services/realm'
+import type { Unit } from 'models'
+
 import { useRealm } from './use-realm'
 
 export function useDefaultUnit(): Unit['name'] {

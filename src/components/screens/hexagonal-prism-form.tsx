@@ -1,16 +1,24 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import { useDefaultDensityUnit, useDefaultUnit, useWeight } from '../hooks'
-import { DensityUnit, Unit } from '../types/unit'
-import { Cone, Form, Section, UnitInput, VolumeTip, WeightTip } from '../ui'
-import { cmToM, mmToM } from '../utils'
+import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
+import { DensityUnit, Unit } from 'types'
+import {
+  Form,
+  HexagonalPrism,
+  Section,
+  UnitInput,
+  VolumeTip,
+  WeightTip
+} from 'ui'
+import { cmToM, mmToM } from 'utils'
 
-export function ConeFormScreen() {
+export function HexagonalPrismFormScreen() {
   const defaultUnit = useDefaultUnit()
 
-  const [radius, setRadius] = React.useState('')
-  const [radiusUnit, setRadiusUnit] = React.useState<Unit>(defaultUnit)
+  const [width, setWidth] = React.useState('')
+  const [widthUnit, setWidthUnit] = React.useState<Unit>(defaultUnit)
+
   const [height, setHeight] = React.useState('')
   const [heightUnit, setHeightUnit] = React.useState<Unit>(defaultUnit)
 
@@ -20,69 +28,62 @@ export function ConeFormScreen() {
   const [specificWeightUnit, setSpecificWeightUnit] =
     React.useState<DensityUnit>(defaultDensityUnit)
 
-  // m3
+  // m
   const volume = React.useMemo(() => {
-    if (!radius) return 0
+    if (!width) return 0
     if (!height) return 0
 
-    const radiusParsed = Number(radius.replace(',', '.'))
-    const heightParsed = Number(height.replace(',', '.'))
+    const widthValue = Number(width.replace(',', '.'))
+    const heightValue = Number(height.replace(',', '.'))
 
-    if (Number.isNaN(radiusParsed)) return 0
-    if (Number.isNaN(heightParsed)) return 0
+    if (Number.isNaN(widthValue)) return 0
 
-    let radiusM: number
+    let widthM: number
     let heightM: number
 
-    switch (radiusUnit) {
-      case 'cm': {
-        radiusM = cmToM(radiusParsed)
+    switch (widthUnit) {
+      case 'cm':
+        widthM = cmToM(widthValue)
         break
-      }
-      case 'm': {
-        radiusM = radiusParsed
+      case 'm':
+        widthM = widthValue
         break
-      }
-      case 'mm': {
-        radiusM = mmToM(radiusParsed)
+      case 'mm':
+        widthM = mmToM(widthValue)
         break
-      }
     }
 
     switch (heightUnit) {
-      case 'cm': {
-        heightM = cmToM(heightParsed)
+      case 'cm':
+        heightM = cmToM(heightValue)
         break
-      }
-      case 'm': {
-        heightM = heightParsed
+      case 'm':
+        heightM = heightValue
         break
-      }
-      case 'mm': {
-        heightM = mmToM(heightParsed)
+      case 'mm':
+        heightM = mmToM(heightValue)
         break
-      }
     }
 
-    return (Math.PI * radiusM ** 2 * heightM) / 3
-  }, [height, heightUnit, radius, radiusUnit])
+    return ((6 * widthM ** 2 * Math.sqrt(3)) / 4) * heightM
+  }, [height, heightUnit, width, widthUnit])
 
   const weight = useWeight(specificWeight, specificWeightUnit, volume)
 
   return (
     <Form>
-      <View style={styles.figure}>
-        <Cone size={120} />
+      <View style={styles.cube}>
+        <HexagonalPrism size={120} />
       </View>
 
       <Section style={{ marginTop: 16 }}>
         <UnitInput
           type="unit"
-          label="Raio"
-          value={radius}
-          onChangeText={setRadius}
-          unitValue={radiusUnit}
-          onChangeUnit={setRadiusUnit}
+          label="Largura"
+          value={width}
+          onChangeText={setWidth}
+          unitValue={widthUnit}
+          onChangeUnit={setWidthUnit}
           placeholder="0"
         />
 
@@ -94,22 +95,17 @@ export function ConeFormScreen() {
           unitValue={heightUnit}
           onChangeUnit={setHeightUnit}
           placeholder="0"
-          isLast
         />
       </Section>
 
       <VolumeTip volume={volume} style={styles.tip} />
 
-      <Section
-        disabled={!Number(radius) || !Number(height)}
-        style={{ marginTop: 16 }}
-      >
+      <Section disabled={!Number(height)} style={{ marginTop: 16 }}>
         <UnitInput
           type="density-unit"
           label="Peso específico"
           value={specificWeight}
           onChangeText={setSpecificWeight}
-          editable={!!(Number(radius) && Number(height))}
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
           placeholder="0"
@@ -123,7 +119,7 @@ export function ConeFormScreen() {
 }
 
 const styles = StyleSheet.create({
-  figure: {
+  cube: {
     alignItems: 'center'
   },
   tip: {

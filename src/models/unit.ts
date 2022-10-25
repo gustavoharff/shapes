@@ -1,9 +1,7 @@
 import Realm from 'realm'
 
-import { DensityUnit as DensityUnitType } from '../../../types/unit'
-
-export class DensityUnit extends Realm.Object<DensityUnit> {
-  public name!: DensityUnitType
+export class Unit extends Realm.Object<Unit> {
+  public name!: 'm' | 'cm' | 'mm'
 
   public description!: string
 
@@ -12,7 +10,7 @@ export class DensityUnit extends Realm.Object<DensityUnit> {
   public visible!: boolean
 
   public static schema: Realm.ObjectSchema = {
-    name: 'DensityUnit',
+    name: 'Unit',
     properties: {
       name: 'string',
       selected: 'bool',

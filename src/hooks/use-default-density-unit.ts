@@ -1,4 +1,5 @@
-import { DensityUnit } from '../services/realm'
+import type { DensityUnit } from 'models'
+
 import { useRealm } from './use-realm'
 
 export function useDefaultDensityUnit(): DensityUnit['name'] {

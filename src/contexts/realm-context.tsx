@@ -7,7 +7,9 @@ import React, {
 } from 'react'
 import Realm from 'realm'
 
-import { DensityUnit, onFirstOpen, Unit, VolumeUnit } from '../services/realm'
+import { DensityUnit, Unit, VolumeUnit } from 'models'
+
+import { onFirstOpen } from '../services/realm'
 
 interface RealmContextData {
   realm: Realm

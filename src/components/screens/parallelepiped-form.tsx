@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import { useDefaultDensityUnit, useDefaultUnit, useWeight } from '../hooks'
-import { DensityUnit, Unit } from '../types/unit'
+import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
+import { DensityUnit, Unit } from 'types'
 import {
   Form,
   Parallelepiped,
@@ -10,8 +10,8 @@ import {
   UnitInput,
   VolumeTip,
   WeightTip
-} from '../ui'
-import { cmToM, mmToM } from '../utils'
+} from 'ui'
+import { cmToM, mmToM } from 'utils'
 
 export function ParallelepipedFormScreen() {
   const defaultUnit = useDefaultUnit()

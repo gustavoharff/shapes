@@ -2,9 +2,9 @@ import { useFocusEffect, useTheme } from '@react-navigation/native'
 import * as React from 'react'
 import { Platform, useColorScheme } from 'react-native'
 
-import { useDebounce } from '../hooks'
-import { RootStackScreenProps } from '../navigation/types'
-import { FiguresList, HeaderIconButton } from '../ui'
+import { useDebounce } from 'hooks'
+import { RootStackScreenProps } from 'navigation'
+import { FiguresList, HeaderIconButton } from 'ui'
 
 export function HomeScreen(props: RootStackScreenProps<'Home'>) {
   const { navigation } = props

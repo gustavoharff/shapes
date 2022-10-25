@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import { useDensityUnits, useRealm, useUnits } from '../hooks'
-import { DensityUnit, Unit } from '../services/realm'
-import { Form, Section } from '../ui'
+import { useDensityUnits, useRealm, useUnits } from 'hooks'
+import { DensityUnit, Unit } from 'services/realm'
+import { Form, Section } from 'ui'
 
 export function SelectionPreferencesScreen() {
   const units = useUnits()

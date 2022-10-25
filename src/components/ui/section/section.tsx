@@ -2,7 +2,7 @@ import { useTheme } from '@react-navigation/native'
 import * as React from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 
-import { SectionContext } from '../../contexts'
+import { SectionContext } from '../../../contexts'
 import { SectionHeader } from './header'
 import { SectionItem } from './item'
 

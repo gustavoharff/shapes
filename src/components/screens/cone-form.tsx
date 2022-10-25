@@ -1,17 +1,16 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import { useDefaultDensityUnit, useDefaultUnit, useWeight } from '../hooks'
-import { DensityUnit, Unit } from '../types/unit'
-import { Cylinder, Form, Section, UnitInput, VolumeTip, WeightTip } from '../ui'
-import { cmToM, mmToM } from '../utils'
+import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
+import { DensityUnit, Unit } from 'types'
+import { Cone, Form, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
+import { cmToM, mmToM } from 'utils'
 
-export function CylinderFormScreen() {
+export function ConeFormScreen() {
   const defaultUnit = useDefaultUnit()
 
   const [radius, setRadius] = React.useState('')
   const [radiusUnit, setRadiusUnit] = React.useState<Unit>(defaultUnit)
-
   const [height, setHeight] = React.useState('')
   const [heightUnit, setHeightUnit] = React.useState<Unit>(defaultUnit)
 
@@ -21,6 +20,7 @@ export function CylinderFormScreen() {
   const [specificWeightUnit, setSpecificWeightUnit] =
     React.useState<DensityUnit>(defaultDensityUnit)
 
+  // m3
   const volume = React.useMemo(() => {
     if (!radius) return 0
     if (!height) return 0
@@ -64,7 +64,7 @@ export function CylinderFormScreen() {
       }
     }
 
-    return Math.PI * radiusM ** 2 * heightM
+    return (Math.PI * radiusM ** 2 * heightM) / 3
   }, [height, heightUnit, radius, radiusUnit])
 
   const weight = useWeight(specificWeight, specificWeightUnit, volume)
@@ -72,15 +72,13 @@ export function CylinderFormScreen() {
   return (
     <Form>
       <View style={styles.figure}>
-        <Cylinder size={120} />
+        <Cone size={120} />
       </View>
 
       <Section style={{ marginTop: 16 }}>
-        <Section.Header>Teste</Section.Header>
-
         <UnitInput
           type="unit"
-          label="Raio da base"
+          label="Raio"
           value={radius}
           onChangeText={setRadius}
           unitValue={radiusUnit}
@@ -96,6 +94,7 @@ export function CylinderFormScreen() {
           unitValue={heightUnit}
           onChangeUnit={setHeightUnit}
           placeholder="0"
+          isLast
         />
       </Section>
 
@@ -114,6 +113,7 @@ export function CylinderFormScreen() {
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
           placeholder="0"
+          isLast
         />
       </Section>
 

@@ -40,7 +40,28 @@ module.exports = {
         semi: false
       }
     ],
-    'simple-import-sort/imports': 'error',
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: [
+          ['^.*\\u0000$'],
+          ['^\\u0000'],
+          ['^node:'],
+          ['^@?\\w'],
+          [
+            '^(screens|ui|contexts|hooks|i18n|models|navigation|services|types|utils)(/.*|$)'
+          ],
+          ['^'],
+          ['^\\.']
+        ]
+      }
+    ],
+    // 'import/order': [
+    //   'error',
+    //   {
+    //     groups: ['external', 'internal', 'parent', 'sibling']
+    //   }
+    // ],
     'simple-import-sort/exports': 'error',
     'no-use-before-define': 'off',
     'react/react-in-jsx-scope': 'off',

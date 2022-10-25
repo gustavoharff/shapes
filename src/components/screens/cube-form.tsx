@@ -1,13 +1,12 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import { useDefaultDensityUnit, useDefaultUnit, useWeight } from '../hooks'
-import { RootStackScreenProps } from '../navigation/types'
-import { DensityUnit, Unit } from '../types/unit'
-import { Cube, Form, Section, UnitInput, VolumeTip, WeightTip } from '../ui'
-import { cmToM, mmToM } from '../utils'
+import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
+import { DensityUnit, Unit } from 'types'
+import { Cube, Form, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
+import { cmToM, mmToM } from 'utils'
 
-export function CubeFormScreen(props: RootStackScreenProps<'CubeForm'>) {
+export function CubeFormScreen() {
   const defaultUnit = useDefaultUnit()
 
   const [edge, setEdge] = React.useState('')

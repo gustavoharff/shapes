@@ -1,4 +1,5 @@
 export { Cone } from './figures/cone'
+export { ConeTrunk } from './figures/cone-trunk'
 export { Cube } from './figures/cube'
 export { Cylinder } from './figures/cylinder'
 export { HexagonalPrism } from './figures/hexagonal-prism'

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import { useDefaultDensityUnit, useDefaultUnit, useWeight } from '../hooks'
-import { DensityUnit, Unit } from '../types/unit'
-import { Form, Pyramid, Section, UnitInput, VolumeTip, WeightTip } from '../ui'
-import { cmToM, mmToM } from '../utils'
+import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
+import { DensityUnit, Unit } from 'types'
+import { Form, Pyramid, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
+import { cmToM, mmToM } from 'utils'
 
 export function PyramidFormScreen() {
   const defaultUnit = useDefaultUnit()

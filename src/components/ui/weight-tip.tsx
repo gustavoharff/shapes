@@ -2,10 +2,10 @@ import * as React from 'react'
 import { useIntl } from 'react-intl'
 import { StyleProp, ViewStyle } from 'react-native'
 
-import { useDensityUnits } from '../hooks'
-import { DensityUnit } from '../services/realm'
-import { kgm3ToKgcm3, kgm3ToKgL, kgm3ToKgmm3 } from '../utils/density-unit'
-import { Section } from './section'
+import { useDensityUnits } from 'hooks'
+import { DensityUnit } from 'services/realm'
+import { Section } from 'ui'
+import { kgm3ToKgcm3, kgm3ToKgL, kgm3ToKgmm3 } from 'utils'
 
 interface WeightTipProps {
   readonly weight: number

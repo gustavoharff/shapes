@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import { SectionContext } from '../../../contexts'
+import { SectionContext } from '../../../../contexts'
 import { SectionItemContent } from './content'
 import { SectionItemIcon } from './icon'
 

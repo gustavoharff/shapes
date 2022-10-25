@@ -1,6 +1,7 @@
+import type { Unit } from 'models'
+
 import { useEffect, useState } from 'react'
 
-import { Unit } from '../services/realm'
 import { useRealm } from './use-realm'
 
 export function useUnits() {

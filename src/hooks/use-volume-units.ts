@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
-import { VolumeUnit } from '../services/realm'
+import { VolumeUnit } from 'models'
+
 import { useRealm } from './use-realm'
 
 export function useVolumeUnits() {

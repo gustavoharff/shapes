@@ -3,8 +3,8 @@ import * as React from 'react'
 import { StyleSheet, Text } from 'react-native'
 import { getVersion } from 'react-native-device-info'
 
-import { RootStackScreenProps } from '../navigation/types'
-import { Form, Section } from '../ui'
+import { RootStackScreenProps } from 'navigation'
+import { Form, Section } from 'ui'
 
 export function SettingsScreen(props: RootStackScreenProps<'Settings'>) {
   const { navigation } = props

@@ -1,11 +1,10 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import { useDefaultDensityUnit, useDefaultUnit, useWeight } from '../hooks'
-import { DensityUnit, Unit } from '../types/unit'
-import { Form, Section, UnitInput, VolumeTip, WeightTip } from '../ui'
-import { ConeTrunk } from '../ui/figures/cone-trunk'
-import { cmToM, mmToM } from '../utils'
+import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
+import { DensityUnit, Unit } from 'types'
+import { ConeTrunk, Form, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
+import { cmToM, mmToM } from 'utils'
 
 export function ConeTrunkFormScreen() {
   const defaultUnit = useDefaultUnit()

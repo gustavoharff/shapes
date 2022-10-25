@@ -1,9 +1,7 @@
 import Realm from 'realm'
 
-import { VolumeUnit as VolumeUnitType } from '../../../types/unit'
-
 export class VolumeUnit extends Realm.Object<VolumeUnit> {
-  public name!: VolumeUnitType
+  public name!: 'l' | 'cm³' | 'm³' | 'mm³'
 
   public description!: string
 

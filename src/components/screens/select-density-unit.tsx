@@ -1,33 +1,25 @@
 import * as React from 'react'
 import { ScrollView, StatusBar, StyleSheet } from 'react-native'
 
-import { useUnits } from '../hooks'
-import { RootStackScreenProps } from '../navigation/types'
-import { Unit } from '../types/unit'
-import { HeaderTextButton, Section } from '../ui'
+import { useDensityUnits } from 'hooks'
+import { RootStackScreenProps } from 'navigation'
+import { DensityUnit } from 'types'
+import { Section } from 'ui'
 
-export function SelectUnit(props: RootStackScreenProps<'SelectUnit'>) {
+export function SelectDensityUnit(
+  props: RootStackScreenProps<'SelectDensityUnit'>
+) {
   const { unit, onSelect } = props.route.params
   const { navigation } = props
 
-  const units = useUnits()
+  const densityUnits = useDensityUnits()
 
-  function onUnitSelect(selectedUnit: Unit) {
+  function onUnitSelect(selectedUnit: DensityUnit) {
     onSelect(selectedUnit)
     navigation.goBack()
   }
 
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <HeaderTextButton bold onPress={navigation.goBack}>
-          OK
-        </HeaderTextButton>
-      )
-    })
-  }, [navigation])
-
-  const filteredUnits = units.filter(unit => unit.visible)
+  const filteredUnits = densityUnits.filter(unit => unit.visible)
 
   return (
     <ScrollView contentContainerStyle={styles.list}>

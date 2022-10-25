@@ -2,10 +2,10 @@ import * as React from 'react'
 import { useIntl } from 'react-intl'
 import { StyleProp, ViewStyle } from 'react-native'
 
-import { useVolumeUnits } from '../hooks'
-import { VolumeUnit } from '../services/realm'
-import { m3ToCm3, m3ToL, m3ToMm3 } from '../utils'
-import { Section } from './section'
+import { useVolumeUnits } from 'hooks'
+import { VolumeUnit } from 'services/realm'
+import { Section } from 'ui'
+import { m3ToCm3, m3ToL, m3ToMm3 } from 'utils'
 
 interface VolumeTipProps {
   readonly volume: number
