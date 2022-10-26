@@ -1,2 +1,2 @@
-export { default as en } from './en.json'
-export { default as pt } from './pt.json'
+export { en } from './en'
+export { pt } from './pt'

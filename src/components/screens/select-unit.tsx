@@ -2,9 +2,10 @@ import * as React from 'react'
 import { ScrollView, StatusBar, StyleSheet } from 'react-native'
 
 import { useUnits } from 'hooks'
+import { t } from 'i18n'
 import { UnitSymbol } from 'models'
 import { RootStackScreenProps } from 'navigation'
-import { HeaderTextButton, Section } from 'ui'
+import { Section } from 'ui'
 
 export function SelectUnit(props: RootStackScreenProps<'SelectUnit'>) {
   const { unit, onSelect } = props.route.params
@@ -17,16 +18,6 @@ export function SelectUnit(props: RootStackScreenProps<'SelectUnit'>) {
     navigation.goBack()
   }
 
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <HeaderTextButton bold onPress={navigation.goBack}>
-          OK
-        </HeaderTextButton>
-      )
-    })
-  }, [navigation])
-
   const filteredUnits = units.filter(unit => unit.visible)
 
   return (
@@ -34,7 +25,7 @@ export function SelectUnit(props: RootStackScreenProps<'SelectUnit'>) {
       <StatusBar barStyle="light-content" />
 
       <Section selectable isModal>
-        <Section.Header>Unidades</Section.Header>
+        <Section.Header>{t('units.title')}</Section.Header>
 
         {filteredUnits.map(item => (
           <Section.Item
@@ -42,7 +33,7 @@ export function SelectUnit(props: RootStackScreenProps<'SelectUnit'>) {
             selected={item.symbol === unit}
             onPress={() => onUnitSelect(item.symbol)}
           >
-            {item.description}
+            {t(`units.${item.symbol}`)}
           </Section.Item>
         ))}
       </Section>

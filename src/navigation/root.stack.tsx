@@ -18,6 +18,7 @@ import {
   SelectUnit,
   SettingsScreen
 } from 'screens'
+import { HeaderTextButton } from 'ui'
 
 import { RootStackParamList } from './types'
 
@@ -51,7 +52,7 @@ export function RootStack() {
         name="CubeForm"
         component={CubeFormScreen}
         options={{
-          title: 'Cubo'
+          title: t('figures.cube')
         }}
       />
 
@@ -59,7 +60,7 @@ export function RootStack() {
         name="ConeForm"
         component={ConeFormScreen}
         options={{
-          title: 'Cone'
+          title: t('figures.cone')
         }}
       />
 
@@ -67,7 +68,7 @@ export function RootStack() {
         name="ConeTrunkForm"
         component={ConeTrunkFormScreen}
         options={{
-          title: 'Tronco do cone'
+          title: t('figures.cone-trunk')
         }}
       />
 
@@ -75,7 +76,7 @@ export function RootStack() {
         name="ParallelepipedForm"
         component={ParallelepipedFormScreen}
         options={{
-          title: 'Paralelepípedo'
+          title: t('figures.parallelepiped')
         }}
       />
 
@@ -83,7 +84,7 @@ export function RootStack() {
         name="HexagonalPrismForm"
         component={HexagonalPrismFormScreen}
         options={{
-          title: 'Prisma hexagonal'
+          title: t('figures.hexagonal-prism')
         }}
       />
 
@@ -91,7 +92,7 @@ export function RootStack() {
         name="CylinderForm"
         component={CylinderFormScreen}
         options={{
-          title: 'Cilindro'
+          title: t('figures.cylinder')
         }}
       />
 
@@ -99,16 +100,15 @@ export function RootStack() {
         name="PyramidForm"
         component={PyramidFormScreen}
         options={{
-          title: 'Pirâmide'
+          title: t('figures.pyramid')
         }}
       />
 
       <Stack.Group
-        screenOptions={{
+        screenOptions={({ navigation }) => ({
           headerLargeStyle: {},
           headerLargeTitle: false,
           presentation: 'modal',
-          title: 'Unidades',
           headerShadowVisible: false,
           headerStyle: {
             backgroundColor: theme.dark
@@ -120,18 +120,31 @@ export function RootStack() {
               ? 'rgb(28, 28, 30)'
               : 'rgb(242, 242, 247)'
           },
-          headerTransparent: false
-        }}
+          headerTransparent: false,
+          headerRight: () => (
+            <HeaderTextButton bold onPress={navigation.goBack}>
+              OK
+            </HeaderTextButton>
+          )
+        })}
       >
-        <Stack.Screen name="SelectUnit" component={SelectUnit} />
-        <Stack.Screen name="SelectDensityUnit" component={SelectDensityUnit} />
+        <Stack.Screen
+          name="SelectUnit"
+          component={SelectUnit}
+          options={{ title: t('units.title') }}
+        />
+        <Stack.Screen
+          name="SelectDensityUnit"
+          component={SelectDensityUnit}
+          options={{ title: t('density-units.title') }}
+        />
       </Stack.Group>
 
       <Stack.Screen
         name="Settings"
         component={SettingsScreen}
         options={{
-          title: 'Configurações'
+          title: t('screens.settings.title')
         }}
       />
 
@@ -139,7 +152,7 @@ export function RootStack() {
         name="DisplayPreferences"
         component={DisplayPreferencesScreen}
         options={{
-          title: 'Preferências de exibição'
+          title: t('screens.display-preferences.title')
         }}
       />
 
@@ -147,7 +160,7 @@ export function RootStack() {
         name="SelectionPreferences"
         component={SelectionPreferencesScreen}
         options={{
-          title: 'Preferências de seleção'
+          title: t('screens.selection-preferences.title')
         }}
       />
     </Stack.Navigator>

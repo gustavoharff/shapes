@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { useDensityUnits, useRealm, useUnits } from 'hooks'
+import { t } from 'i18n'
 import { DensityUnit, Unit } from 'models'
 import { Form, Section } from 'ui'
 
@@ -47,7 +48,7 @@ export function SelectionPreferencesScreen() {
   return (
     <Form>
       <Section selectable showArrow={false} style={{ marginTop: 32 }}>
-        <Section.Header>Unidades</Section.Header>
+        <Section.Header>{t('units.title')}</Section.Header>
 
         {units.map(unit => (
           <Section.Item
@@ -55,13 +56,13 @@ export function SelectionPreferencesScreen() {
             selected={unit.selected}
             onPress={() => onUnitPress(unit.symbol)}
           >
-            {unit.description}
+            {t(`units.${unit.symbol}`)}
           </Section.Item>
         ))}
       </Section>
 
       <Section selectable showArrow={false} style={{ marginVertical: 32 }}>
-        <Section.Header>Unidades de densidade</Section.Header>
+        <Section.Header>{t('density-units.title')}</Section.Header>
 
         {densityUnits.map(unit => (
           <Section.Item
@@ -69,7 +70,7 @@ export function SelectionPreferencesScreen() {
             selected={unit.selected}
             onPress={() => onDensityUnitPress(unit.symbol)}
           >
-            {unit.description}
+            {t(`density-units.${unit.symbol}`)}
           </Section.Item>
         ))}
       </Section>

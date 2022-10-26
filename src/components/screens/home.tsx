@@ -3,6 +3,7 @@ import * as React from 'react'
 import { Platform, useColorScheme } from 'react-native'
 
 import { useDebounce } from 'hooks'
+import { t } from 'i18n'
 import { RootStackScreenProps } from 'navigation'
 import { FiguresList, HeaderIconButton } from 'ui'
 
@@ -28,10 +29,10 @@ export function HomeScreen(props: RootStackScreenProps<'Home'>) {
           hintTextColor: isDark ? '#fff' : '#000',
           textColor: isDark ? '#fff' : '#000',
           tintColor: theme.colors.primary,
-          placeholder: 'Buscar',
+          placeholder: t('screens.home.search.title'),
           obscureBackground: false,
           shouldShowHintSearchIcon: false,
-          cancelButtonText: 'Cancelar'
+          cancelButtonText: t('screens.home.search.cancel')
         }
       })
     }, [isDark, navigation, theme.colors.primary])

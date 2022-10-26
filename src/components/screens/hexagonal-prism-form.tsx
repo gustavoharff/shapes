@@ -2,6 +2,7 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
+import { t } from 'i18n'
 import {
   Form,
   HexagonalPrism,
@@ -78,7 +79,7 @@ export function HexagonalPrismFormScreen() {
       <Section style={{ marginTop: 16 }}>
         <UnitInput
           type="unit"
-          label="Largura"
+          label={t('fields.width')}
           value={width}
           onChangeText={setWidth}
           unitValue={widthUnit}
@@ -88,7 +89,7 @@ export function HexagonalPrismFormScreen() {
 
         <UnitInput
           type="unit"
-          label="Altura"
+          label={t('fields.height')}
           value={height}
           onChangeText={setHeight}
           unitValue={heightUnit}
@@ -102,7 +103,7 @@ export function HexagonalPrismFormScreen() {
       <Section disabled={!Number(height)} style={{ marginTop: 16 }}>
         <UnitInput
           type="density-unit"
-          label="Peso específico"
+          label={t('fields.specific-weight')}
           value={specificWeight}
           onChangeText={setSpecificWeight}
           unitValue={specificWeightUnit}

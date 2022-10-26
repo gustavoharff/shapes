@@ -2,6 +2,8 @@ import { useNavigation } from '@react-navigation/native'
 import * as React from 'react'
 import { LayoutAnimation } from 'react-native'
 
+import { t } from 'i18n'
+
 import { Cone } from './figures/cone'
 import { ConeTrunk } from './figures/cone-trunk'
 import { Cube } from './figures/cube'
@@ -13,21 +15,25 @@ import { Form } from './form'
 import { Section } from './section'
 
 const list = [
-  { title: 'Cubo', component: Cube, figure: 'cubo' },
+  { title: t('figures.cube'), component: Cube, figure: 'cube' },
   {
-    title: 'Paralelepípedo',
+    title: t('figures.parallelepiped'),
     component: Parallelepiped,
     figure: 'parallelepiped'
   },
   {
-    title: 'Prisma hexagonal',
+    title: t('figures.hexagonal-prism'),
     component: HexagonalPrism,
     figure: 'hexagonal-prism'
   },
-  { title: 'Pirâmide', component: Pyramid, figure: 'pyramid' },
-  { title: 'Cone', component: Cone, figure: 'cone' },
-  { title: 'Cilindro', component: Cylinder, figure: 'cylinder' },
-  { title: 'Tronco do cone', component: ConeTrunk, figure: 'cone-trunk' }
+  {
+    title: t('figures.pyramid'),
+    component: Pyramid,
+    figure: 'pyramid'
+  },
+  { title: t('figures.cone'), component: Cone, figure: 'cone' },
+  { title: t('figures.cylinder'), component: Cylinder, figure: 'cylinder' },
+  { title: t('figures.cone-trunk'), component: ConeTrunk, figure: 'cone-trunk' }
 ]
 
 interface FiguresListProps {
@@ -59,7 +65,7 @@ export function FiguresList(props: FiguresListProps) {
           <Section.Item
             key={figure}
             onPress={() => {
-              if (figure === 'cubo') {
+              if (figure === 'cube') {
                 navigation.navigate('CubeForm')
               }
 

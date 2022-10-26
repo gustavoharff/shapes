@@ -2,6 +2,7 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
+import { t } from 'i18n'
 import { Cube, Form, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
 import { cmToM, mmToM } from 'utils'
 
@@ -53,13 +54,12 @@ export function CubeFormScreen() {
       <Section style={{ marginTop: 16 }}>
         <UnitInput
           type="unit"
-          label="Aresta"
+          label={t('fields.edge')}
           value={edge}
           onChangeText={setEdge}
           unitValue={edgeUnit}
           onChangeUnit={setEdgeUnit}
           placeholder="0"
-          isLast
         />
       </Section>
 
@@ -68,7 +68,7 @@ export function CubeFormScreen() {
       <Section disabled={Number(edge) <= 0} style={{ marginTop: 16 }}>
         <UnitInput
           type="density-unit"
-          label="Peso específico"
+          label={t('fields.specific-weight')}
           value={specificWeight}
           onChangeText={setSpecificWeight}
           editable={Number(edge) > 0}

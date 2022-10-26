@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl'
 import { StyleProp, ViewStyle } from 'react-native'
 
 import { useVolumeUnits } from 'hooks'
+import { t } from 'i18n'
 import { VolumeUnit } from 'models'
 import { Section } from 'ui'
 import { m3ToCm3, m3ToL, m3ToMm3 } from 'utils'
@@ -56,7 +57,7 @@ export function VolumeTip(props: VolumeTipProps) {
 
   return (
     <Section style={style} disabled={!volume}>
-      <Section.Header>Volume</Section.Header>
+      <Section.Header>{t('ui.volume-tip.title')}</Section.Header>
 
       {visibleVolumeUnits.map(unit => renderText(unit))}
     </Section>

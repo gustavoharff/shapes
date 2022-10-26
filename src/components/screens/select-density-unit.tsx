@@ -2,6 +2,7 @@ import * as React from 'react'
 import { ScrollView, StatusBar, StyleSheet } from 'react-native'
 
 import { useDensityUnits } from 'hooks'
+import { t } from 'i18n'
 import { DensityUnitSymbol } from 'models'
 import { RootStackScreenProps } from 'navigation'
 import { Section } from 'ui'
@@ -26,7 +27,7 @@ export function SelectDensityUnit(
       <StatusBar barStyle="light-content" />
 
       <Section selectable isModal>
-        <Section.Header>Unidades</Section.Header>
+        <Section.Header>{t('density-units.title')}</Section.Header>
 
         {filteredUnits.map(item => (
           <Section.Item
@@ -34,7 +35,7 @@ export function SelectDensityUnit(
             selected={item.symbol === unit}
             onPress={() => onUnitSelect(item.symbol)}
           >
-            {item.description}
+            {t(`density-units.${item.symbol}`)}
           </Section.Item>
         ))}
       </Section>

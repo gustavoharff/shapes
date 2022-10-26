@@ -3,6 +3,7 @@ import { useIntl } from 'react-intl'
 import { StyleProp, ViewStyle } from 'react-native'
 
 import { useDensityUnits } from 'hooks'
+import { t } from 'i18n'
 import { DensityUnit } from 'models'
 import { Section } from 'ui'
 import { kgm3ToKgcm3, kgm3ToKgL, kgm3ToKgmm3 } from 'utils'
@@ -56,7 +57,7 @@ export function WeightTip(props: WeightTipProps) {
 
   return (
     <Section style={style} disabled={!weight}>
-      <Section.Header>Peso</Section.Header>
+      <Section.Header>{t('ui.weight-tip.title')}</Section.Header>
 
       {visibleDensityUnits.map(unit => renderText(unit))}
     </Section>

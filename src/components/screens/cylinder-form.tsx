@@ -2,6 +2,7 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
+import { t } from 'i18n'
 import { Cylinder, Form, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
 import { cmToM, mmToM } from 'utils'
 
@@ -75,11 +76,9 @@ export function CylinderFormScreen() {
       </View>
 
       <Section style={{ marginTop: 16 }}>
-        <Section.Header>Teste</Section.Header>
-
         <UnitInput
           type="unit"
-          label="Raio da base"
+          label={t('fields.radius')}
           value={radius}
           onChangeText={setRadius}
           unitValue={radiusUnit}
@@ -89,7 +88,7 @@ export function CylinderFormScreen() {
 
         <UnitInput
           type="unit"
-          label="Altura"
+          label={t('fields.height')}
           value={height}
           onChangeText={setHeight}
           unitValue={heightUnit}
@@ -106,7 +105,7 @@ export function CylinderFormScreen() {
       >
         <UnitInput
           type="density-unit"
-          label="Peso específico"
+          label={t('fields.specific-weight')}
           value={specificWeight}
           onChangeText={setSpecificWeight}
           editable={!!(Number(radius) && Number(height))}

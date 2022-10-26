@@ -2,6 +2,7 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
+import { t } from 'i18n'
 import { ConeTrunk, Form, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
 import { cmToM, mmToM } from 'utils'
 
@@ -105,7 +106,7 @@ export function ConeTrunkFormScreen() {
       <Section style={{ marginTop: 16 }}>
         <UnitInput
           type="unit"
-          label="Raio menor"
+          label={t('fields.minor-radius')}
           value={minorRadius}
           onChangeText={setMinorRadius}
           unitValue={minorRadiusUnit}
@@ -115,7 +116,7 @@ export function ConeTrunkFormScreen() {
 
         <UnitInput
           type="unit"
-          label="Raio maior"
+          label={t('fields.greater-radius')}
           value={greaterRadius}
           onChangeText={setGreaterRadius}
           unitValue={greaterRadiusUnit}
@@ -125,13 +126,12 @@ export function ConeTrunkFormScreen() {
 
         <UnitInput
           type="unit"
-          label="Altura"
+          label={t('fields.height')}
           value={height}
           onChangeText={setHeight}
           unitValue={heightUnit}
           onChangeUnit={setHeightUnit}
           placeholder="0"
-          isLast
         />
       </Section>
 
@@ -143,7 +143,7 @@ export function ConeTrunkFormScreen() {
       >
         <UnitInput
           type="density-unit"
-          label="Peso específico"
+          label={t('fields.specific-weight')}
           value={specificWeight}
           onChangeText={setSpecificWeight}
           editable={!!(Number(minorRadius) && Number(height))}

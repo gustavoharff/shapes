@@ -2,6 +2,7 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
+import { t } from 'i18n'
 import { Form, Pyramid, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
 import { cmToM, mmToM } from 'utils'
 
@@ -88,7 +89,7 @@ export function PyramidFormScreen() {
       <Section style={{ marginTop: 16 }}>
         <UnitInput
           type="unit"
-          label="Altura"
+          label={t('fields.height')}
           value={height}
           onChangeText={setHeight}
           unitValue={heightUnit}
@@ -98,7 +99,7 @@ export function PyramidFormScreen() {
 
         <UnitInput
           type="unit"
-          label="Largura da base"
+          label={t('fields.width')}
           value={width}
           onChangeText={setWidth}
           unitValue={widthUnit}
@@ -108,7 +109,7 @@ export function PyramidFormScreen() {
 
         <UnitInput
           type="unit"
-          label="Profundidade da base"
+          label={t('fields.base-depth')}
           value={depth}
           onChangeText={setDepth}
           unitValue={depthUnit}
@@ -126,7 +127,7 @@ export function PyramidFormScreen() {
       >
         <UnitInput
           type="density-unit"
-          label="Peso específico"
+          label={t('fields.specific-weight')}
           value={specificWeight}
           onChangeText={setSpecificWeight}
           editable={!!(Number(width) && Number(height) && Number(depth))}

@@ -2,6 +2,7 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
+import { t } from 'i18n'
 import {
   Form,
   Parallelepiped,
@@ -21,8 +22,8 @@ export function ParallelepipedFormScreen() {
   const [height, setHeight] = React.useState('')
   const [heightUnit, setHeightUnit] = React.useState(defaultUnit)
 
-  const [greeting, setGreeting] = React.useState('')
-  const [greetingUnit, setGreetingUnit] = React.useState(defaultUnit)
+  const [length, setLength] = React.useState('')
+  const [lengthUnit, setLengthUnit] = React.useState(defaultUnit)
 
   const defaultDensityUnit = useDefaultDensityUnit()
 
@@ -34,17 +35,17 @@ export function ParallelepipedFormScreen() {
   const volume = React.useMemo(() => {
     if (!width) return 0
     if (!height) return 0
-    if (!greeting) return 0
+    if (!length) return 0
 
     const widthValue = Number(width.replace(',', '.'))
     const heightValue = Number(height.replace(',', '.'))
-    const greetingValue = Number(greeting.replace(',', '.'))
+    const lengthValue = Number(length.replace(',', '.'))
 
     if (Number.isNaN(widthValue)) return 0
 
     let widthM: number
     let heightM: number
-    let greetingM: number
+    let lengthM: number
 
     switch (widthUnit) {
       case 'cm':
@@ -70,20 +71,20 @@ export function ParallelepipedFormScreen() {
         break
     }
 
-    switch (greetingUnit) {
+    switch (lengthUnit) {
       case 'cm':
-        greetingM = cmToM(greetingValue)
+        lengthM = cmToM(lengthValue)
         break
       case 'm':
-        greetingM = greetingValue
+        lengthM = lengthValue
         break
       case 'mm':
-        greetingM = mmToM(greetingValue)
+        lengthM = mmToM(lengthValue)
         break
     }
 
-    return widthM * heightM * greetingM
-  }, [greeting, greetingUnit, height, heightUnit, width, widthUnit])
+    return widthM * heightM * lengthM
+  }, [length, lengthUnit, height, heightUnit, width, widthUnit])
 
   const weight = useWeight(specificWeight, specificWeightUnit, volume)
 
@@ -96,7 +97,7 @@ export function ParallelepipedFormScreen() {
       <Section style={{ marginTop: 16 }}>
         <UnitInput
           type="unit"
-          label="Largura"
+          label={t('fields.width')}
           value={width}
           onChangeText={setWidth}
           unitValue={widthUnit}
@@ -106,7 +107,7 @@ export function ParallelepipedFormScreen() {
 
         <UnitInput
           type="unit"
-          label="Altura"
+          label={t('fields.height')}
           value={height}
           onChangeText={setHeight}
           unitValue={heightUnit}
@@ -116,30 +117,29 @@ export function ParallelepipedFormScreen() {
 
         <UnitInput
           type="unit"
-          label="Cumprimento"
-          value={greeting}
-          onChangeText={setGreeting}
-          unitValue={greetingUnit}
-          onChangeUnit={setGreetingUnit}
+          label={t('fields.length')}
+          value={length}
+          onChangeText={setLength}
+          unitValue={lengthUnit}
+          onChangeUnit={setLengthUnit}
           placeholder="0"
-          isLast
         />
       </Section>
 
       <VolumeTip volume={volume} style={styles.tip} />
 
       <Section
-        disabled={!Number(greeting) || !Number(height)}
+        disabled={!Number(length) || !Number(height)}
         style={{ marginTop: 16 }}
       >
         <UnitInput
           type="density-unit"
-          label="Peso específico"
+          label={t('fields.specific-weight')}
           value={specificWeight}
           onChangeText={setSpecificWeight}
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
-          editable={!!(Number(greeting) && Number(height))}
+          editable={!!(Number(length) && Number(height))}
           placeholder="0"
           isLast
         />

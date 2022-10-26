@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { useDensityUnits, useRealm, useUnits, useVolumeUnits } from 'hooks'
+import { t } from 'i18n'
 import { DensityUnit, Unit, VolumeUnit } from 'models'
 import { Form, Section } from 'ui'
 
@@ -44,7 +45,7 @@ export function DisplayPreferencesScreen() {
   return (
     <Form>
       <Section selectable showArrow={false} style={{ marginTop: 32 }}>
-        <Section.Header>Unidades</Section.Header>
+        <Section.Header>{t('units.title')}</Section.Header>
 
         {units.map(unit => (
           <Section.Item
@@ -52,13 +53,13 @@ export function DisplayPreferencesScreen() {
             selected={unit.visible}
             onPress={() => onUnitPress(unit.symbol)}
           >
-            {unit.description}
+            {t(`units.${unit.symbol}`)}
           </Section.Item>
         ))}
       </Section>
 
       <Section selectable showArrow={false} style={{ marginTop: 32 }}>
-        <Section.Header>Unidades de volume</Section.Header>
+        <Section.Header>{t('volume-units.title')}</Section.Header>
 
         {volumeUnits.map(unit => (
           <Section.Item
@@ -66,13 +67,13 @@ export function DisplayPreferencesScreen() {
             selected={unit.visible}
             onPress={() => onVolumeUnitPress(unit.symbol)}
           >
-            {unit.description}
+            {t(`volume-units.${unit.symbol}`)}
           </Section.Item>
         ))}
       </Section>
 
       <Section selectable showArrow={false} style={{ marginVertical: 32 }}>
-        <Section.Header>Unidades de densidade</Section.Header>
+        <Section.Header>{t('density-units.title')}</Section.Header>
 
         {densityUnits.map(unit => (
           <Section.Item
@@ -80,7 +81,7 @@ export function DisplayPreferencesScreen() {
             selected={unit.visible}
             onPress={() => onDensityUnitPress(unit.symbol)}
           >
-            {unit.description}
+            {t(`density-units.${unit.symbol}`)}
           </Section.Item>
         ))}
       </Section>

@@ -2,6 +2,7 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
+import { t } from 'i18n'
 import { Cone, Form, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
 import { cmToM, mmToM } from 'utils'
 
@@ -78,7 +79,7 @@ export function ConeFormScreen() {
       <Section style={{ marginTop: 16 }}>
         <UnitInput
           type="unit"
-          label="Raio"
+          label={t('fields.radius')}
           value={radius}
           onChangeText={setRadius}
           unitValue={radiusUnit}
@@ -88,7 +89,7 @@ export function ConeFormScreen() {
 
         <UnitInput
           type="unit"
-          label="Altura"
+          label={t('fields.height')}
           value={height}
           onChangeText={setHeight}
           unitValue={heightUnit}
@@ -106,7 +107,7 @@ export function ConeFormScreen() {
       >
         <UnitInput
           type="density-unit"
-          label="Peso específico"
+          label={t('fields.specific-weight')}
           value={specificWeight}
           onChangeText={setSpecificWeight}
           editable={!!(Number(radius) && Number(height))}
