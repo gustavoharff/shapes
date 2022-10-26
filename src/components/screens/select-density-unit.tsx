@@ -2,8 +2,8 @@ import * as React from 'react'
 import { ScrollView, StatusBar, StyleSheet } from 'react-native'
 
 import { useDensityUnits } from 'hooks'
+import { DensityUnitSymbol } from 'models'
 import { RootStackScreenProps } from 'navigation'
-import { DensityUnit } from 'types'
 import { Section } from 'ui'
 
 export function SelectDensityUnit(
@@ -14,7 +14,7 @@ export function SelectDensityUnit(
 
   const densityUnits = useDensityUnits()
 
-  function onUnitSelect(selectedUnit: DensityUnit) {
+  function onUnitSelect(selectedUnit: DensityUnitSymbol) {
     onSelect(selectedUnit)
     navigation.goBack()
   }
@@ -31,8 +31,8 @@ export function SelectDensityUnit(
         {filteredUnits.map(item => (
           <Section.Item
             key={item.description}
-            selected={item.name === unit}
-            onPress={() => onUnitSelect(item.name)}
+            selected={item.symbol === unit}
+            onPress={() => onUnitSelect(item.symbol)}
           >
             {item.description}
           </Section.Item>

@@ -1,11 +1,12 @@
 import * as React from 'react'
 
-import { DensityUnit } from '../types/unit'
+import { DensityUnitSymbol } from 'models'
+
 import { kgCm3ToKgM3, kgLToKgM3, kgMm3ToKgM3 } from '../utils'
 
 export function useWeight(
   specificWeight: string,
-  specificWeightUnit: DensityUnit,
+  specificWeightUnit: DensityUnitSymbol,
   volume: number
 ) {
   const weight = React.useMemo(() => {

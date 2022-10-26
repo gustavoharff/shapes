@@ -1,7 +1,9 @@
 import Realm from 'realm'
 
+export type VolumeUnitSymbol = VolumeUnit['symbol']
+
 export class VolumeUnit extends Realm.Object<VolumeUnit> {
-  public name!: 'l' | 'cm³' | 'm³' | 'mm³'
+  public symbol!: 'l' | 'cm³' | 'm³' | 'mm³'
 
   public description!: string
 
@@ -9,7 +11,7 @@ export class VolumeUnit extends Realm.Object<VolumeUnit> {
 
   public static schema: Realm.ObjectSchema = {
     name: 'VolumeUnit',
-    properties: { name: 'string', visible: 'bool', description: 'string' },
-    primaryKey: 'name'
+    properties: { symbol: 'string', visible: 'bool', description: 'string' },
+    primaryKey: 'symbol'
   }
 }

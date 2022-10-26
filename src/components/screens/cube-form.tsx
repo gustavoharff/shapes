@@ -2,7 +2,6 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
-import { DensityUnit, Unit } from 'types'
 import { Cube, Form, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
 import { cmToM, mmToM } from 'utils'
 
@@ -10,13 +9,13 @@ export function CubeFormScreen() {
   const defaultUnit = useDefaultUnit()
 
   const [edge, setEdge] = React.useState('')
-  const [edgeUnit, setEdgeUnit] = React.useState<Unit>(defaultUnit)
+  const [edgeUnit, setEdgeUnit] = React.useState(defaultUnit)
 
   const defaultDensityUnit = useDefaultDensityUnit()
 
   const [specificWeight, setSpecificWeight] = React.useState('')
   const [specificWeightUnit, setSpecificWeightUnit] =
-    React.useState<DensityUnit>(defaultDensityUnit)
+    React.useState(defaultDensityUnit)
 
   // m
   const volume = React.useMemo(() => {

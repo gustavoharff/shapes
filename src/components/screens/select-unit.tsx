@@ -2,8 +2,8 @@ import * as React from 'react'
 import { ScrollView, StatusBar, StyleSheet } from 'react-native'
 
 import { useUnits } from 'hooks'
+import { UnitSymbol } from 'models'
 import { RootStackScreenProps } from 'navigation'
-import { Unit } from 'types'
 import { HeaderTextButton, Section } from 'ui'
 
 export function SelectUnit(props: RootStackScreenProps<'SelectUnit'>) {
@@ -12,7 +12,7 @@ export function SelectUnit(props: RootStackScreenProps<'SelectUnit'>) {
 
   const units = useUnits()
 
-  function onUnitSelect(selectedUnit: Unit) {
+  function onUnitSelect(selectedUnit: UnitSymbol) {
     onSelect(selectedUnit)
     navigation.goBack()
   }
@@ -39,8 +39,8 @@ export function SelectUnit(props: RootStackScreenProps<'SelectUnit'>) {
         {filteredUnits.map(item => (
           <Section.Item
             key={item.description}
-            selected={item.name === unit}
-            onPress={() => onUnitSelect(item.name)}
+            selected={item.symbol === unit}
+            onPress={() => onUnitSelect(item.symbol)}
           >
             {item.description}
           </Section.Item>

@@ -10,20 +10,21 @@ import {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import { SectionContext } from '../../contexts'
-import { DensityUnit, Unit } from '../../types/unit'
+import { SectionContext } from 'contexts'
+import { DensityUnitSymbol, UnitSymbol } from 'models'
+
 import { Input } from './input'
 
 type UnitInputType = {
   readonly type: 'unit'
-  readonly unitValue: Unit
-  readonly onChangeUnit: (unit: Unit) => void
+  readonly unitValue: UnitSymbol
+  readonly onChangeUnit: (unit: UnitSymbol) => void
 }
 
 type DensityUnitInputType = {
   readonly type: 'density-unit'
-  readonly unitValue: DensityUnit
-  readonly onChangeUnit: (densityUnit: DensityUnit) => void
+  readonly unitValue: DensityUnitSymbol
+  readonly onChangeUnit: (densityUnit: DensityUnitSymbol) => void
 }
 
 type UnitInputProps = (UnitInputType | DensityUnitInputType) & {

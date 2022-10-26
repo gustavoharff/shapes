@@ -1,7 +1,9 @@
 import Realm from 'realm'
 
+export type UnitSymbol = Unit['symbol']
+
 export class Unit extends Realm.Object<Unit> {
-  public name!: 'm' | 'cm' | 'mm'
+  public symbol!: 'm' | 'cm' | 'mm'
 
   public description!: string
 
@@ -12,11 +14,11 @@ export class Unit extends Realm.Object<Unit> {
   public static schema: Realm.ObjectSchema = {
     name: 'Unit',
     properties: {
-      name: 'string',
+      symbol: 'string',
       selected: 'bool',
       visible: 'bool',
       description: 'string'
     },
-    primaryKey: 'name'
+    primaryKey: 'symbol'
   }
 }

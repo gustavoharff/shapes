@@ -2,7 +2,7 @@
 
 import type { NativeStackScreenProps } from '@react-navigation/native-stack'
 
-import { DensityUnit, Unit } from '../types/unit'
+import { DensityUnitSymbol, UnitSymbol } from 'models'
 
 export type RootStackParamList = {
   Home: undefined
@@ -14,12 +14,12 @@ export type RootStackParamList = {
   PyramidForm: undefined
   HexagonalPrismForm: undefined
   SelectUnit: {
-    unit: Unit
-    onSelect: (unit: Unit) => void
+    unit: UnitSymbol
+    onSelect: (unit: UnitSymbol) => void
   }
   SelectDensityUnit: {
-    unit: DensityUnit
-    onSelect: (unit: DensityUnit) => void
+    unit: DensityUnitSymbol
+    onSelect: (unit: DensityUnitSymbol) => void
   }
   Settings: undefined
   DisplayPreferences: undefined

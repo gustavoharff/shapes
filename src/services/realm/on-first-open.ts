@@ -1,51 +1,39 @@
 import { DensityUnit, Unit, VolumeUnit } from 'models'
-import {
-  DensityUnit as DensityUnitType,
-  Unit as UnitType,
-  VolumeUnit as VolumeUnitType
-} from 'types'
 
-type Units = {
-  name: UnitType
+type Units<T extends string> = Array<{
+  symbol: T
   description: string
-}
+}>
 
-type VolumeUnits = {
-  name: VolumeUnitType
-  description: string
-}
-
-type DensityUnits = {
-  name: DensityUnitType
-  description: string
-}
-
-const units: Units[] = [
-  { name: 'm', description: 'Metro (m)' },
-  { name: 'cm', description: 'Centímetro (cm)' },
-  { name: 'mm', description: 'Milímetro (mm)' }
+const units: Units<Unit['symbol']> = [
+  { symbol: 'm', description: 'Metro (m)' },
+  { symbol: 'cm', description: 'Centímetro (cm)' },
+  { symbol: 'mm', description: 'Milímetro (mm)' }
 ]
 
-const volumeUnits: VolumeUnits[] = [
-  { name: 'l', description: 'Litro (l)' },
-  { name: 'm³', description: 'Metro cúbico (m³)' },
-  { name: 'cm³', description: 'Centímetro cúbico (cm³)' },
-  { name: 'mm³', description: 'Milímetro cúbico (mm³)' }
+const volumeUnits: Units<VolumeUnit['symbol']> = [
+  { symbol: 'l', description: 'Litro (l)' },
+  { symbol: 'm³', description: 'Metro cúbico (m³)' },
+  { symbol: 'cm³', description: 'Centímetro cúbico (cm³)' },
+  { symbol: 'mm³', description: 'Milímetro cúbico (mm³)' }
 ]
 
-const dencityUnits: DensityUnits[] = [
-  { name: 'kg/l', description: 'Quilograma por litro (kg/l)' },
-  { name: 'kg/m³', description: 'Quilograma por metro cúbico (kg/m³)' },
-  { name: 'kg/cm³', description: 'Quilograma por centímetro cúbico (kg/cm³)' },
-  { name: 'kg/mm³', description: 'Quilograma por milímetro cúbico (kg/mm³)' }
+const dencityUnits: Units<DensityUnit['symbol']> = [
+  { symbol: 'kg/l', description: 'Quilograma por litro (kg/l)' },
+  { symbol: 'kg/m³', description: 'Quilograma por metro cúbico (kg/m³)' },
+  {
+    symbol: 'kg/cm³',
+    description: 'Quilograma por centímetro cúbico (kg/cm³)'
+  },
+  { symbol: 'kg/mm³', description: 'Quilograma por milímetro cúbico (kg/mm³)' }
 ]
 
 export function onFirstOpen(realm: Realm) {
   for (const unit of units) {
-    const selected = unit.name === 'cm'
+    const selected = unit.symbol === 'cm'
 
     realm.create<Unit>('Unit', {
-      name: unit.name,
+      symbol: unit.symbol,
       description: unit.description,
       selected,
       visible: true
@@ -54,17 +42,17 @@ export function onFirstOpen(realm: Realm) {
 
   for (const volumeUnit of volumeUnits) {
     realm.create<VolumeUnit>('VolumeUnit', {
-      name: volumeUnit.name,
+      symbol: volumeUnit.symbol,
       description: volumeUnit.description,
       visible: true
     })
   }
 
   for (const dencityUnit of dencityUnits) {
-    const selected = dencityUnit.name === 'kg/m³'
+    const selected = dencityUnit.symbol === 'kg/m³'
 
     realm.create<DensityUnit>('DensityUnit', {
-      name: dencityUnit.name,
+      symbol: dencityUnit.symbol,
       description: dencityUnit.description,
       selected,
       visible: true

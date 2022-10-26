@@ -2,7 +2,6 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
-import { DensityUnit, Unit } from 'types'
 import {
   Form,
   HexagonalPrism,
@@ -17,16 +16,16 @@ export function HexagonalPrismFormScreen() {
   const defaultUnit = useDefaultUnit()
 
   const [width, setWidth] = React.useState('')
-  const [widthUnit, setWidthUnit] = React.useState<Unit>(defaultUnit)
+  const [widthUnit, setWidthUnit] = React.useState(defaultUnit)
 
   const [height, setHeight] = React.useState('')
-  const [heightUnit, setHeightUnit] = React.useState<Unit>(defaultUnit)
+  const [heightUnit, setHeightUnit] = React.useState(defaultUnit)
 
   const defaultDensityUnit = useDefaultDensityUnit()
 
   const [specificWeight, setSpecificWeight] = React.useState('')
   const [specificWeightUnit, setSpecificWeightUnit] =
-    React.useState<DensityUnit>(defaultDensityUnit)
+    React.useState(defaultDensityUnit)
 
   // m
   const volume = React.useMemo(() => {

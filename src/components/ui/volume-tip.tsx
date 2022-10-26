@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { StyleProp, ViewStyle } from 'react-native'
 
 import { useVolumeUnits } from 'hooks'
-import { VolumeUnit } from 'services/realm'
+import { VolumeUnit } from 'models'
 import { Section } from 'ui'
 import { m3ToCm3, m3ToL, m3ToMm3 } from 'utils'
 
@@ -24,7 +24,7 @@ export function VolumeTip(props: VolumeTipProps) {
   function renderText(unit: VolumeUnit) {
     let value: number
 
-    switch (unit.name) {
+    switch (unit.symbol) {
       case 'cm³':
         value = m3ToCm3(volume)
         break
@@ -46,8 +46,8 @@ export function VolumeTip(props: VolumeTipProps) {
     })
 
     return (
-      <Section.Item key={unit.name}>
-        {`${formattedValue} ${unit.name}`}
+      <Section.Item key={unit.symbol}>
+        {`${formattedValue} ${unit.symbol}`}
       </Section.Item>
     )
   }

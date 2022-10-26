@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { useDensityUnits, useRealm, useUnits, useVolumeUnits } from 'hooks'
-import { DensityUnit, Unit, VolumeUnit } from 'services/realm'
+import { DensityUnit, Unit, VolumeUnit } from 'models'
 import { Form, Section } from 'ui'
 
 export function DisplayPreferencesScreen() {
@@ -50,7 +50,7 @@ export function DisplayPreferencesScreen() {
           <Section.Item
             key={unit.description}
             selected={unit.visible}
-            onPress={() => onUnitPress(unit.name)}
+            onPress={() => onUnitPress(unit.symbol)}
           >
             {unit.description}
           </Section.Item>
@@ -64,7 +64,7 @@ export function DisplayPreferencesScreen() {
           <Section.Item
             key={unit.description}
             selected={unit.visible}
-            onPress={() => onVolumeUnitPress(unit.name)}
+            onPress={() => onVolumeUnitPress(unit.symbol)}
           >
             {unit.description}
           </Section.Item>
@@ -78,7 +78,7 @@ export function DisplayPreferencesScreen() {
           <Section.Item
             key={unit.description}
             selected={unit.visible}
-            onPress={() => onDensityUnitPress(unit.name)}
+            onPress={() => onDensityUnitPress(unit.symbol)}
           >
             {unit.description}
           </Section.Item>

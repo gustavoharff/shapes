@@ -1,7 +1,9 @@
 import Realm from 'realm'
 
+export type DensityUnitSymbol = DensityUnit['symbol']
+
 export class DensityUnit extends Realm.Object<DensityUnit> {
-  public name!: 'kg/m³' | 'kg/cm³' | 'kg/mm³' | 'kg/l'
+  public symbol!: 'kg/m³' | 'kg/cm³' | 'kg/mm³' | 'kg/l'
 
   public description!: string
 
@@ -12,11 +14,11 @@ export class DensityUnit extends Realm.Object<DensityUnit> {
   public static schema: Realm.ObjectSchema = {
     name: 'DensityUnit',
     properties: {
-      name: 'string',
+      symbol: 'string',
       selected: 'bool',
       visible: 'bool',
       description: 'string'
     },
-    primaryKey: 'name'
+    primaryKey: 'symbol'
   }
 }

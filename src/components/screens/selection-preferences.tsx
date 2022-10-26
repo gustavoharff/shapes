@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { useDensityUnits, useRealm, useUnits } from 'hooks'
-import { DensityUnit, Unit } from 'services/realm'
+import { DensityUnit, Unit } from 'models'
 import { Form, Section } from 'ui'
 
 export function SelectionPreferencesScreen() {
@@ -53,7 +53,7 @@ export function SelectionPreferencesScreen() {
           <Section.Item
             key={unit.description}
             selected={unit.selected}
-            onPress={() => onUnitPress(unit.name)}
+            onPress={() => onUnitPress(unit.symbol)}
           >
             {unit.description}
           </Section.Item>
@@ -67,7 +67,7 @@ export function SelectionPreferencesScreen() {
           <Section.Item
             key={unit.description}
             selected={unit.selected}
-            onPress={() => onDensityUnitPress(unit.name)}
+            onPress={() => onDensityUnitPress(unit.symbol)}
           >
             {unit.description}
           </Section.Item>

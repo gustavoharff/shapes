@@ -2,7 +2,6 @@ import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
-import { DensityUnit, Unit } from 'types'
 import { Form, Pyramid, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
 import { cmToM, mmToM } from 'utils'
 
@@ -10,19 +9,19 @@ export function PyramidFormScreen() {
   const defaultUnit = useDefaultUnit()
 
   const [height, setHeight] = React.useState('')
-  const [heightUnit, setHeightUnit] = React.useState<Unit>(defaultUnit)
+  const [heightUnit, setHeightUnit] = React.useState(defaultUnit)
 
   const [width, setWidth] = React.useState('')
-  const [widthUnit, setWidthUnit] = React.useState<Unit>(defaultUnit)
+  const [widthUnit, setWidthUnit] = React.useState(defaultUnit)
 
   const [depth, setDepth] = React.useState('')
-  const [depthUnit, setDepthUnit] = React.useState<Unit>(defaultUnit)
+  const [depthUnit, setDepthUnit] = React.useState(defaultUnit)
 
   const defaultDensityUnit = useDefaultDensityUnit()
 
   const [specificWeight, setSpecificWeight] = React.useState('')
   const [specificWeightUnit, setSpecificWeightUnit] =
-    React.useState<DensityUnit>(defaultDensityUnit)
+    React.useState(defaultDensityUnit)
 
   const volume = React.useMemo(() => {
     if (!width) return 0
