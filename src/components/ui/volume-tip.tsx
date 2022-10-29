@@ -6,7 +6,7 @@ import { useVolumeUnits } from 'hooks'
 import { t } from 'i18n'
 import { VolumeUnit } from 'models'
 import { Section } from 'ui'
-import { m3ToCm3, m3ToL, m3ToMm3 } from 'utils'
+import { convertVolumeUnits } from 'utils'
 
 interface VolumeTipProps {
   readonly volume: number
@@ -23,24 +23,7 @@ export function VolumeTip(props: VolumeTipProps) {
   const visibleVolumeUnits = volumeUnits.filter(unit => unit.visible)
 
   function renderText(unit: VolumeUnit) {
-    let value: number
-
-    switch (unit.symbol) {
-      case 'cm³':
-        value = m3ToCm3(volume)
-        break
-      case 'l':
-        value = m3ToL(volume)
-        break
-      case 'mm³':
-        value = m3ToMm3(volume)
-        break
-      case 'm³':
-        value = volume
-        break
-      default:
-        value = volume
-    }
+    const [value] = convertVolumeUnits({ value: volume, unit: unit.symbol })
 
     const formattedValue = intl.formatNumber(value, {
       maximumSignificantDigits: 5

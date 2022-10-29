@@ -11,7 +11,7 @@ import {
   VolumeTip,
   WeightTip
 } from 'ui'
-import { cmToM, mmToM } from 'utils'
+import { convertStringToNumber, convertUnits } from 'utils'
 
 export function ParallelepipedFormScreen() {
   const defaultUnit = useDefaultUnit()
@@ -33,55 +33,18 @@ export function ParallelepipedFormScreen() {
 
   // m
   const volume = React.useMemo(() => {
-    if (!width) return 0
-    if (!height) return 0
-    if (!length) return 0
+    const [widthValue, heightValue, lengthValue] = convertStringToNumber(
+      width,
+      height,
+      length
+    )
 
-    const widthValue = Number(width.replace(',', '.'))
-    const heightValue = Number(height.replace(',', '.'))
-    const lengthValue = Number(length.replace(',', '.'))
-
-    if (Number.isNaN(widthValue)) return 0
-
-    let widthM: number
-    let heightM: number
-    let lengthM: number
-
-    switch (widthUnit) {
-      case 'cm':
-        widthM = cmToM(widthValue)
-        break
-      case 'm':
-        widthM = widthValue
-        break
-      case 'mm':
-        widthM = mmToM(widthValue)
-        break
-    }
-
-    switch (heightUnit) {
-      case 'cm':
-        heightM = cmToM(heightValue)
-        break
-      case 'm':
-        heightM = heightValue
-        break
-      case 'mm':
-        heightM = mmToM(heightValue)
-        break
-    }
-
-    switch (lengthUnit) {
-      case 'cm':
-        lengthM = cmToM(lengthValue)
-        break
-      case 'm':
-        lengthM = lengthValue
-        break
-      case 'mm':
-        lengthM = mmToM(lengthValue)
-        break
-    }
+    const [widthM, heightM, lengthM] = convertUnits(
+      'm',
+      { value: widthValue, unit: widthUnit },
+      { value: heightValue, unit: heightUnit },
+      { value: lengthValue, unit: lengthUnit }
+    )
 
     return widthM * heightM * lengthM
   }, [length, lengthUnit, height, heightUnit, width, widthUnit])

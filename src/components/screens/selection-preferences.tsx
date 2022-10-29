@@ -1,8 +1,9 @@
+import type { DensityUnit, Unit } from 'models'
+
 import * as React from 'react'
 
 import { useDensityUnits, useRealm, useUnits } from 'hooks'
 import { t } from 'i18n'
-import { DensityUnit, Unit } from 'models'
 import { Form, Section } from 'ui'
 
 export function SelectionPreferencesScreen() {

@@ -11,7 +11,7 @@ import {
   VolumeTip,
   WeightTip
 } from 'ui'
-import { cmToM, mmToM } from 'utils'
+import { convertStringToNumber, convertUnits } from 'utils'
 
 export function HexagonalPrismFormScreen() {
   const defaultUnit = useDefaultUnit()
@@ -30,40 +30,13 @@ export function HexagonalPrismFormScreen() {
 
   // m
   const volume = React.useMemo(() => {
-    if (!width) return 0
-    if (!height) return 0
+    const [widthValue, heightValue] = convertStringToNumber(width, height)
 
-    const widthValue = Number(width.replace(',', '.'))
-    const heightValue = Number(height.replace(',', '.'))
-
-    if (Number.isNaN(widthValue)) return 0
-
-    let widthM: number
-    let heightM: number
-
-    switch (widthUnit) {
-      case 'cm':
-        widthM = cmToM(widthValue)
-        break
-      case 'm':
-        widthM = widthValue
-        break
-      case 'mm':
-        widthM = mmToM(widthValue)
-        break
-    }
-
-    switch (heightUnit) {
-      case 'cm':
-        heightM = cmToM(heightValue)
-        break
-      case 'm':
-        heightM = heightValue
-        break
-      case 'mm':
-        heightM = mmToM(heightValue)
-        break
-    }
+    const [widthM, heightM] = convertUnits(
+      'm',
+      { value: widthValue, unit: widthUnit },
+      { value: heightValue, unit: heightUnit }
+    )
 
     return ((6 * widthM ** 2 * Math.sqrt(3)) / 4) * heightM
   }, [height, heightUnit, width, widthUnit])
