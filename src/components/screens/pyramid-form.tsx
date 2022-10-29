@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native'
 import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
 import { t } from 'i18n'
 import { Form, Pyramid, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
-import { cmToM, mmToM } from 'utils'
+import { convertStringToNumber, convertUnits } from 'utils'
 
 export function PyramidFormScreen() {
   const defaultUnit = useDefaultUnit()
@@ -25,55 +25,18 @@ export function PyramidFormScreen() {
     React.useState(defaultDensityUnit)
 
   const volume = React.useMemo(() => {
-    if (!width) return 0
-    if (!height) return 0
-    if (!depth) return 0
+    const [widthValue, heightValue, depthValue] = convertStringToNumber(
+      width,
+      height,
+      depth
+    )
 
-    const widthValue = Number(width.replace(',', '.'))
-    const heightValue = Number(height.replace(',', '.'))
-    const depthValue = Number(depth.replace(',', '.'))
-
-    if (Number.isNaN(widthValue)) return 0
-
-    let widthM: number
-    let heightM: number
-    let depthM: number
-
-    switch (widthUnit) {
-      case 'cm':
-        widthM = cmToM(widthValue)
-        break
-      case 'm':
-        widthM = widthValue
-        break
-      case 'mm':
-        widthM = mmToM(widthValue)
-        break
-    }
-
-    switch (heightUnit) {
-      case 'cm':
-        heightM = cmToM(heightValue)
-        break
-      case 'm':
-        heightM = heightValue
-        break
-      case 'mm':
-        heightM = mmToM(heightValue)
-        break
-    }
-
-    switch (depthUnit) {
-      case 'cm':
-        depthM = cmToM(depthValue)
-        break
-      case 'm':
-        depthM = depthValue
-        break
-      case 'mm':
-        depthM = mmToM(depthValue)
-        break
-    }
+    const [widthM, heightM, depthM] = convertUnits(
+      'm',
+      { value: widthValue, unit: widthUnit },
+      { value: heightValue, unit: heightUnit },
+      { value: depthValue, unit: depthUnit }
+    )
 
     return (widthM * depthM * heightM) / 3
   }, [depth, depthUnit, height, heightUnit, width, widthUnit])

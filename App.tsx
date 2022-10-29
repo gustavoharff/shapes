@@ -8,8 +8,8 @@ import { IntlProvider } from 'react-intl'
 import { LogBox, Platform, UIManager, useColorScheme, View } from 'react-native'
 import RNBootSplash from 'react-native-bootsplash'
 
-import { RealmProvider } from './src/contexts'
-import { RootStack } from './src/navigation/root.stack'
+import { RealmProvider } from 'contexts'
+import { RootStack } from 'navigation'
 
 LogBox.ignoreLogs([
   'Non-serializable values were found in the navigation state'

@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native'
 import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
 import { t } from 'i18n'
 import { Cone, Form, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
-import { cmToM, mmToM } from 'utils'
+import { convertStringToNumber, convertUnits } from 'utils'
 
 export function ConeFormScreen() {
   const defaultUnit = useDefaultUnit()
@@ -23,47 +23,13 @@ export function ConeFormScreen() {
 
   // m3
   const volume = React.useMemo(() => {
-    if (!radius) return 0
-    if (!height) return 0
+    const [radiusParsed, heightParsed] = convertStringToNumber(radius, height)
 
-    const radiusParsed = Number(radius.replace(',', '.'))
-    const heightParsed = Number(height.replace(',', '.'))
-
-    if (Number.isNaN(radiusParsed)) return 0
-    if (Number.isNaN(heightParsed)) return 0
-
-    let radiusM: number
-    let heightM: number
-
-    switch (radiusUnit) {
-      case 'cm': {
-        radiusM = cmToM(radiusParsed)
-        break
-      }
-      case 'm': {
-        radiusM = radiusParsed
-        break
-      }
-      case 'mm': {
-        radiusM = mmToM(radiusParsed)
-        break
-      }
-    }
-
-    switch (heightUnit) {
-      case 'cm': {
-        heightM = cmToM(heightParsed)
-        break
-      }
-      case 'm': {
-        heightM = heightParsed
-        break
-      }
-      case 'mm': {
-        heightM = mmToM(heightParsed)
-        break
-      }
-    }
+    const [radiusM, heightM] = convertUnits(
+      'm',
+      { value: radiusParsed, unit: radiusUnit },
+      { value: heightParsed, unit: heightUnit }
+    )
 
     return (Math.PI * radiusM ** 2 * heightM) / 3
   }, [height, heightUnit, radius, radiusUnit])

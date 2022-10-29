@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native'
 import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
 import { t } from 'i18n'
 import { Cube, Form, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
-import { cmToM, mmToM } from 'utils'
+import { convertStringToNumber, convertUnits } from 'utils'
 
 export function CubeFormScreen() {
   const defaultUnit = useDefaultUnit()
@@ -20,27 +20,11 @@ export function CubeFormScreen() {
 
   // m
   const volume = React.useMemo(() => {
-    if (!edge) return 0
+    const [edgeValue] = convertStringToNumber(edge)
 
-    const value = Number(edge.replace(',', '.'))
+    const [edgeM] = convertUnits('m', { value: edgeValue, unit: edgeUnit })
 
-    if (Number.isNaN(value)) return 0
-
-    let valueM: number
-
-    switch (edgeUnit) {
-      case 'cm':
-        valueM = cmToM(value)
-        break
-      case 'm':
-        valueM = value
-        break
-      case 'mm':
-        valueM = mmToM(value)
-        break
-    }
-
-    return valueM ** 3
+    return edgeM ** 3
   }, [edge, edgeUnit])
 
   const weight = useWeight(specificWeight, specificWeightUnit, volume)

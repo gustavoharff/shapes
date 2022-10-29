@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native'
 import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
 import { t } from 'i18n'
 import { ConeTrunk, Form, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
-import { cmToM, mmToM } from 'utils'
+import { convertStringToNumber, convertUnits } from 'utils'
 
 export function ConeTrunkFormScreen() {
   const defaultUnit = useDefaultUnit()
@@ -26,64 +26,15 @@ export function ConeTrunkFormScreen() {
 
   // m3
   const volume = React.useMemo(() => {
-    if (!height) return 0
+    const [minorRadiusValue, greaterRadiusValue, heightValue] =
+      convertStringToNumber(minorRadius, greaterRadius, height)
 
-    const minorRadiusParsed = Number(minorRadius.replace(',', '.'))
-    const greaterRadiusParsed = Number(greaterRadius.replace(',', '.'))
-    const heightParsed = Number(height.replace(',', '.'))
-
-    if (Number.isNaN(minorRadiusParsed)) return 0
-    if (Number.isNaN(greaterRadiusParsed)) return 0
-    if (Number.isNaN(heightParsed)) return 0
-
-    let minorRadiusM: number
-    let greaterRadiusM: number
-    let heightM: number
-
-    switch (minorRadiusUnit) {
-      case 'cm': {
-        minorRadiusM = cmToM(minorRadiusParsed)
-        break
-      }
-      case 'm': {
-        minorRadiusM = minorRadiusParsed
-        break
-      }
-      case 'mm': {
-        minorRadiusM = mmToM(minorRadiusParsed)
-        break
-      }
-    }
-
-    switch (greaterRadiusUnit) {
-      case 'cm': {
-        greaterRadiusM = cmToM(greaterRadiusParsed)
-        break
-      }
-      case 'm': {
-        greaterRadiusM = greaterRadiusParsed
-        break
-      }
-      case 'mm': {
-        greaterRadiusM = mmToM(greaterRadiusParsed)
-        break
-      }
-    }
-
-    switch (heightUnit) {
-      case 'cm': {
-        heightM = cmToM(heightParsed)
-        break
-      }
-      case 'm': {
-        heightM = heightParsed
-        break
-      }
-      case 'mm': {
-        heightM = mmToM(heightParsed)
-        break
-      }
-    }
+    const [minorRadiusM, greaterRadiusM, heightM] = convertUnits(
+      'm',
+      { value: minorRadiusValue, unit: minorRadiusUnit },
+      { value: greaterRadiusValue, unit: greaterRadiusUnit },
+      { value: heightValue, unit: heightUnit }
+    )
 
     return getVolume(heightM, greaterRadiusM, minorRadiusM)
   }, [

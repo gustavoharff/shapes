@@ -6,7 +6,7 @@ import { useDensityUnits } from 'hooks'
 import { t } from 'i18n'
 import { DensityUnit } from 'models'
 import { Section } from 'ui'
-import { kgm3ToKgcm3, kgm3ToKgL, kgm3ToKgmm3 } from 'utils'
+import { convertDensityUnits } from 'utils'
 
 interface WeightTipProps {
   readonly weight: number
@@ -23,24 +23,7 @@ export function WeightTip(props: WeightTipProps) {
   const visibleDensityUnits = densityUnits.filter(unit => unit.visible)
 
   function renderText(unit: DensityUnit) {
-    let value: number
-
-    switch (unit.symbol) {
-      case 'kg/cm³':
-        value = kgm3ToKgcm3(weight)
-        break
-      case 'kg/l':
-        value = kgm3ToKgL(weight)
-        break
-      case 'kg/mm³':
-        value = kgm3ToKgmm3(weight)
-        break
-      case 'kg/m³':
-        value = weight
-        break
-      default:
-        value = weight
-    }
+    const [value] = convertDensityUnits({ value: weight, unit: unit.symbol })
 
     const formattedValue = intl.formatNumber(value, {
       maximumSignificantDigits: 5
