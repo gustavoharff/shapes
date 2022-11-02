@@ -78,7 +78,7 @@ export function DisplayPreferencesScreen() {
 
         {densityUnits.map(unit => (
           <Section.Item
-            key={unit.description}
+            key={unit.symbol}
             selected={unit.visible}
             onPress={() => onDensityUnitPress(unit.symbol)}
           >
