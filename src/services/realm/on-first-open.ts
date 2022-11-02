@@ -1,40 +1,22 @@
-import { DensityUnit, Unit, VolumeUnit } from 'models'
+import type { DensityUnit, Unit, VolumeUnit } from 'models'
 
-type Units<T extends string> = Array<{
-  symbol: T
-  description: string
-}>
+const units: Unit['symbol'][] = ['m', 'cm', 'mm']
 
-const units: Units<Unit['symbol']> = [
-  { symbol: 'm', description: 'Metro (m)' },
-  { symbol: 'cm', description: 'Centímetro (cm)' },
-  { symbol: 'mm', description: 'Milímetro (mm)' }
-]
+const volumeUnits: VolumeUnit['symbol'][] = ['l', 'm³', 'cm³', 'mm³']
 
-const volumeUnits: Units<VolumeUnit['symbol']> = [
-  { symbol: 'l', description: 'Litro (l)' },
-  { symbol: 'm³', description: 'Metro cúbico (m³)' },
-  { symbol: 'cm³', description: 'Centímetro cúbico (cm³)' },
-  { symbol: 'mm³', description: 'Milímetro cúbico (mm³)' }
-]
-
-const dencityUnits: Units<DensityUnit['symbol']> = [
-  { symbol: 'kg/l', description: 'Quilograma por litro (kg/l)' },
-  { symbol: 'kg/m³', description: 'Quilograma por metro cúbico (kg/m³)' },
-  {
-    symbol: 'kg/cm³',
-    description: 'Quilograma por centímetro cúbico (kg/cm³)'
-  },
-  { symbol: 'kg/mm³', description: 'Quilograma por milímetro cúbico (kg/mm³)' }
+const dencityUnits: DensityUnit['symbol'][] = [
+  'kg/l',
+  'kg/m³',
+  'kg/cm³',
+  'kg/mm³'
 ]
 
 export function onFirstOpen(realm: Realm) {
   for (const unit of units) {
-    const selected = unit.symbol === 'cm'
+    const selected = unit === 'cm'
 
     realm.create<Unit>('Unit', {
-      symbol: unit.symbol,
-      description: unit.description,
+      symbol: unit,
       selected,
       visible: true
     })
@@ -42,18 +24,16 @@ export function onFirstOpen(realm: Realm) {
 
   for (const volumeUnit of volumeUnits) {
     realm.create<VolumeUnit>('VolumeUnit', {
-      symbol: volumeUnit.symbol,
-      description: volumeUnit.description,
+      symbol: volumeUnit,
       visible: true
     })
   }
 
   for (const dencityUnit of dencityUnits) {
-    const selected = dencityUnit.symbol === 'kg/m³'
+    const selected = dencityUnit === 'kg/m³'
 
     realm.create<DensityUnit>('DensityUnit', {
-      symbol: dencityUnit.symbol,
-      description: dencityUnit.description,
+      symbol: dencityUnit,
       selected,
       visible: true
     })

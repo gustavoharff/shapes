@@ -50,7 +50,7 @@ export function DisplayPreferencesScreen() {
 
         {units.map(unit => (
           <Section.Item
-            key={unit.description}
+            key={unit.symbol}
             selected={unit.visible}
             onPress={() => onUnitPress(unit.symbol)}
           >
@@ -64,7 +64,7 @@ export function DisplayPreferencesScreen() {
 
         {volumeUnits.map(unit => (
           <Section.Item
-            key={unit.description}
+            key={unit.symbol}
             selected={unit.visible}
             onPress={() => onVolumeUnitPress(unit.symbol)}
           >

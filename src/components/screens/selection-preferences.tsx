@@ -53,7 +53,7 @@ export function SelectionPreferencesScreen() {
 
         {units.map(unit => (
           <Section.Item
-            key={unit.description}
+            key={unit.symbol}
             selected={unit.selected}
             onPress={() => onUnitPress(unit.symbol)}
           >
@@ -67,7 +67,7 @@ export function SelectionPreferencesScreen() {
 
         {densityUnits.map(unit => (
           <Section.Item
-            key={unit.description}
+            key={unit.symbol}
             selected={unit.selected}
             onPress={() => onDensityUnitPress(unit.symbol)}
           >

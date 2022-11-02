@@ -31,7 +31,7 @@ export function SelectDensityUnit(
 
         {filteredUnits.map(item => (
           <Section.Item
-            key={item.description}
+            key={item.symbol}
             selected={item.symbol === unit}
             onPress={() => onUnitSelect(item.symbol)}
           >

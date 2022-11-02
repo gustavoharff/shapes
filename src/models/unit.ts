@@ -5,8 +5,6 @@ export type UnitSymbol = Unit['symbol']
 export class Unit extends Realm.Object<Unit> {
   public symbol!: 'm' | 'cm' | 'mm'
 
-  public description!: string
-
   public selected!: boolean
 
   public visible!: boolean
@@ -16,8 +14,7 @@ export class Unit extends Realm.Object<Unit> {
     properties: {
       symbol: 'string',
       selected: 'bool',
-      visible: 'bool',
-      description: 'string'
+      visible: 'bool'
     },
     primaryKey: 'symbol'
   }
