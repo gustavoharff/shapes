@@ -2,7 +2,9 @@ import Realm from 'realm'
 
 export type DensityUnitSymbol = DensityUnit['symbol']
 
-export class DensityUnit extends Realm.Object<DensityUnit> {
+type RequiredFields = 'symbol' | 'selected' | 'visible'
+
+export class DensityUnit extends Realm.Object<DensityUnit, RequiredFields> {
   public symbol!: 'kg/m³' | 'kg/cm³' | 'kg/mm³' | 'kg/l'
 
   public selected!: boolean

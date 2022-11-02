@@ -2,7 +2,9 @@ import Realm from 'realm'
 
 export type UnitSymbol = Unit['symbol']
 
-export class Unit extends Realm.Object<Unit> {
+type RequiredFields = 'symbol' | 'selected' | 'visible'
+
+export class Unit extends Realm.Object<Unit, RequiredFields> {
   public symbol!: 'm' | 'cm' | 'mm'
 
   public selected!: boolean
