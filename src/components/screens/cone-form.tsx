@@ -61,7 +61,6 @@ export function ConeFormScreen() {
           unitValue={heightUnit}
           onChangeUnit={setHeightUnit}
           placeholder="0"
-          isLast
         />
       </Section>
 
@@ -80,7 +79,6 @@ export function ConeFormScreen() {
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
           placeholder="0"
-          isLast
         />
       </Section>
 

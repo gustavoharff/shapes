@@ -101,7 +101,6 @@ export function ConeTrunkFormScreen() {
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
           placeholder="0"
-          isLast
         />
       </Section>
 

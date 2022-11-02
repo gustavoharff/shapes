@@ -82,7 +82,6 @@ export function HexagonalPrismFormScreen() {
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
           placeholder="0"
-          isLast
         />
       </Section>
 

@@ -78,7 +78,6 @@ export function PyramidFormScreen() {
           unitValue={depthUnit}
           onChangeUnit={setDepthUnit}
           placeholder="0"
-          isLast
         />
       </Section>
 
@@ -97,7 +96,6 @@ export function PyramidFormScreen() {
           unitValue={specificWeightUnit}
           onChangeUnit={setSpecificWeightUnit}
           placeholder="0"
-          isLast
         />
       </Section>
 

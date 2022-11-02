@@ -104,7 +104,6 @@ export function ParallelepipedFormScreen() {
           onChangeUnit={setSpecificWeightUnit}
           editable={!!(Number(length) && Number(height))}
           placeholder="0"
-          isLast
         />
       </Section>
 
