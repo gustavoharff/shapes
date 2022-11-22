@@ -374,9 +374,9 @@ PODS:
     - React-jsi (= 0.70.6)
     - React-logger (= 0.70.6)
     - React-perflogger (= 0.70.6)
-  - RealmJS (11.1.0):
+  - RealmJS (11.2.0):
     - React
-  - RNBootSplash (4.3.2):
+  - RNBootSplash (4.3.3):
     - React-Core
   - RNDeviceInfo (10.3.0):
     - React-Core
@@ -385,7 +385,7 @@ PODS:
   - RNScreens (3.18.2):
     - React-Core
     - React-RCTImage
-  - RNSVG (13.4.0):
+  - RNSVG (13.6.0):
     - React-Core
   - SocketRocket (0.6.0)
   - Yoga (1.14.0)
@@ -610,12 +610,12 @@ SPEC CHECKSUMS:
   React-RCTVibration: c75ceef7aa60a33b2d5731ebe5800ddde40cefc4
   React-runtimeexecutor: 15437b576139df27635400de0599d9844f1ab817
   ReactCommon: 349be31adeecffc7986a0de875d7fb0dcf4e251c
-  RealmJS: de680a55666ee89252470f5254930a41001e43c1
-  RNBootSplash: 5f346163977573d6b2aeba1b25df9d2245c0d73c
+  RealmJS: d0e94d35363a3a9ebd27981d9ac0aa4b63f66c85
+  RNBootSplash: 7e91ea56c7010aae487489789dbe212e8c905a0c
   RNDeviceInfo: 4701f0bf2a06b34654745053db0ce4cb0c53ada7
   RNLocalize: 0df7970cfc60389f00eb62fd7c097dc75af3fb4f
   RNScreens: 34cc502acf1b916c582c60003dc3089fa01dc66d
-  RNSVG: 07dbd870b0dcdecc99b3a202fa37c8ca163caec2
+  RNSVG: 3a79c0c4992213e4f06c08e62730c5e7b9e4dc17
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: 99caf8d5ab45e9d637ee6e0174ec16fbbb01bcfc
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
