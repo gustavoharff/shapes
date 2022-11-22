@@ -8,6 +8,8 @@
 
 An mobile application to perform figure volume and weight calculations.
 
+🚧 **Shapes is under development** 🚧
+
 <p align="center">
   <img alt="Shapes" width="300px" src="./docs/screen-1.png"/>
   <img alt="Shapes" width="300px" src="./docs/screen-2.png"/>
