@@ -60,7 +60,7 @@ export function FiguresList(props: FiguresListProps) {
 
   return (
     <Form>
-      <Section radius>
+      <Section radius style={{ marginTop: 16 }}>
         {data.map(({ title, figure, component: Component }) => (
           <Section.Item
             key={figure}
