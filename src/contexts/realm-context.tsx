@@ -51,13 +51,6 @@ export function RealmProvider({ children, onRealmInit }: RealmProviderProps) {
     if (shouldInitRealm) {
       initRealm().then(onRealmInit).catch(console.error)
     }
-
-    return () => {
-      if (realm) {
-        realm.close()
-        setRealm(null)
-      }
-    }
   }, [onRealmInit, realm])
 
   if (!realm) {
