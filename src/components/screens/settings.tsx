@@ -3,9 +3,9 @@ import * as React from 'react'
 import { StyleSheet, Text } from 'react-native'
 import { getVersion } from 'react-native-device-info'
 
-import { t } from 'i18n'
-import { RootStackScreenProps } from 'navigation'
-import { Form, Section } from 'ui'
+import { t } from '@/i18n'
+import { RootStackScreenProps } from '@/navigation'
+import { Form, Section } from '@/components/ui'
 
 export function SettingsScreen(props: RootStackScreenProps<'Settings'>) {
   const { navigation } = props

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
-import { t } from 'i18n'
-import { Cone, Form, Section, UnitInput, VolumeTip, WeightTip } from 'ui'
-import { convertStringToNumber, convertUnits } from 'utils'
+import { useDefaultDensityUnit, useDefaultUnit, useWeight } from '@/hooks'
+import { t } from '@/i18n'
+import { Cone, Form, Section, UnitInput, VolumeTip, WeightTip } from '@/components/ui'
+import { convertStringToNumber, convertUnits } from '@/utils'
 
 export function ConeFormScreen() {
   const defaultUnit = useDefaultUnit()

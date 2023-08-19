@@ -2,11 +2,11 @@ import * as React from 'react'
 import { useIntl } from 'react-intl'
 import { StyleProp, ViewStyle } from 'react-native'
 
-import { useDensityUnits } from 'hooks'
-import { t } from 'i18n'
-import { DensityUnit } from 'models'
-import { Section } from 'ui'
-import { convertDensityUnits } from 'utils'
+import { useDensityUnits } from '@/hooks'
+import { t } from '@/i18n'
+import { DensityUnit } from '@/models'
+import { Section } from '@/components/ui'
+import { convertDensityUnits } from '@/utils'
 
 interface WeightTipProps {
   readonly weight: number

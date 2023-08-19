@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native'
 import * as React from 'react'
 import { LayoutAnimation } from 'react-native'
 
-import { t } from 'i18n'
+import { t } from '@/i18n'
 
 import { Cone } from './figures/cone'
 import { ConeTrunk } from './figures/cone-trunk'

@@ -1,4 +1,4 @@
-import type { Unit } from 'models'
+import type { Unit } from '@/models'
 
 import { useRealm } from './use-realm'
 

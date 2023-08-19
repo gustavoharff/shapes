@@ -1,7 +1,7 @@
 import i18n from 'i18n-js'
 import { findBestAvailableLanguage } from 'react-native-localize'
 
-import { NestedObjectKeys } from 'utils'
+import { NestedObjectKeys } from '@/utils'
 
 import { en, pt } from './locales'
 import { Language } from './locales/types'

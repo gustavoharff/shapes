@@ -2,7 +2,7 @@ import type Realm from 'realm'
 
 import { useContext } from 'react'
 
-import { RealmContext } from 'contexts'
+import { RealmContext } from '@/contexts'
 
 export function useRealm(): Realm {
   const context = useContext(RealmContext)

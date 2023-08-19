@@ -1,4 +1,4 @@
-import type { DensityUnit } from 'models'
+import type { DensityUnit } from '@/models'
 
 import { useRealm } from './use-realm'
 

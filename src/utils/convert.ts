@@ -1,4 +1,4 @@
-import type { DensityUnitSymbol, UnitSymbol, VolumeUnitSymbol } from 'models'
+import type { DensityUnitSymbol, UnitSymbol, VolumeUnitSymbol } from '@/models'
 
 import {
   cmToM,
@@ -10,7 +10,7 @@ import {
   mmToM,
   mToCm,
   mToMm
-} from 'utils/unit'
+} from '@/utils/unit'
 
 import { kgm3ToKgcm3, kgm3ToKgL, kgm3ToKgmm3 } from './density-unit'
 

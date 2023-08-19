@@ -1,4 +1,4 @@
-import type { DensityUnit, Unit, VolumeUnit } from 'models'
+import type { DensityUnit, Unit, VolumeUnit } from '@/models'
 
 const units: Unit['symbol'][] = ['m', 'cm', 'mm']
 

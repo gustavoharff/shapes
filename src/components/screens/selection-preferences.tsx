@@ -1,10 +1,10 @@
-import type { DensityUnit, Unit } from 'models'
+import type { DensityUnit, Unit } from '@/models'
 
 import * as React from 'react'
 
-import { useDensityUnits, useRealm, useUnits } from 'hooks'
-import { t } from 'i18n'
-import { Form, Section } from 'ui'
+import { useDensityUnits, useRealm, useUnits } from '@/hooks'
+import { t } from '@/i18n'
+import { Form, Section } from '@/components/ui'
 
 export function SelectionPreferencesScreen() {
   const units = useUnits()
@@ -12,7 +12,7 @@ export function SelectionPreferencesScreen() {
 
   const realm = useRealm()
 
-  function onUnitPress(name: string) {
+  function onUnitPress(name: Unit['symbol']) {
     const oldUnits = realm.objects<Unit>('Unit').filtered('selected == true')
 
     const unit = realm.objectForPrimaryKey<Unit>('Unit', name)
@@ -28,7 +28,7 @@ export function SelectionPreferencesScreen() {
     })
   }
 
-  function onDensityUnitPress(name: string) {
+  function onDensityUnitPress(name: DensityUnit['symbol']) {
     const oldUnits = realm
       .objects<DensityUnit>('DensityUnit')
       .filtered('selected == true')

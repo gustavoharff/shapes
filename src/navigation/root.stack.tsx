@@ -2,7 +2,7 @@ import { useTheme } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import * as React from 'react'
 
-import { t } from 'i18n'
+import { t } from '@/i18n'
 import {
   ConeFormScreen,
   ConeTrunkFormScreen,
@@ -17,8 +17,8 @@ import {
   SelectionPreferencesScreen,
   SelectUnit,
   SettingsScreen
-} from 'screens'
-import { HeaderTextButton } from 'ui'
+} from '@/components/screens'
+import { HeaderTextButton } from '@/components/ui'
 
 import { RootStackParamList } from './types'
 

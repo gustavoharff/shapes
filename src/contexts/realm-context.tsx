@@ -7,8 +7,8 @@ import React, {
 } from 'react'
 import Realm from 'realm'
 
-import { DensityUnit, Unit, VolumeUnit } from 'models'
-import { onFirstOpen } from 'services/realm'
+import { DensityUnit, Unit, VolumeUnit } from '@/models'
+import { onFirstOpen } from '@/services/realm'
 
 interface RealmContextData {
   realm: Realm
@@ -40,8 +40,15 @@ export function RealmProvider({ children, onRealmInit }: RealmProviderProps) {
       const realmInstance = await Realm.open({
         schema: [DensityUnit, Unit, VolumeUnit],
         schemaVersion: 0,
-        onFirstOpen
       })
+
+      const hasUnits = realmInstance.objects('Unit').length > 0
+
+      if (!hasUnits) {
+        realmInstance.write(() => {
+          onFirstOpen(realmInstance)
+        })
+      }
 
       console.log(realmInstance.path)
 

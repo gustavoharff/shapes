@@ -1,10 +1,10 @@
-import type { DensityUnit, Unit, VolumeUnit } from 'models'
+import type { DensityUnit, Unit, VolumeUnit } from '@/models'
 
 import * as React from 'react'
 
-import { useDensityUnits, useRealm, useUnits, useVolumeUnits } from 'hooks'
-import { t } from 'i18n'
-import { Form, Section } from 'ui'
+import { useDensityUnits, useRealm, useUnits, useVolumeUnits } from '@/hooks'
+import { t } from '@/i18n'
+import { Form, Section } from '@/components/ui'
 
 export function DisplayPreferencesScreen() {
   const units = useUnits()
@@ -13,7 +13,7 @@ export function DisplayPreferencesScreen() {
 
   const realm = useRealm()
 
-  function onUnitPress(name: string) {
+  function onUnitPress(name: Unit['symbol']) {
     const unit = realm.objectForPrimaryKey<Unit>('Unit', name)
 
     if (!unit) return
@@ -23,7 +23,7 @@ export function DisplayPreferencesScreen() {
     })
   }
 
-  function onVolumeUnitPress(name: string) {
+  function onVolumeUnitPress(name: VolumeUnit['symbol']) {
     const unit = realm.objectForPrimaryKey<VolumeUnit>('VolumeUnit', name)
 
     if (!unit) return
@@ -33,7 +33,7 @@ export function DisplayPreferencesScreen() {
     })
   }
 
-  function onDensityUnitPress(name: string) {
+  function onDensityUnitPress(name: DensityUnit['symbol']) {
     const unit = realm.objectForPrimaryKey<DensityUnit>('DensityUnit', name)
 
     if (!unit) return

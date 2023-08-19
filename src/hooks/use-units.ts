@@ -1,4 +1,4 @@
-import type { Unit } from 'models'
+import type { Unit } from '@/models'
 
 import { useEffect, useState } from 'react'
 

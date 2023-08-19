@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
 
-import { useDefaultDensityUnit, useDefaultUnit, useWeight } from 'hooks'
-import { t } from 'i18n'
+import { useDefaultDensityUnit, useDefaultUnit, useWeight } from '@/hooks'
+import { t } from '@/i18n'
 import {
   Form,
   HexagonalPrism,
@@ -10,8 +10,8 @@ import {
   UnitInput,
   VolumeTip,
   WeightTip
-} from 'ui'
-import { convertStringToNumber, convertUnits } from 'utils'
+} from '@/components/ui'
+import { convertStringToNumber, convertUnits } from '@/utils'
 
 export function HexagonalPrismFormScreen() {
   const defaultUnit = useDefaultUnit()

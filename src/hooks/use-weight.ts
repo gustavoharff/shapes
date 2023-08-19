@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { DensityUnitSymbol } from 'models'
+import { DensityUnitSymbol } from '@/models'
 
 import { convertDensityUnits, convertStringToNumber } from '../utils'
 

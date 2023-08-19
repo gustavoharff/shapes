@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { ScrollView, StatusBar, StyleSheet } from 'react-native'
 
-import { useUnits } from 'hooks'
-import { t } from 'i18n'
-import { UnitSymbol } from 'models'
-import { RootStackScreenProps } from 'navigation'
-import { Section } from 'ui'
+import { useUnits } from '@/hooks'
+import { t } from '@/i18n'
+import { UnitSymbol } from '@/models'
+import { RootStackScreenProps } from '@/navigation'
+import { Section } from '@/components/ui'
 
 export function SelectUnit(props: RootStackScreenProps<'SelectUnit'>) {
   const { unit, onSelect } = props.route.params

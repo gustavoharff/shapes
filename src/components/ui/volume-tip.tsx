@@ -2,11 +2,11 @@ import * as React from 'react'
 import { useIntl } from 'react-intl'
 import { StyleProp, ViewStyle } from 'react-native'
 
-import { useVolumeUnits } from 'hooks'
-import { t } from 'i18n'
-import { VolumeUnit } from 'models'
-import { Section } from 'ui'
-import { convertVolumeUnits } from 'utils'
+import { useVolumeUnits } from '@/hooks'
+import { t } from '@/i18n'
+import { VolumeUnit } from '@/models'
+import { Section } from '@/components/ui'
+import { convertVolumeUnits } from '@/utils'
 
 interface VolumeTipProps {
   readonly volume: number

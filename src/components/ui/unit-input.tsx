@@ -10,8 +10,8 @@ import {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import { SectionContext } from 'contexts'
-import { DensityUnitSymbol, UnitSymbol } from 'models'
+import { SectionContext } from '@/contexts'
+import { DensityUnitSymbol, UnitSymbol } from '@/models'
 
 import { Input } from './input'
 

@@ -6,10 +6,12 @@ import {
 import * as React from 'react'
 import { IntlProvider } from 'react-intl'
 import { LogBox, Platform, UIManager, useColorScheme, View } from 'react-native'
-import RNBootSplash from 'react-native-bootsplash'
+import * as SplashScreen from 'expo-splash-screen'
 
-import { RealmProvider } from 'contexts'
-import { RootStack } from 'navigation'
+import { RealmProvider } from '@/contexts'
+import { RootStack } from '@/navigation'
+
+SplashScreen.preventAutoHideAsync()
 
 LogBox.ignoreLogs([
   'Non-serializable values were found in the navigation state'
@@ -26,7 +28,7 @@ export default function App() {
   const isDark = useColorScheme() === 'dark'
 
   return (
-    <RealmProvider onRealmInit={() => RNBootSplash.hide()}>
+    <RealmProvider onRealmInit={() => SplashScreen.hideAsync()}>
       <IntlProvider locale="pt-BR">
         <View
           style={{

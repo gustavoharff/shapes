@@ -2,7 +2,7 @@
 
 import type { NativeStackScreenProps } from '@react-navigation/native-stack'
 
-import { DensityUnitSymbol, UnitSymbol } from 'models'
+import { DensityUnitSymbol, UnitSymbol } from '@/models'
 
 export type RootStackParamList = {
   Home: undefined
